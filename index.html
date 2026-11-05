@@ -2,259 +2,1741 @@
 <html lang="pl">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>DEZO CLIENT – Wydajność to nasza specjalność</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>DEZO CLIENT — Zdominuj każdy serwer w swoim stylu</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-:root{color-scheme:dark;--bg:#000;--fg:#fff;--mut:#a1a1aa;--mut2:#d4d4d8;--line:rgba(255,255,255,.1);--glass:rgba(255,255,255,.04);--ok:#34d399;--dc:#5865F2;
-box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
-*,*::before,*::after{box-sizing:inherit}
-body{margin:0;background:var(--bg);color:var(--fg);font-family:"Unbounded",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.5;overflow-x:hidden;-webkit-font-smoothing:antialiased}
-body::before{content:"";position:absolute;inset:0 0 auto;height:125svh;z-index:-1;background:radial-gradient(circle at 15% 5%,rgba(255,255,255,.14),transparent 30%),radial-gradient(circle at 90% 35%,rgba(255,255,255,.08),transparent 30%);-webkit-mask-image:linear-gradient(to bottom,#000 45%,transparent);mask-image:linear-gradient(to bottom,#000 45%,transparent)}
-a{color:inherit;text-decoration:none}
-.wrap{max-width:80rem;margin:0 auto;padding:0 1.5rem}
-.silver{background:linear-gradient(90deg,#fff,#d4d4d8 50%,#71717a);-webkit-background-clip:text;background-clip:text;color:transparent}
-h1,h2,h3{margin:0;letter-spacing:-.03em;line-height:1.08}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:.6rem;height:3.5rem;padding:0 2rem;border-radius:.9rem;font:600 .95rem "Unbounded",sans-serif;border:1px solid transparent;cursor:pointer;transition:transform .25s,background .3s,border-color .3s;white-space:nowrap}
-.btn:hover{transform:scale(1.04)}
-.btn:focus-visible,.nav a:focus-visible,summary:focus-visible,button:focus-visible{outline:2px solid #fff;outline-offset:3px}
-.btn.w{background:#fff;color:#000}.btn.w:hover{background:#e4e4e7}
-.btn.d{background:var(--dc);color:#fff}.btn.d:hover{background:#4752C4}
-.btn.g{background:var(--glass);border-color:rgba(255,255,255,.15);color:#fff}.btn.g:hover{background:var(--dc);border-color:var(--dc)}
-svg{flex:none}
-header{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;height:4rem}
-.nav{display:flex;align-items:center;justify-content:space-between;height:4rem}
-.logo{display:flex;align-items:center;gap:.7rem;font-weight:700;font-size:1.05rem;letter-spacing:-.02em}
-.mark{width:2.2rem;height:2.2rem;border-radius:.6rem;background:linear-gradient(135deg,#fff,#71717a);color:#000;display:grid;place-items:center;font-weight:700}
-.nav ul{display:flex;gap:.25rem;list-style:none;margin:0;padding:0}
-.nav ul a{display:block;padding:.5rem 1rem;border-radius:.6rem;font-size:.8rem;font-weight:600;color:var(--mut);transition:.25s}
-.nav ul a:hover{background:rgba(255,255,255,.06);color:#fff}
-.nav .r{display:flex;gap:.6rem}
-.nav .btn{height:2.5rem;padding:0 1rem;font-size:.78rem;border-radius:.6rem}
-@media(max-width:760px){.nav ul{display:none}}
-.hero{text-align:center;padding:4rem 0 2rem;display:flex;flex-direction:column;align-items:center;gap:1.8rem}
-.join{display:flex;align-items:center;gap:.8rem;flex-wrap:wrap;justify-content:center;font-weight:700;color:var(--mut2)}
-.av{display:flex}.av i{width:2.5rem;height:2.5rem;border-radius:50%;border:2px solid #000;margin-left:-.9rem;display:block}
-.av i:first-child{margin-left:0}
-.hero h1{font-size:clamp(2.3rem,7.5vw,5.25rem);max-width:62rem;padding-bottom:.3rem}
-.hero p{max-width:40rem;color:var(--mut);font-size:1.05rem;line-height:2;margin:0}
-.cta{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center}
-.stage{perspective:1400px;margin-top:1rem;width:100%;max-width:68rem}
-.win{transform:rotateX(26deg) scale(.92);border:1px solid var(--line);border-radius:1.5rem;background:#0a0a0a;box-shadow:0 40px 120px rgba(255,255,255,.12),0 30px 60px #000;overflow:hidden;text-align:left;transition:transform 1.2s cubic-bezier(.22,1,.36,1)}
-.stage:hover .win{transform:rotateX(0) scale(1)}
-.bar{display:flex;gap:.4rem;padding:.9rem 1.1rem;border-bottom:1px solid var(--line)}
-.bar b{width:.7rem;height:.7rem;border-radius:50%;background:#3f3f46}
-.app{display:grid;grid-template-columns:11rem 1fr;min-height:22rem}
-.side{border-right:1px solid var(--line);padding:1rem;display:flex;flex-direction:column;gap:.4rem;font-size:.75rem;font-weight:600;color:var(--mut)}
-.side span{padding:.65rem .8rem;border-radius:.6rem}.side .on{background:rgba(255,255,255,.08);color:#fff}
-.main{padding:1.5rem;display:flex;flex-direction:column;justify-content:flex-end;gap:1rem;background:linear-gradient(to top,rgba(255,255,255,.05),transparent)}
-.main h3{font-size:2rem}.main small{color:var(--mut);font-size:.75rem}
-.play{align-self:flex-start;background:#fff;color:#000;border-radius:.7rem;padding:.8rem 2.2rem;font-weight:700;font-size:.85rem}
-@media(max-width:640px){.app{grid-template-columns:1fr}.side{display:none}}
-.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:2.5rem 2rem;padding:5rem 0}
-.stat{display:flex;gap:1rem;align-items:flex-start}
-.ico{position:relative;width:3.5rem;height:3.5rem;border-radius:.9rem;border:1px solid var(--line);background:var(--glass);display:grid;place-items:center}
-.stat b{display:block;font-size:2.2rem;letter-spacing:-.03em;line-height:1}
-.stat span{display:block;color:var(--mut);font-size:.8rem;margin-top:.5rem;max-width:16rem;line-height:1.6}
-.live::after{content:"";position:absolute;top:-.2rem;right:-.2rem;width:.75rem;height:.75rem;border-radius:50%;background:var(--ok);border:2px solid #000;animation:ping 2s infinite}
-@keyframes ping{50%{box-shadow:0 0 0 .4rem rgba(52,211,153,.25)}}
-.head{text-align:center;display:flex;flex-direction:column;align-items:center;gap:1.2rem;margin-bottom:3.5rem}
-.pill{display:inline-flex;align-items:center;gap:.5rem;padding:.4rem 1rem;border-radius:99px;background:var(--glass);border:1px solid var(--line);font-size:.7rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--mut2)}
-.pill::before{content:"";width:.4rem;height:.4rem;border-radius:50%;background:#fff;box-shadow:0 0 8px #fff}
-.head h2{font-size:clamp(1.9rem,4.5vw,3.2rem);max-width:48rem}
-.head p{max-width:34rem;color:var(--mut);line-height:1.9;margin:0}
-section{padding:5rem 0}
-.bento{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
-.card{background:var(--glass);border:1px solid var(--line);border-radius:1.5rem;padding:1.5rem;display:flex;flex-direction:column;gap:1.5rem;transition:transform .4s,border-color .4s;backdrop-filter:blur(8px)}
-.card:hover{transform:translateY(-4px);border-color:rgba(255,255,255,.22)}
-.card.s2{grid-column:span 2}
-.viz{height:12rem;border-radius:1rem;border:1px solid rgba(255,255,255,.06);background:rgba(0,0,0,.4);display:flex;align-items:flex-end;justify-content:center;gap:.4rem;padding:1.2rem;position:relative;overflow:hidden}
-.viz.c{align-items:center;flex-direction:column;justify-content:center}
-.viz .bars{position:absolute;inset:3rem 1.2rem 1.2rem;display:flex;align-items:flex-end;gap:.4rem}
-.bars i{flex:1;border-radius:.4rem .4rem 0 0;background:linear-gradient(to top,rgba(255,255,255,.1),rgba(255,255,255,.85));transform-origin:bottom;animation:bp 2.4s ease-in-out infinite}
-@keyframes bp{50%{transform:scaleY(.7)}}
-.tag{position:absolute;top:.9rem;left:.9rem;display:flex;gap:.5rem;align-items:center;padding:.3rem .7rem;border-radius:.5rem;border:1px solid var(--line);background:rgba(0,0,0,.6);font-size:.72rem;font-weight:700}
-.tag::before{content:"";width:.4rem;height:.4rem;border-radius:50%;background:var(--ok);box-shadow:0 0 8px var(--ok)}
-.card h3{display:flex;align-items:center;gap:.8rem;font-size:1.25rem}
-.card h3 span{width:2.5rem;height:2.5rem;border-radius:.7rem;border:1px solid var(--line);background:var(--glass);display:grid;place-items:center}
-.card p{margin:.9rem 0 0;color:var(--mut);font-size:.85rem;line-height:1.9;max-width:32rem}
-.steps{display:flex;flex-direction:column;gap:.5rem;width:100%;max-width:15rem}
-.steps div{padding:.55rem .8rem;border-radius:.7rem;border:1px solid var(--line);background:var(--glass);font-size:.72rem;font-weight:600;color:var(--mut2)}
-.steps .on{background:#fff;color:#000}
-.big{font-size:4.2rem;font-weight:700;letter-spacing:-.05em;line-height:1}
-.chips{display:flex;gap:.5rem;flex-wrap:wrap;justify-content:center;margin-top:1rem}
-.chips span{padding:.3rem .8rem;border-radius:99px;border:1px solid var(--line);background:var(--glass);font-size:.68rem;font-weight:600;color:var(--mut2)}
-@media(max-width:860px){.bento{grid-template-columns:1fr}.card.s2{grid-column:auto}}
-.vers{overflow:hidden;padding:2rem 0;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
-.track{display:flex;gap:1.2rem;width:max-content;animation:mq 40s linear infinite}
-.vers:hover .track{animation-play-state:paused}
-@keyframes mq{to{transform:translateX(-50%)}}
-.ver{width:min(80vw,22rem);border:1px solid var(--line);border-radius:1.5rem;background:#09090b;overflow:hidden;transition:transform .4s,border-color .4s}
-.ver:hover{transform:translateY(-6px);border-color:rgba(255,255,255,.3)}
-.vimg{height:9.5rem;position:relative;display:flex;align-items:flex-end;padding:.8rem 1.4rem}
-.vimg::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,#09090b,transparent 70%)}
-.vimg h3{position:relative;z-index:1;font-size:2.2rem}
-.new{position:absolute;top:1rem;right:1rem;z-index:1;font-size:.68rem;font-weight:600;color:var(--ok);background:rgba(0,0,0,.6);border:1px solid rgba(52,211,153,.4);padding:.25rem .7rem;border-radius:99px}
-.vbody{padding:.8rem 1.4rem 1.4rem}
-.vbody div{display:flex;justify-content:space-between;align-items:center;margin-bottom:.6rem}
-.vbody b{font-size:.68rem;letter-spacing:.15em;text-transform:uppercase}
-.vbody em{font-style:normal;font-size:.68rem;font-weight:600;color:var(--mut2);border:1px solid var(--line);background:var(--glass);padding:.1rem .5rem;border-radius:.4rem}
-.vbody p{margin:0;color:var(--mut);font-size:.8rem;line-height:1.8}
-.fps{display:grid;grid-template-columns:.85fr 1.15fr;gap:4rem;align-items:center}
-.fps h2{font-size:clamp(2.2rem,5vw,3.8rem);margin-bottom:1.5rem}
-.fps p{color:var(--mut);line-height:1.9;max-width:28rem;margin:0 0 2rem}
-.plus{display:flex;align-items:baseline;gap:.8rem}.plus b{font-size:clamp(3.5rem,7vw,5rem);letter-spacing:-.05em;line-height:1}.plus span{color:var(--mut);font-size:.75rem;max-width:9rem}
-.chart{border:1px solid var(--line);background:#000;border-radius:1.5rem;padding:2rem;display:flex;flex-direction:column;gap:1.6rem}
-.row div{display:flex;justify-content:space-between;font-size:.85rem;font-weight:700;margin-bottom:.6rem}
-.row.o div{color:var(--mut)}
-.track2{height:.75rem;border-radius:99px;background:rgba(255,255,255,.06);overflow:hidden}
-.fill{height:100%;border-radius:99px;background:linear-gradient(90deg,#d4d4d8,#fff);transform-origin:left;transform:scaleX(0);transition:transform 1.2s cubic-bezier(.22,1,.36,1)}
-.row.o .fill{background:#3f3f46}
-.chart.in .fill{transform:scaleX(var(--w))}
-.chart small{border-top:1px solid var(--line);padding-top:1.2rem;color:var(--mut);font-size:.68rem;line-height:1.8}
-@media(max-width:860px){.fps{grid-template-columns:1fr;gap:2.5rem}}
-.faq{display:grid;grid-template-columns:.85fr 1.15fr;gap:4rem}
-.faq h2{font-size:clamp(2.2rem,5vw,3.8rem);margin-bottom:1.5rem}
-.faq .l p{color:var(--mut);line-height:1.9;max-width:28rem;margin:0 0 1.5rem}
-.faq .l{align-self:start;position:sticky;top:7rem}
-details{border-bottom:1px solid var(--line)}
-.list{border-top:1px solid var(--line)}
-summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:1.2rem;padding:1.5rem 0;font-weight:700;font-size:1rem;color:var(--mut2);transition:color .3s}
-summary::-webkit-details-marker{display:none}
-summary:hover,details[open] summary{color:#fff}
-summary span{flex:1}
-summary i{width:2.3rem;height:2.3rem;border-radius:50%;border:1px solid rgba(255,255,255,.15);display:grid;place-items:center;transition:.4s;font-style:normal;font-size:1.2rem;line-height:1}
-details[open] summary i{background:#fff;color:#000;transform:rotate(135deg);border-color:#fff}
-details p{margin:0;padding:0 3.5rem 1.7rem 0;color:var(--mut);line-height:1.9;font-size:.9rem}
-@media(max-width:860px){.faq{grid-template-columns:1fr;gap:2.5rem}.faq .l{position:static}}
-.final{border:1px solid var(--line);border-radius:2.5rem;background:#000;padding:4rem 3rem;display:flex;flex-direction:column;gap:1.6rem;align-items:flex-start;background-image:radial-gradient(circle at 90% 50%,rgba(255,255,255,.1),transparent 45%)}
-.final h2{font-size:clamp(2.2rem,5vw,3.8rem)}
-.final p{color:var(--mut);max-width:28rem;line-height:1.9;margin:0}
-@media(max-width:640px){.final{padding:2.5rem 1.5rem;align-items:center;text-align:center}}
-footer{border-top:1px solid var(--line);margin-top:3rem;padding:3rem 0 2rem}
-.ft{display:flex;justify-content:space-between;flex-wrap:wrap;gap:2rem}
-.ft p{color:var(--mut);font-size:.8rem;line-height:1.9;max-width:20rem;margin:1rem 0 0}
-.ft ul{list-style:none;margin:.8rem 0 0;padding:0;display:flex;flex-direction:column;gap:.7rem;font-size:.8rem}
-.ft ul a{color:var(--mut2)}.ft ul a:hover{color:#fff}
-.ft h4{margin:0;font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--mut)}
-.copy{display:flex;justify-content:space-between;flex-wrap:wrap;gap:.5rem;margin-top:3rem;color:var(--mut);font-size:.72rem}
-.big-word{font-size:clamp(2.5rem,12vw,9rem);font-weight:700;letter-spacing:-.04em;text-align:center;margin:2rem 0 0;background:linear-gradient(to bottom,rgba(255,255,255,.14),transparent);-webkit-background-clip:text;background-clip:text;color:transparent;line-height:1}
-@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.track{animation:none}.win{transform:none}.fill{transform:scaleX(var(--w))}}
+/* ==========================================================================
+   ZMIENNE KOLORYSTYCZNE I RESET (CZARNO-FIOLETOWY MOTYW)
+   ========================================================================== */
+:root {
+  color-scheme: dark;
+  --bg: #040208;
+  --bg-elevated: #0a0514;
+  --bg-card: rgba(16, 9, 32, 0.65);
+  --fg: #ffffff;
+  --mut: #a39bb5;
+  --mut2: #dfd7f2;
+  --purple-main: #a855f7;
+  --purple-bright: #c084fc;
+  --purple-deep: #6b21a8;
+  --purple-glow: rgba(168, 85, 247, 0.45);
+  --line: rgba(168, 85, 247, 0.16);
+  --line-hover: rgba(192, 132, 252, 0.45);
+  --glass: rgba(147, 51, 234, 0.07);
+  --dc: #5865F2;
+  --ok: #a855f7;
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg);
+  color: var(--fg);
+  font-family: "Unbounded", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.5;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  position: relative;
+}
+
+/* Futurystyczna siatka w tle */
+.bg-grid {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background-image: 
+    linear-gradient(to right, rgba(168, 85, 247, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(168, 85, 247, 0.05) 1px, transparent 1px);
+  background-size: 3.5rem 3.5rem;
+  -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 25%, #000 35%, transparent 100%);
+  mask-image: radial-gradient(ellipse 80% 70% at 50% 25%, #000 35%, transparent 100%);
+  pointer-events: none;
+}
+
+/* Pływające fioletowe kule światła (Nebula Orbs) */
+.ambient-orbs {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(110px);
+  opacity: 0.45;
+  animation: floatOrb 18s ease-in-out infinite alternate;
+}
+
+.orb-1 {
+  width: 38rem;
+  height: 38rem;
+  background: radial-gradient(circle, #9333ea 0%, transparent 70%);
+  top: -12rem;
+  left: -8rem;
+}
+
+.orb-2 {
+  width: 34rem;
+  height: 34rem;
+  background: radial-gradient(circle, #7e22ce 0%, transparent 70%);
+  top: 22vh;
+  right: -10rem;
+  animation-delay: -6s;
+  animation-duration: 22s;
+}
+
+.orb-3 {
+  width: 30rem;
+  height: 30rem;
+  background: radial-gradient(circle, #c084fc 0%, transparent 70%);
+  bottom: 5vh;
+  left: 20vw;
+  opacity: 0.22;
+  animation-delay: -11s;
+  animation-duration: 25s;
+}
+
+@keyframes floatOrb {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(3rem, 4rem) scale(1.12); }
+  100% { transform: translate(-2rem, -3rem) scale(0.94); }
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.wrap {
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* Animowany fioletowo-srebrny gradient tekstu */
+.purple-grad {
+  background: linear-gradient(90deg, #ffffff 0%, #e9d5ff 30%, #a855f7 65%, #f3e8ff 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: textShimmer 6s linear infinite;
+}
+
+@keyframes textShimmer {
+  to { background-position: 200% center; }
+}
+
+h1, h2, h3 {
+  margin: 0;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+
+/* ==========================================================================
+   ANIMACJE POJAWIANIA SIĘ PRZY SCROLLOWANIU (SCROLL REVEAL)
+   ========================================================================== */
+.reveal {
+  opacity: 0;
+  transform: translateY(32px) scale(0.98);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: var(--d, 0s);
+}
+
+.reveal.in-view {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* ==========================================================================
+   PRZYCISKI Z EFEKTEM POŚWIATY I POŁYSKU
+   ========================================================================== */
+.btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  height: 3.6rem;
+  padding: 0 2.1rem;
+  border-radius: 0.95rem;
+  font: 600 0.92rem "Unbounded", sans-serif;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s, background 0.3s, border-color 0.3s;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.btn::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.28), transparent);
+  transform: skewX(-25deg);
+  transition: left 0.65s ease;
+}
+
+.btn:hover::after {
+  left: 140%;
+}
+
+.btn:hover {
+  transform: translateY(-3px) scale(1.02);
+}
+
+.btn:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.btn:focus-visible, .nav a:focus-visible, summary:focus-visible, button:focus-visible {
+  outline: 2px solid var(--purple-bright);
+  outline-offset: 3px;
+}
+
+/* Główny fioletowy przycisk */
+.btn.p {
+  background: linear-gradient(135deg, #a855f7 0%, #7e22ce 100%);
+  color: #fff;
+  border-color: rgba(216, 180, 254, 0.35);
+  box-shadow: 0 10px 30px -5px rgba(168, 85, 247, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+
+.btn.p:hover {
+  box-shadow: 0 15px 40px -3px rgba(168, 85, 247, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  border-color: rgba(233, 213, 255, 0.65);
+}
+
+/* Przycisk szklany / ciemny fiolet */
+.btn.g {
+  background: rgba(20, 10, 38, 0.75);
+  border-color: rgba(168, 85, 247, 0.28);
+  color: #f3e8ff;
+  backdrop-filter: blur(10px);
+}
+
+.btn.g:hover {
+  background: rgba(147, 51, 234, 0.22);
+  border-color: var(--purple-bright);
+  box-shadow: 0 8px 25px rgba(147, 51, 234, 0.3);
+}
+
+svg {
+  flex: none;
+}
+
+/* ==========================================================================
+   NAWIGACJA
+   ========================================================================== */
+header {
+  position: sticky;
+  top: env(safe-area-inset-top, 0px);
+  z-index: 50;
+  height: 4.5rem;
+  background: rgba(4, 2, 8, 0.72);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(168, 85, 247, 0.12);
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-weight: 800;
+  font-size: 1.08rem;
+  letter-spacing: -0.02em;
+}
+
+.mark {
+  width: 2.35rem;
+  height: 2.35rem;
+  border-radius: 0.65rem;
+  background: linear-gradient(135deg, #c084fc 0%, #7e22ce 100%);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  font-weight: 800;
+  box-shadow: 0 0 20px rgba(168, 85, 247, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.nav ul {
+  display: flex;
+  gap: 0.35rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav ul a {
+  display: block;
+  padding: 0.55rem 1.05rem;
+  border-radius: 0.65rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--mut);
+  transition: color 0.25s, background 0.25s;
+}
+
+.nav ul a:hover {
+  background: rgba(168, 85, 247, 0.12);
+  color: #fff;
+}
+
+.nav .r {
+  display: flex;
+  gap: 0.65rem;
+}
+
+.nav .btn {
+  height: 2.65rem;
+  padding: 0 1.15rem;
+  font-size: 0.78rem;
+  border-radius: 0.68rem;
+}
+
+@media (max-width: 760px) {
+  .nav ul { display: none; }
+}
+
+/* ==========================================================================
+   SEKCJA HERO + INTERAKTYWNE OKNO LAUNCHERA 3D
+   ========================================================================== */
+.hero {
+  text-align: center;
+  padding: 4.5rem 0 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.8rem;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.45rem 1.1rem;
+  border-radius: 99px;
+  background: rgba(147, 51, 234, 0.12);
+  border: 1px solid rgba(168, 85, 247, 0.32);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--mut2);
+  box-shadow: 0 0 24px rgba(168, 85, 247, 0.2);
+}
+
+.pill::before {
+  content: "";
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 50%;
+  background: var(--purple-bright);
+  box-shadow: 0 0 10px var(--purple-bright);
+  animation: pulseDot 2s infinite;
+}
+
+@keyframes pulseDot {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.4); opacity: 0.6; }
+}
+
+.hero h1 {
+  font-size: clamp(2.25rem, 6.8vw, 4.9rem);
+  max-width: 64rem;
+  padding-bottom: 0.2rem;
+}
+
+.hero p {
+  max-width: 43rem;
+  color: var(--mut);
+  font-size: 1.02rem;
+  line-height: 1.95;
+  margin: 0;
+}
+
+.cta {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* Scena 3D dla okna launchera */
+.stage {
+  perspective: 1500px;
+  margin-top: 1.5rem;
+  width: 100%;
+  max-width: 68rem;
+}
+
+.win {
+  transform: rotateX(18deg) scale(0.95);
+  border: 1px solid rgba(168, 85, 247, 0.35);
+  border-radius: 1.5rem;
+  background: linear-gradient(165deg, #0d061a 0%, #05020a 100%);
+  box-shadow: 
+    0 40px 120px -15px rgba(147, 51, 234, 0.32),
+    0 30px 60px #000,
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  overflow: hidden;
+  text-align: left;
+  transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.4s, box-shadow 0.4s;
+  will-change: transform;
+}
+
+.stage:hover .win {
+  transform: rotateX(0deg) scale(1);
+  border-color: rgba(192, 132, 252, 0.6);
+  box-shadow: 
+    0 45px 135px -10px rgba(168, 85, 247, 0.45),
+    0 30px 60px #000;
+}
+
+.bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.95rem 1.25rem;
+  border-bottom: 1px solid var(--line);
+  background: rgba(16, 7, 32, 0.7);
+}
+
+.bar-dots {
+  display: flex;
+  gap: 0.45rem;
+}
+
+.bar-dots b {
+  width: 0.72rem;
+  height: 0.72rem;
+  border-radius: 50%;
+  background: #3b2754;
+}
+
+.bar-dots b:first-child { background: #a855f7; box-shadow: 0 0 8px #a855f7; }
+.bar-dots b:nth-child(2) { background: #7e22ce; }
+
+.bar-title {
+  font-size: 0.68rem;
+  color: var(--mut);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.app {
+  display: grid;
+  grid-template-columns: 13.5rem 1fr;
+  min-height: 24rem;
+}
+
+.side {
+  border-right: 1px solid var(--line);
+  padding: 1.15rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  background: rgba(8, 3, 18, 0.6);
+}
+
+.side button {
+  all: unset;
+  cursor: pointer;
+  padding: 0.75rem 0.95rem;
+  border-radius: 0.7rem;
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: var(--mut);
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  transition: all 0.25s ease;
+  border: 1px solid transparent;
+}
+
+.side button:hover {
+  color: #fff;
+  background: rgba(168, 85, 247, 0.1);
+}
+
+.side button.on {
+  background: linear-gradient(90deg, rgba(168, 85, 247, 0.25), rgba(168, 85, 247, 0.08));
+  color: #fff;
+  border-color: rgba(168, 85, 247, 0.35);
+  box-shadow: 0 4px 15px rgba(147, 51, 234, 0.2);
+}
+
+.side-status {
+  margin-top: auto;
+  padding: 0.75rem;
+  border-radius: 0.75rem;
+  background: rgba(168, 85, 247, 0.08);
+  border: 1px solid rgba(168, 85, 247, 0.18);
+  font-size: 0.68rem;
+  color: var(--mut2);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.side-status i {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: #c084fc;
+  box-shadow: 0 0 8px #c084fc;
+}
+
+.main-view {
+  padding: 1.8rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  background: 
+    radial-gradient(circle at 85% 20%, rgba(168, 85, 247, 0.2), transparent 55%),
+    linear-gradient(to top, rgba(168, 85, 247, 0.08), transparent);
+}
+
+.tab-pane {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+   gap: 1.2rem;
+  animation: fadePane 0.35s ease;
+}
+
+.tab-pane.active {
+  display: flex;
+}
+
+@keyframes fadePane {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.pane-badges {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.pane-badge {
+  font-size: 0.68rem;
+  font-weight: 600;
+  padding: 0.35rem 0.75rem;
+  border-radius: 0.5rem;
+  background: rgba(168, 85, 247, 0.14);
+  border: 1px solid rgba(168, 85, 247, 0.3);
+  color: #e9d5ff;
+}
+
+.pane-hero h3 {
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  margin: 0.35rem 0;
+}
+
+.pane-hero small {
+  color: var(--mut);
+  font-size: 0.78rem;
+}
+
+.play-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.play-btn {
+  background: linear-gradient(135deg, #a855f7, #7e22ce);
+  color: #fff;
+  border: 1px solid rgba(233, 213, 255, 0.4);
+  border-radius: 0.8rem;
+  padding: 0.9rem 2.2rem;
+  font: 700 0.85rem "Unbounded", sans-serif;
+  cursor: pointer;
+  box-shadow: 0 8px 25px rgba(168, 85, 247, 0.5);
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+
+.play-btn:hover {
+  transform: scale(1.04);
+  box-shadow: 0 12px 32px rgba(168, 85, 247, 0.75);
+}
+
+/* Siatka modułów w zakładce Moduły */
+.mods-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(11.5rem, 1fr));
+  gap: 0.75rem;
+}
+
+.mod-item {
+  padding: 0.85rem 1rem;
+  border-radius: 0.85rem;
+  background: rgba(13, 6, 26, 0.8);
+  border: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: border-color 0.25s, background 0.25s;
+}
+
+.mod-item:hover {
+  border-color: var(--line-hover);
+}
+
+.mod-item span {
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.switch {
+  width: 2.3rem;
+  height: 1.25rem;
+  border-radius: 99px;
+  background: #27173a;
+  position: relative;
+  transition: background 0.25s;
+}
+
+.switch::after {
+  content: "";
+  position: absolute;
+  top: 0.18rem;
+  left: 0.2rem;
+  width: 0.9rem;
+  height: 0.9rem;
+  border-radius: 50%;
+  background: #fff;
+  transition: transform 0.25s;
+}
+
+.mod-item.active {
+  border-color: rgba(168, 85, 247, 0.5);
+  background: rgba(147, 51, 234, 0.14);
+}
+
+.mod-item.active .switch {
+  background: var(--purple-main);
+}
+
+.mod-item.active .switch::after {
+  transform: translateX(1rem);
+}
+
+/* Suwak RAM w zakładce Profile */
+.ram-box {
+  background: rgba(13, 6, 26, 0.8);
+  border: 1px solid var(--line);
+  padding: 1.1rem;
+  border-radius: 0.9rem;
+}
+
+.ram-slider {
+  width: 100%;
+  accent-color: var(--purple-main);
+  margin-top: 0.7rem;
+  cursor: pointer;
+}
+
+@media (max-width: 680px) {
+  .app { grid-template-columns: 1fr; }
+  .side {
+    flex-direction: row;
+    overflow-x: auto;
+    border-right: none;
+    border-bottom: 1px solid var(--line);
+    padding: 0.75rem;
+  }
+  .side-status { display: none; }
+}
+
+/* ==========================================================================
+   STATYSTYKI (4 KARTY)
+   ========================================================================== */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  gap: 2rem 1.5rem;
+  padding: 5rem 0;
+}
+
+.stat {
+  display: flex;
+  gap: 1.1rem;
+  align-items: flex-start;
+  padding: 1.35rem;
+  border-radius: 1.25rem;
+  background: rgba(15, 7, 30, 0.5);
+  border: 1px solid var(--line);
+  transition: transform 0.35s, border-color 0.35s, box-shadow 0.35s;
+}
+
+.stat:hover {
+  transform: translateY(-5px);
+  border-color: var(--line-hover);
+  box-shadow: 0 15px 35px -10px rgba(147, 51, 234, 0.25);
+}
+
+.ico {
+  position: relative;
+  width: 3.4rem;
+  height: 3.4rem;
+  border-radius: 0.9rem;
+  border: 1px solid rgba(168, 85, 247, 0.35);
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.2), rgba(107, 33, 168, 0.1));
+  color: #e9d5ff;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 0 20px rgba(168, 85, 247, 0.2);
+}
+
+.stat b {
+  display: block;
+  font-size: 2rem;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: #fff;
+}
+
+.stat span {
+  display: block;
+  color: var(--mut);
+  font-size: 0.78rem;
+  margin-top: 0.5rem;
+  line-height: 1.65;
+}
+
+/* ==========================================================================
+   SEKCJA MOŻLIWOŚCI (BENTO GRID)
+   ========================================================================== */
+.head {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.15rem;
+  margin-bottom: 3.5rem;
+}
+
+.head h2 {
+  font-size: clamp(1.9rem, 4.4vw, 3.1rem);
+  max-width: 48rem;
+}
+
+.head p {
+  max-width: 38rem;
+  color: var(--mut);
+  line-height: 1.9;
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+section {
+  padding: 4.5rem 0;
+}
+
+.bento {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.2rem;
+}
+
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: 1.6rem;
+  padding: 1.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.4s, box-shadow 0.4s;
+  backdrop-filter: blur(12px);
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(500px circle at var(--mx, 50%) var(--my, 0%), rgba(168, 85, 247, 0.12), transparent 60%);
+  pointer-events: none;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  border-color: var(--line-hover);
+  box-shadow: 0 25px 50px -15px rgba(147, 51, 234, 0.28);
+}
+
+.card.s2 {
+  grid-column: span 2;
+}
+
+.viz {
+  height: 12.5rem;
+  border-radius: 1.1rem;
+  border: 1px solid rgba(168, 85, 247, 0.16);
+  background: radial-gradient(circle at 50% 100%, rgba(126, 34, 206, 0.22), rgba(4, 2, 8, 0.85));
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 0.45rem;
+  padding: 1.2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.viz.c {
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.viz .bars {
+  position: absolute;
+  inset: 3.2rem 1.2rem 1.2rem;
+  display: flex;
+  align-items: flex-end;
+  gap: 0.45rem;
+}
+
+.bars i {
+  flex: 1;
+  border-radius: 0.45rem 0.45rem 0 0;
+  background: linear-gradient(to top, rgba(126, 34, 206, 0.15), #a855f7 70%, #e9d5ff);
+  box-shadow: 0 0 15px rgba(168, 85, 247, 0.35);
+  transform-origin: bottom;
+  animation: bp 2.2s ease-in-out infinite;
+}
+
+@keyframes bp {
+  50% { transform: scaleY(0.55); opacity: 0.75; }
+}
+
+.tag {
+  position: absolute;
+  top: 0.95rem;
+  left: 0.95rem;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  padding: 0.35rem 0.8rem;
+  border-radius: 0.55rem;
+  border: 1px solid rgba(168, 85, 247, 0.35);
+  background: rgba(10, 4, 20, 0.8);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #f3e8ff;
+}
+
+.tag::before {
+  content: "";
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 50%;
+  background: var(--purple-main);
+  box-shadow: 0 0 10px var(--purple-main);
+}
+
+.card h3 {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  font-size: 1.25rem;
+}
+
+.card h3 span {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 0.75rem;
+  border: 1px solid rgba(168, 85, 247, 0.35);
+  background: rgba(168, 85, 247, 0.14);
+  display: grid;
+  place-items: center;
+  color: #e9d5ff;
+  box-shadow: 0 0 16px rgba(168, 85, 247, 0.25);
+}
+
+.card p {
+  margin: 0.85rem 0 0;
+  color: var(--mut);
+  font-size: 0.85rem;
+  line-height: 1.9;
+  max-width: 34rem;
+}
+
+/* Animowane kroki 1 -> 2 -> 3 */
+.steps {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  width: 100%;
+  max-width: 15.5rem;
+}
+
+.steps div {
+  padding: 0.6rem 0.9rem;
+  border-radius: 0.75rem;
+  border: 1px solid var(--line);
+  background: rgba(14, 7, 28, 0.7);
+  font-size: 0.73rem;
+  font-weight: 600;
+  color: var(--mut2);
+  transition: all 0.4s ease;
+}
+
+.steps div.on {
+  background: linear-gradient(90deg, #a855f7, #7e22ce);
+  color: #fff;
+  border-color: #d8b4fe;
+  transform: scale(1.04);
+  box-shadow: 0 6px 20px rgba(168, 85, 247, 0.45);
+}
+
+.big {
+  font-size: 4rem;
+  font-weight: 800;
+  letter-spacing: -0.05em;
+  line-height: 1;
+}
+
+.chips {
+  display: flex;
+  gap: 0.55rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.chips span {
+  padding: 0.4rem 0.9rem;
+  border-radius: 99px;
+  border: 1px solid rgba(168, 85, 247, 0.3);
+  background: rgba(168, 85, 247, 0.1);
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #e9d5ff;
+  transition: transform 0.3s, border-color 0.3s;
+}
+
+.card:hover .chips span {
+  border-color: rgba(192, 132, 252, 0.6);
+}
+
+@media (max-width: 860px) {
+  .bento { grid-template-columns: 1fr; }
+  .card.s2 { grid-column: auto; }
+}
+
+/* ==========================================================================
+   SEKCJA FAQ (AKORDEON)
+   ========================================================================== */
+.faq {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: 4rem;
+}
+
+.faq h2 {
+  font-size: clamp(2.1rem, 4.8vw, 3.5rem);
+  margin-bottom: 1.4rem;
+}
+
+.faq .l p {
+  color: var(--mut);
+  line-height: 1.9;
+  max-width: 28rem;
+  margin: 0 0 1.8rem;
+  font-size: 0.92rem;
+}
+
+.faq .l {
+  align-self: start;
+  position: sticky;
+  top: 7rem;
+}
+
+details {
+  border-bottom: 1px solid var(--line);
+  transition: background 0.3s;
+}
+
+.list {
+  border-top: 1px solid var(--line);
+}
+
+summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  padding: 1.5rem 0.5rem;
+  font-weight: 700;
+  font-size: 0.98rem;
+  color: var(--mut2);
+  transition: color 0.3s;
+}
+
+summary::-webkit-details-marker {
+  display: none;
+}
+
+summary:hover, details[open] summary {
+  color: #fff;
+}
+
+summary span {
+  flex: 1;
+}
+
+summary i {
+  width: 2.35rem;
+  height: 2.35rem;
+  border-radius: 50%;
+  border: 1px solid rgba(168, 85, 247, 0.35);
+  background: rgba(168, 85, 247, 0.08);
+  color: #e9d5ff;
+  display: grid;
+  place-items: center;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), background 0.3s, border-color 0.3s;
+  font-style: normal;
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+details[open] summary i {
+  background: var(--purple-main);
+  color: #fff;
+  transform: rotate(135deg);
+  border-color: #e9d5ff;
+  box-shadow: 0 0 18px rgba(168, 85, 247, 0.6);
+}
+
+details p {
+  margin: 0;
+  padding: 0 3.2rem 1.7rem 0.5rem;
+  color: var(--mut);
+  line-height: 1.9;
+  font-size: 0.88rem;
+  animation: fadeFaq 0.35s ease;
+}
+
+@keyframes fadeFaq {
+  from { opacity: 0; transform: translateY(-6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 860px) {
+  .faq { grid-template-columns: 1fr; gap: 2.5rem; }
+  .faq .l { position: static; }
+}
+
+/* ==========================================================================
+   FINALNY BANER CTA
+   ========================================================================== */
+.final {
+  border: 1px solid rgba(168, 85, 247, 0.35);
+  border-radius: 2.5rem;
+  background: 
+    radial-gradient(circle at 88% 50%, rgba(168, 85, 247, 0.28), transparent 50%),
+    linear-gradient(135deg, #0d051a 0%, #05020a 100%);
+  padding: 4.2rem 3.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+  align-items: flex-start;
+  box-shadow: 0 30px 90px -20px rgba(147, 51, 234, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.final h2 {
+  font-size: clamp(2.1rem, 4.8vw, 3.6rem);
+}
+
+.final p {
+  color: var(--mut);
+  max-width: 32rem;
+  line-height: 1.9;
+  margin: 0;
+}
+
+@media (max-width: 640px) {
+  .final {
+    padding: 2.6rem 1.6rem;
+    align-items: center;
+    text-align: center;
+  }
+}
+
+/* ==========================================================================
+   STOPKA
+   ========================================================================== */
+footer {
+  border-top: 1px solid var(--line);
+  margin-top: 3rem;
+  padding: 3.5rem 0 2rem;
+  background: rgba(4, 2, 8, 0.85);
+}
+
+.ft {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 2.5rem;
+}
+
+.ft p {
+  color: var(--mut);
+  font-size: 0.8rem;
+  line-height: 1.9;
+  max-width: 22rem;
+  margin: 1rem 0 0;
+}
+
+.ft ul {
+  list-style: none;
+  margin: 0.9rem 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  font-size: 0.8rem;
+}
+
+.ft ul a {
+  color: var(--mut2);
+  transition: color 0.25s;
+}
+
+.ft ul a:hover {
+  color: var(--purple-bright);
+}
+
+.ft h4 {
+  margin: 0;
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--purple-bright);
+}
+
+.copy {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 3rem;
+  color: var(--mut);
+  font-size: 0.72rem;
+}
+
+.big-word {
+  font-size: clamp(2.5rem, 12vw, 9rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  text-align: center;
+  margin: 2.5rem 0 0;
+  background: linear-gradient(to bottom, rgba(168, 85, 247, 0.22), transparent);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  line-height: 1;
+  user-select: none;
+}
+
+/* ==========================================================================
+   POWIADOMIENIE TOAST (ZAMIAST ALERTÓW)
+   ========================================================================== */
+.toast {
+  position: fixed;
+  bottom: 1.8rem;
+  right: 1.8rem;
+  z-index: 100;
+  background: rgba(15, 7, 30, 0.95);
+  border: 1px solid var(--purple-main);
+  border-radius: 1rem;
+  padding: 1rem 1.4rem;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 30px rgba(168, 85, 247, 0.4);
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  transform: translateY(150%);
+  opacity: 0;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.4s;
+  backdrop-filter: blur(12px);
+  max-width: 24rem;
+}
+
+.toast.show {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.toast-icon {
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 0.7rem;
+  background: linear-gradient(135deg, #a855f7, #7e22ce);
+  display: grid;
+  place-items: center;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.toast-body b {
+  display: block;
+  font-size: 0.8rem;
+  color: #fff;
+}
+
+.toast-body span {
+  display: block;
+  font-size: 0.72rem;
+  color: var(--mut);
+  margin-top: 0.2rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+  .win { transform: none; }
+  .reveal { opacity: 1; transform: none; }
+}
 </style>
 </head>
 <body>
-<header><div class="wrap nav">
-  <a class="logo" href="#"><span class="mark">D</span>DEZOCLIENT</a>
-  <ul><li><a href="#o-nas">O nas</a></li><li><a href="#wersje">Wersje</a></li><li><a href="#fps">FPS</a></li><li><a href="#faq">FAQ</a></li></ul>
-  <div class="r">
-    <a class="btn g" href="#" aria-label="Discord"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.3 4.4A19.8 19.8 0 0 0 15.4 3c-.2.4-.4.9-.6 1.3a18.3 18.3 0 0 0-5.5 0C9.1 3.9 8.9 3.4 8.7 3A19.7 19.7 0 0 0 3.7 4.4C.5 9 -.3 13.6.1 18.1a19.9 19.9 0 0 0 6 3c.5-.6.9-1.3 1.2-2-.7-.3-1.3-.6-1.9-.9l.4-.3a14.3 14.3 0 0 0 12.1 0l.4.3c-.6.4-1.2.7-1.9.9.4.7.8 1.4 1.2 2a19.8 19.8 0 0 0 6-3c.5-5.2-.8-9.7-3.5-13.7zM8 15.3c-1.2 0-2.2-1.1-2.2-2.4S6.800 10.500 8 10.500s2.200 1.100 2.200 2.400-.9 2.400-2.200 2.400zm8 0c-1.200 0-2.200-1.100-2.200-2.400s1-2.400 2.200-2.400 2.200 1.100 2.200 2.400-1 2.400-2.200 2.400z"/></svg></a>
-    <a class="btn w" href="#pobierz">Pobierz</a>
+
+<!-- Tło: siatka oraz pływające fioletowe kule -->
+<div class="bg-grid" aria-hidden="true"></div>
+<div class="ambient-orbs" aria-hidden="true">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+</div>
+
+<!-- Pasek nawigacji -->
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="#">
+      <span class="mark">D</span>DEZOCLIENT
+    </a>
+    <ul>
+      <li><a href="#podglad">Podgląd</a></li>
+      <li><a href="#mozliwosci">Możliwości</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+    <div class="r">
+      <a class="btn g trigger-dc" href="#discord" aria-label="Serwer Discord">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.3 4.4A19.8 19.8 0 0 0 15.4 3c-.2.4-.4.9-.6 1.3a18.3 18.3 0 0 0-5.5 0C9.1 3.9 8.9 3.4 8.7 3A19.7 19.7 0 0 0 3.7 4.4C.5 9-.3 13.6.1 18.1a19.9 19.9 0 0 0 6 3c.5-.6.9-1.3 1.2-2-.7-.3-1.3-.6-1.9-.9l.4-.3a14.3 14.3 0 0 0 12.1 0l.4.3c-.6.4-1.2.7-1.9.9.4.7.8 1.4 1.2 2a19.8 19.8 0 0 0 6-3c.5-5.2-.8-9.7-3.5-13.7zM8 15.3c-1.2 0-2.2-1.1-2.2-2.4S6.8 10.5 8 10.5s2.2 1.1 2.2 2.4-.9 2.4-2.2 2.4zm8 0c-1.2 0-2.2-1.1-2.2-2.4s1-2.4 2.2-2.4 2.2 1.1 2.2 2.4-1 2.4-2.2 2.4z"/></svg>
+      </a>
+      <a class="btn p trigger-dl" href="#pobierz">Pobierz klienta</a>
+    </div>
   </div>
-</div></header>
+</header>
 
 <main>
-<div class="wrap">
-<section class="hero" style="padding-top:4rem">
-  <div class="join"><span>Dołącz do <span style="color:#fff">100+</span> graczy</span><span class="av"><i style="background:#6b7280"></i><i style="background:#9ca3af"></i><i style="background:#d1d5db"></i></span></div>
-  <h1><span class="silver">Wydajność to nasza specjalność</span></h1>
-  <p>DEZO CLIENT to lekki launcher Minecraft stworzony z myślą o płynnej grze. Szybkie uruchamianie, wysoki FPS i wszystko, czego potrzebujesz, w jednym miejscu.</p>
-  <div class="cta" id="pobierz">
-    <a class="btn w" href="#"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>Pobierz</a>
-    <a class="btn d" href="#">Discord</a>
+  <div class="wrap">
+    <!-- Sekcja Hero (bez "Dołącz do 100+ graczy") -->
+    <section class="hero">
+      <span class="pill reveal">Nowa generacja klienta Minecraft</span>
+      <h1 class="reveal" style="--d: 0.08s">
+        <span class="purple-grad">Zdominuj każdy serwer w swoim stylu</span>
+      </h1>
+      <p class="reveal" style="--d: 0.16s">
+        Autorski launcher zaprojektowany dla graczy, którzy nie uznają kompromisów. Błyskawiczny start, wbudowane moduły użytkowe, pełna personalizacja i zero zbędnego obciążenia systemu.
+      </p>
+      <div class="cta reveal" style="--d: 0.24s" id="pobierz">
+        <a class="btn p trigger-dl" href="#pobierz-instalator">
+          <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+          Pobierz teraz
+        </a>
+        <a class="btn g trigger-dc" href="#discord">
+          Serwer Discord
+        </a>
+      </div>
+
+      <!-- Interaktywny Podgląd Launchera 3D -->
+      <div class="stage reveal" style="--d: 0.32s" id="podglad">
+        <div class="win" id="launcherWin" role="region" aria-label="Interaktywny podgląd launchera DEZO CLIENT">
+          <div class="bar">
+            <div class="bar-dots"><b></b><b></b><b></b></div>
+            <span class="bar-title">DEZO CLIENT // v2.4 OBSIDIAN PURPLE</span>
+          </div>
+          <div class="app">
+            <!-- Pasek boczny z interaktywnymi zakładkami -->
+            <div class="side" role="tablist">
+              <button class="on" data-tab="tab-start" role="tab" aria-selected="true">⚡ Panel Startowy</button>
+              <button data-tab="tab-mods" role="tab" aria-selected="false">🎛️ Moduły HUD</button>
+              <button data-tab="tab-cosmetics" role="tab" aria-selected="false">👑 Kosmetyki</button>
+              <button data-tab="tab-profiles" role="tab" aria-selected="false">⚙️ Pamięć i Profil</button>
+              <div class="side-status">
+                <i></i> Silnik zoptymalizowany
+              </div>
+            </div>
+
+            <!-- Główny widok w oknie launchera -->
+            <div class="main-view">
+              <!-- Zakładka 1: Start -->
+              <div class="tab-pane active" id="tab-start">
+                <div class="pane-badges">
+                  <span class="pane-badge">Profil: PvP &amp; Survival</span>
+                  <span class="pane-badge">Aktywne moduły: 14</span>
+                  <span class="pane-badge">Tryb: Ultra Low Latency</span>
+                </div>
+                <div class="pane-hero">
+                  <small>Gotowy do natychmiastowego wejścia</small>
+                  <h3 class="purple-grad">DEZO Obsidian 1.21+</h3>
+                  <small id="launchStatusText">Zoptymalizowany silnik · Automatyczna pamięć RAM</small>
+                </div>
+                <div class="play-row">
+                  <button class="play-btn" id="mockPlayBtn" type="button">Uruchom Grę</button>
+                </div>
+              </div>
+
+              <!-- Zakładka 2: Moduły HUD (Interaktywne przełączniki) -->
+              <div class="tab-pane" id="tab-mods">
+                <div>
+                  <small style="color:var(--mut);font-size:.75rem">Kliknij moduł, aby przełączyć jego status na żywo:</small>
+                  <h3 style="font-size:1.35rem;margin:.3rem 0 1rem">Wbudowane moduły użytkowe</h3>
+                  <div class="mods-grid">
+                    <div class="mod-item active"><span>Keystrokes RGB</span><div class="switch"></div></div>
+                    <div class="mod-item active"><span>ToggleSprint</span><div class="switch"></div></div>
+                    <div class="mod-item active"><span>Status Zbroi HUD</span><div class="switch"></div></div>
+                    <div class="mod-item active"><span>Zoom &amp; Fullbright</span><div class="switch"></div></div>
+                    <div class="mod-item"><span>Licznik CPS</span><div class="switch"></div></div>
+                    <div class="mod-item active"><span>Fizyka Przedmiotów</span><div class="switch"></div></div>
+                  </div>
+                </div>
+                <small style="color:var(--mut);font-size:.72rem">Wszystkie dodatki są w pełni dozwolone na serwerach wieloosobowych.</small>
+              </div>
+
+              <!-- Zakładka 3: Kosmetyki -->
+              <div class="tab-pane" id="tab-cosmetics">
+                <div>
+                  <small style="color:var(--mut);font-size:.75rem">Wyróżnij się na lobby serwerowym:</small>
+                  <h3 style="font-size:1.35rem;margin:.3rem 0 1rem">Kolekcja Fioletowej Nebuli</h3>
+                  <div class="mods-grid">
+                    <div class="mod-item active"><span>Peleryna Void</span><div class="switch"></div></div>
+                    <div class="mod-item active"><span>Skrzydła Nebuli</span><div class="switch"></div></div>
+                    <div class="mod-item"><span>Fioletowa Aura</span><div class="switch"></div></div>
+                    <div class="mod-item"><span>Korona Dezo</span><div class="switch"></div></div>
+                  </div>
+                </div>
+                <small style="color:var(--mut);font-size:.72rem">Kosmetyki widoczne dla wszystkich użytkowników DEZO CLIENT.</small>
+              </div>
+
+              <!-- Zakładka 4: Pamięć i Profil -->
+              <div class="tab-pane" id="tab-profiles">
+                <div>
+                  <small style="color:var(--mut);font-size:.75rem">Konfiguracja zasobów sprzętowych:</small>
+                  <h3 style="font-size:1.35rem;margin:.3rem 0 1rem">Przydział pamięci RAM</h3>
+                  <div class="ram-box">
+                    <div style="display:flex;justify-content:space-between;font-size:.82rem;font-weight:700">
+                      <span>Limit dla procesu gry:</span>
+                      <span id="ramVal" style="color:var(--purple-bright)">6144 MB (6 GB)</span>
+                    </div>
+                    <input type="range" min="2048" max="16384" step="512" value="6144" class="ram-slider" id="ramSlider" aria-label="Przydział pamięci RAM">
+                  </div>
+                </div>
+                <small style="color:var(--mut);font-size:.72rem">Automatyczne czyszczenie nieużywanej pamięci (Garbage Collector) jest aktywne.</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Statystyki (4 karty z nowym tekstem) -->
+    <div class="stats">
+      <div class="stat reveal" style="--d: 0.05s">
+        <div class="ico">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        </div>
+        <div>
+          <b>&lt; 1.5s</b>
+          <span>Ekspresowy start klienta od pierwszego kliknięcia</span>
+        </div>
+      </div>
+
+      <div class="stat reveal" style="--d: 0.12s">
+        <div class="ico">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        </div>
+        <div>
+          <b>100%</b>
+          <span>Darmowy dostęp do wszystkich funkcji i modułów</span>
+        </div>
+      </div>
+
+      <div class="stat reveal" style="--d: 0.19s">
+        <div class="ico">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3"/></svg>
+        </div>
+        <div>
+          <b>Zero</b>
+          <span>Zbędnych procesów obciążających Twój procesor w tle</span>
+        </div>
+      </div>
+
+      <div class="stat reveal" style="--d: 0.26s">
+        <div class="ico">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <div>
+          <b>24/7</b>
+          <span>Aktywne wsparcie społeczności i regularne aktualizacje</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sekcja Możliwości (Bento Grid) -->
+    <section id="mozliwosci">
+      <div class="head reveal">
+        <span class="pill">Możliwości</span>
+        <h2 class="purple-grad">Zbudowany od podstaw. Dopracowany w każdym detalu.</h2>
+        <p>Zapomnij o ręcznym wgrywaniu dziesiątek plików. Wszystko, czego potrzebujesz do płynnej i wygodnej rozgrywki, masz od razu pod ręką.</p>
+      </div>
+
+      <div class="bento">
+        <!-- Karta 1 -->
+        <div class="card s2 reveal" style="--d: 0.05s">
+          <div class="viz">
+            <span class="tag">Stabilny frametime · Zero przycięć</span>
+            <div class="bars" id="bars"></div>
+          </div>
+          <div>
+            <h3><span>⚡</span>Zoptymalizowany pod czystą akcję</h3>
+            <p>Wycięliśmy wszystko, co spowalnia klasycznego Minecrafta. Inteligentne zarządzanie pamięcią RAM i zoptymalizowany kod sprawiają, że gra reaguje natychmiastowo — nawet w środku największej zadymy.</p>
+          </div>
+        </div>
+
+        <!-- Karta 2 -->
+        <div class="card reveal" style="--d: 0.12s">
+          <div class="viz c">
+            <div class="steps" id="autoSteps">
+              <div class="on">1 &nbsp;Wybierz profil</div>
+              <div>2 &nbsp;Włącz dodatki</div>
+              <div>3 &nbsp;Wbijaj do gry</div>
+            </div>
+          </div>
+          <div>
+            <h3><span>✓</span>Gotowy w 3 ruchach</h3>
+            <p>Tworzysz profil, zaznaczasz interesujące Cię opcje i wchodzisz na serwer. Żadnego przekopywania folderów ani błędów z kompatybilnością.</p>
+          </div>
+        </div>
+
+        <!-- Karta 3 -->
+        <div class="card reveal" style="--d: 0.18s">
+          <div class="viz c">
+            <div class="chips" style="margin:0">
+              <span>Microsoft Premium</span>
+              <span>Profil Offline</span>
+            </div>
+          </div>
+          <div>
+            <h3><span>🛡</span>Pełna swoboda kont</h3>
+            <p>Wspieramy bezpieczne logowanie przez oficjalne konto Microsoft oraz szybkie profile lokalne bez premki. Ty decydujesz, jak grasz.</p>
+          </div>
+        </div>
+
+        <!-- Karta 4 -->
+        <div class="card s2 reveal" style="--d: 0.24s">
+          <div class="viz c">
+            <div class="big purple-grad">0 PLN</div>
+            <div class="chips">
+              <span>Zero mikropłatności</span>
+              <span>Brak abonamentu</span>
+              <span>Pełna wersja</span>
+            </div>
+          </div>
+          <div>
+            <h3><span>💎</span>Całkowicie darmowy. Na zawsze.</h3>
+            <p>Nie zamykamy kluczowych funkcji za płatnymi subskrypcjami. Pobierasz raz i korzystasz z pełnego potencjału DEZO CLIENT bez żadnych ukrytych kosztów.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sekcja FAQ -->
+    <section id="faq">
+      <div class="faq">
+        <div class="l reveal">
+          <h2>Masz<br><span class="purple-grad">wątpliwości?</span></h2>
+          <p>Zebraliśmy odpowiedzi na najczęstsze pytania dotyczące instalacji, działania oraz konfiguracji naszego klienta.</p>
+          <a class="btn g trigger-dc" href="#discord">Zapytaj na Discordzie</a>
+        </div>
+
+        <div class="list reveal" style="--d: 0.12s">
+          <details open>
+            <summary><span>Czy korzystanie z DEZO CLIENT coś kosztuje?</span><i>+</i></summary>
+            <p>Ani grosza. Klient jest w 100% darmowy — nie wymagamy podpinania karty ani wykupywania abonamentu, żeby odblokować jakiekolwiek funkcje.</p>
+          </details>
+          <details>
+            <summary><span>Na jakim sprzęcie zadziała launcher?</span><i>+</i></summary>
+            <p>Wystarczy komputer z systemem Windows 10 lub 11 (wersja 64-bitowa). DEZO automatycznie dobierze odpowiednie środowisko Java i pozwoli Ci wygodnie ustawić limit pamięci RAM za pomocą prostego suwaka.</p>
+          </details>
+          <details>
+            <summary><span>Nie mam konta Premium — czy mogę grać?</span><i>+</i></summary>
+            <p>Jasne! Możesz utworzyć profil offline w kilka sekund, wpisując wyłącznie swój nick. Jeśli jednak posiadasz oryginalnego Minecrafta, zalogujesz się bezpiecznie przez oficjalny system Microsoft.</p>
+          </details>
+          <details>
+            <summary><span>Jak działają wbudowane dodatki i modyfikacje?</span><i>+</i></summary>
+            <p>Wbudowany menedżer pozwala włączać i wyłączać przydatne moduły oraz mody jednym kliknięciem bezpośrednio w oknie klienta. Koniec z ręcznym przerzucaniem plików .jar do folderu gry.</p>
+          </details>
+          <details>
+            <summary><span>Dlaczego Windows wyświetla niebieskie okno SmartScreen?</span><i>+</i></summary>
+            <p>To standardowe zabezpieczenie systemu Windows dla nowych programów od niezależnych twórców. Wystarczy kliknąć „Więcej informacji”, a następnie „Uruchom mimo to” — nasz instalator jest całkowicie bezpieczny.</p>
+          </details>
+          <details>
+            <summary><span>Znalazłem błąd lub potrzebuję pomocy — gdzie pisać?</span><i>+</i></summary>
+            <p>Wbijaj bezpośrednio na naszego Discorda! Nasza administracja oraz społeczność szybko pomogą Ci rozwiązać każdy problem techniczny.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- Końcowy baner CTA -->
+    <section>
+      <div class="final reveal">
+        <h2>Wchodzisz na<br><span class="purple-grad">wyższy poziom?</span></h2>
+        <p>Pobierz instalator, skonfiguruj swój profil w kilkadziesiąt sekund i poczuj różnicę już przy pierwszym uruchomieniu.</p>
+        <div class="cta">
+          <a class="btn p trigger-dl" href="#pobierz-instalator">Pobierz DEZO CLIENT</a>
+          <a class="btn g trigger-dc" href="#discord">Dołącz do Discorda</a>
+        </div>
+      </div>
+    </section>
   </div>
-  <div class="stage"><div class="win" role="img" aria-label="Okno launchera DEZO CLIENT">
-    <div class="bar"><b></b><b></b><b></b></div>
-    <div class="app"><div class="side"><span class="on">Start</span><span>Mody</span><span>Skiny</span><span>Konta</span><span>Znajomi</span></div>
-    <div class="main"><small>Ostatnio grane</small><h3>Minecraft 1.21.1</h3><small>Fabric · 12 modów</small><div class="play">Graj</div></div></div>
-  </div></div>
-</section>
-
-<div class="stats">
-  <div class="stat"><div class="ico live"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-2.5a2 2 0 0 0-1.9 1.5l-2.3 8.4a.25.25 0 0 1-.5 0L9.200 2.200a.25.25 0 0 0-.5 0L6.400 10.500A2 2 0 0 1 4.500 12H2"/></svg></div><div><b>0</b><span>Graczy z otwartym launcherem teraz</span></div></div>
-  <div class="stat"><div class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg></div><div><b>0</b><span>Pobrań i instalacji launchera</span></div></div>
-  <div class="stat"><div class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 20 12 6 21 6 3"/></svg></div><div><b>0</b><span>Uruchomień gry przyciskiem „Graj”</span></div></div>
-  <div class="stat"><div class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2h4M12 14l3-3"/><circle cx="12" cy="14" r="8"/></svg></div><div><b>&lt;2 sek.</b><span>Średni czas uruchomienia launchera</span></div></div>
-</div>
-
-<section id="o-nas">
-  <div class="head"><span class="pill">O nas</span><h2 class="silver">Stworzony przez graczy, dla graczy</h2><p>Wszystko, czego potrzebujesz do płynnej gry w Minecraft — w jednym, lekkim launcherze.</p></div>
-  <div class="bento">
-    <div class="card s2"><div class="viz"><span class="tag" id="fpsTag">1200 FPS</span><div class="bars" id="bars"></div></div>
-      <div><h3><span>⚡</span>Wydajność</h3><p>Lekki launcher z gotowymi optymalizacjami. Więcej FPS, mniej zacięć i szybkie uruchamianie gry nawet na słabszym sprzęcie.</p></div></div>
-    <div class="card"><div class="viz c"><div class="steps"><div>1 &nbsp;Zaloguj się</div><div>2 &nbsp;Wybierz wersję</div><div class="on">3 &nbsp;Graj</div></div></div>
-      <div><h3><span>✓</span>Prostota</h3><p>Zaloguj się, wybierz wersję i kliknij Graj. Bez ręcznej instalacji modów i grzebania w plikach.</p></div></div>
-    <div class="card"><div class="viz c"><div class="chips" style="margin:0"><span>Konto Microsoft</span><span>Konto offline</span></div></div>
-      <div><h3><span>🛡</span>Bezpieczeństwo</h3><p>Logowanie przez oficjalne konto Microsoft. Twoje dane zostają u Ciebie, a launcher aktualizuje się automatycznie.</p></div></div>
-    <div class="card s2"><div class="viz c"><div class="big silver">0 zł</div><div class="chips"><span>Bez opłat</span><span>Bez subskrypcji</span><span>Bez limitów</span></div></div>
-      <div><h3><span>🎁</span>Za darmo</h3><p>Launcher pobierasz i używasz za darmo, bez ukrytych opłat i subskrypcji. Po prostu pobierz i graj.</p></div></div>
-  </div>
-</section>
-</div>
-
-<section id="wersje">
-  <div class="wrap"><div class="head" style="margin-bottom:1rem"><span class="pill">Wersje</span><h2 class="silver">Graj na swojej ulubionej wersji</h2><p>Od 1.20.1 po najnowsze wydania — każda z Fabric, instalowana jednym kliknięciem.</p></div></div>
-  <div class="vers"><div class="track" id="track"></div></div>
-</section>
-
-<div class="wrap">
-<section id="fps"><div class="fps">
-  <div><h2>Więcej FPS.<br><span class="silver">Ta sama gra.</span></h2>
-  <p>DEZO CLIENT obok popularnych launcherów, na tym samym komputerze. Gotowe optymalizacje robią różnicę od pierwszego uruchomienia.</p>
-  <div class="plus"><b>+71%</b><span>więcej FPS niż następny launcher</span></div></div>
-  <div class="chart" id="chart"><div class="pill" style="align-self:flex-start">Średni FPS</div>
-    <div class="row"><div><span>DEZO CLIENT</span><span>1200 FPS</span></div><div class="track2"><div class="fill" style="--w:1"></div></div></div>
-    <div class="row o"><div><span>Launcher B</span><span>700 FPS</span></div><div class="track2"><div class="fill" style="--w:.58"></div></div></div>
-    <div class="row o"><div><span>Launcher C</span><span>500 FPS</span></div><div class="track2"><div class="fill" style="--w:.42"></div></div></div>
-    <small>Sprzęt testowy: uzupełnij swoją specyfikację (CPU · GPU · RAM)</small></div>
-</div></section>
-
-<section id="faq"><div class="faq">
-  <div class="l"><h2>Masz<br><span class="silver">pytania?</span></h2><p>Najczęściej zadawane pytania o DEZO CLIENT — od instalacji po mody i konta.</p><a class="btn g" href="#">Dołącz do Discorda</a></div>
-  <div class="list">
-    <details open><summary><span>Czy DEZO CLIENT jest darmowy?</span><i>+</i></summary><p>Tak. Launcher pobierasz i używasz za darmo, bez ukrytych opłat i subskrypcji.</p></details>
-    <details><summary><span>Jakie są wymagania?</span><i>+</i></summary><p>Komputer z Windows 10 lub 11 (64-bit). Launcher sam wykrywa zainstalowaną Javę, a w ustawieniach możesz wybrać inną wersję i przydzielić grze więcej pamięci RAM.</p></details>
-    <details><summary><span>Czy mogę grać bez konta Microsoft?</span><i>+</i></summary><p>Tak, możesz dodać konto offline, podając tylko nick. Do gry na serwerach premium i z własnym skinem potrzebne jest konto Microsoft z kupionym Minecraftem.</p></details>
-    <details><summary><span>Jak zainstalować mody?</span><i>+</i></summary><p>Wejdź w zakładkę Mody, wyszukaj mod i kliknij Zainstaluj. Mod trafi do wybranego profilu, bez ręcznego kopiowania plików.</p></details>
-    <details><summary><span>Czy mogę przenieść profile z innego launchera?</span><i>+</i></summary><p>Tak. Przy tworzeniu nowego profilu możesz zaimportować go z innego launchera razem z modami.</p></details>
-    <details><summary><span>Windows pokazuje ostrzeżenie przy instalacji. Co zrobić?</span><i>+</i></summary><p>To standardowy komunikat Windows SmartScreen dla nowych programów. Kliknij „Więcej informacji”, a potem „Uruchom mimo to”.</p></details>
-    <details><summary><span>Gdzie mogę uzyskać pomoc?</span><i>+</i></summary><p>Najszybciej na naszym Discordzie. Chętnie pomożemy z instalacją i konfiguracją.</p></details>
-  </div>
-</div></section>
-
-<section><div class="final">
-  <h2>Wchodzisz<br><span class="silver">do gry?</span></h2>
-  <p>Pobierz DEZO CLIENT i dołącz do naszej społeczności na Discordzie. Instalacja zajmuje mniej niż minutę.</p>
-  <div class="cta"><a class="btn w" href="#">Pobierz</a><a class="btn g" href="#">Discord</a></div>
-</div></section>
-</div>
 </main>
 
-<footer><div class="wrap">
-  <div class="ft">
-    <div><a class="logo" href="#"><span class="mark">D</span>DEZOCLIENT</a><p>Lekki i wydajny launcher Minecraft. Pobierz, zaloguj się i graj bez zbędnego czekania.</p></div>
-    <div><h4>Strona</h4><ul><li><a href="#o-nas">O nas</a></li><li><a href="#wersje">Wersje</a></li><li><a href="#fps">FPS</a></li><li><a href="#faq">FAQ</a></li></ul></div>
-    <div><h4>Dokumentacja</h4><ul><li><a href="#">Regulamin</a></li><li><a href="#">Polityka prywatności</a></li></ul></div>
-    <div><h4>Społeczność</h4><ul><li><a href="#">Discord</a></li><li><a href="#">GitHub</a></li></ul></div>
+<!-- Stopka -->
+<footer>
+  <div class="wrap">
+    <div class="ft">
+      <div>
+        <a class="logo" href="#"><span class="mark">D</span>DEZOCLIENT</a>
+        <p>Nowoczesny, lekki klient Minecraft tworzony z pasją. Pobierz, skonfiguruj pod siebie i graj bez ograniczeń.</p>
+      </div>
+      <div>
+        <h4>Nawigacja</h4>
+        <ul>
+          <li><a href="#podglad">Podgląd</a></li>
+          <li><a href="#mozliwosci">Możliwości</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#pobierz">Pobierz</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Informacje</h4>
+        <ul>
+          <li><a href="#regulamin">Warunki korzystania</a></li>
+          <li><a href="#prywatnosc">Polityka prywatności</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Społeczność</h4>
+        <ul>
+          <li><a class="trigger-dc" href="#discord">Serwer Discord</a></li>
+          <li><a href="#status">Status serwerów</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="big-word" aria-hidden="true">DEZOCLIENT</div>
+    <div class="copy">
+      <span>© 2026 DEZO CLIENT. Wszelkie prawa zastrzeżone.</span>
+      <span>Projekt niezależny — nie jest powiązany z Mojang AB ani Microsoft.</span>
+    </div>
   </div>
-  <div class="big-word" aria-hidden="true">DEZOCLIENT</div>
-  <div class="copy"><span>© 2026 DEZO CLIENT. Wszelkie prawa zastrzeżone.</span><span>Minecraft nie jest produktem Mojang ani Microsoft.</span></div>
-</div></footer>
+</footer>
+
+<!-- Powiadomienie Toast -->
+<div class="toast" id="toast" role="status" aria-live="polite">
+  <div class="toast-icon">⚡</div>
+  <div class="toast-body">
+    <b id="toastTitle">Pobieranie DEZO CLIENT</b>
+    <span id="toastDesc">Instalator DezoClient-Setup.exe jest przygotowywany...</span>
+  </div>
+</div>
 
 <script>
-(function(){
-  var h=[38,62,48,80,56,92,70,86,60,96,74,88,66,100,82,94],b=document.getElementById('bars');
-  h.forEach(function(v,i){var e=document.createElement('i');e.style.height=v+'%';e.style.animationDelay=(-i*.15)+'s';b.appendChild(e)});
-  var v=[["26.3","Najnowsza","Wilderness Bound","Najnowsze wydanie z nowymi biomami."],["26.1","","Tiny Takeover","Młode moby i świetna baza pod serwery."],["1.21.4","","The Garden Awakens","Mroczny klimat idealny pod shadery."],["1.21.1","","Tricky Trials","Najpopularniejsza baza pod mody."],["1.20.4","","Trails & Tales","Dopracowana wersja serii 1.20."],["1.20.1","","Trails & Tales","Klasyka modowania z ogromnym wyborem paczek."]];
-  var g=["#3b3b46,#18181b","#2a3a2e,#0f1511","#3a3a34,#141412","#3a2a22,#16100d","#3a2a34,#150f13","#3a3320,#15130c"],t=document.getElementById('track'),html='';
-  for(var k=0;k<2;k++)v.forEach(function(x,i){html+='<article class="ver"'+(k?' aria-hidden="true"':'')+'><div class="vimg" style="background:linear-gradient(135deg,'+g[i]+')">'+(x[1]?'<span class="new">'+x[1]+'</span>':'')+'<h3>'+x[0]+'</h3></div><div class="vbody"><div><b>'+x[2]+'</b><em>Fabric</em></div><p>'+x[3]+'</p></div></article>'});
-  t.innerHTML=html;
-  var c=document.getElementById('chart');
-  if('IntersectionObserver' in window){new IntersectionObserver(function(e,o){if(e[0].isIntersecting){c.classList.add('in');o.disconnect()}},{threshold:.3}).observe(c)}else{c.classList.add('in')}
+(function() {
+  /* 1. Generowanie fioletowych słupków telemetrycznych w karcie Możliwości */
+  var heights = [42, 68, 54, 85, 62, 95, 74, 88, 64, 98, 78, 92, 70, 100, 84, 96];
+  var barsContainer = document.getElementById('bars');
+  if (barsContainer) {
+    heights.forEach(function(val, idx) {
+      var bar = document.createElement('i');
+      bar.style.height = val + '%';
+      bar.style.animationDelay = (-idx * 0.14) + 's';
+      barsContainer.appendChild(bar);
+    });
+  }
+
+  /* 2. Automatyczna animacja kroków 1 -> 2 -> 3 w drugiej karcie Bento */
+  var stepsBox = document.getElementById('autoSteps');
+  if (stepsBox) {
+    var stepItems = stepsBox.querySelectorAll('div');
+    var currentStep = 0;
+    setInterval(function() {
+      stepItems.forEach(function(el) { el.classList.remove('on'); });
+      currentStep = (currentStep + 1) % stepItems.length;
+      stepItems[currentStep].classList.add('on');
+    }, 2200);
+  }
+
+  /* 3. Interaktywne zakładki wewnątrz okna launchera 3D */
+  var tabButtons = document.querySelectorAll('.side button[data-tab]');
+  var tabPanes = document.querySelectorAll('.tab-pane');
+  tabButtons.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var targetId = btn.getAttribute('data-tab');
+      tabButtons.forEach(function(b) {
+        b.classList.remove('on');
+        b.setAttribute('aria-selected', 'false');
+      });
+      tabPanes.forEach(function(p) {
+        p.classList.remove('active');
+      });
+      btn.classList.add('on');
+      btn.setAttribute('aria-selected', 'true');
+      var targetPane = document.getElementById(targetId);
+      if (targetPane) targetPane.classList.add('active');
+    });
+  });
+
+  /* 4. Interaktywne przełączniki modułów w podglądzie launchera */
+  var modItems = document.querySelectorAll('.mod-item');
+  modItems.forEach(function(item) {
+    item.addEventListener('click', function() {
+      item.classList.toggle('active');
+    });
+  });
+
+  /* 5. Suwak pamięci RAM w podglądzie launchera */
+  var ramSlider = document.getElementById('ramSlider');
+  var ramVal = document.getElementById('ramVal');
+  if (ramSlider && ramVal) {
+    ramSlider.addEventListener('input', function() {
+      var mb = parseInt(ramSlider.value, 10);
+      var gb = (mb / 1024).toFixed(1).replace('.0', '');
+      ramVal.textContent = mb + ' MB (' + gb + ' GB)';
+    });
+  }
+
+  /* 6. Przycisk "Uruchom Grę" wewnątrz makiety launchera */
+  var mockPlayBtn = document.getElementById('mockPlayBtn');
+  var launchStatusText = document.getElementById('launchStatusText');
+  if (mockPlayBtn && launchStatusText) {
+    mockPlayBtn.addEventListener('click', function() {
+      mockPlayBtn.textContent = 'Uruchamianie...';
+      launchStatusText.textContent = 'Weryfikacja plików i alokacja pamięci RAM...';
+      setTimeout(function() {
+        mockPlayBtn.textContent = 'Gra jest aktywna ✓';
+        launchStatusText.textContent = 'DEZO CLIENT działa w tle · Miłej rozgrywki!';
+      }, 900);
+      setTimeout(function() {
+        mockPlayBtn.textContent = 'Uruchom Grę';
+        launchStatusText.textContent = 'Zoptymalizowany silnik · Automatyczna pamięć RAM';
+      }, 3600);
+    });
+  }
+
+  /* 7. Śledzenie kursora na kartach Bento (efekt fioletowej poświaty pod myszką) */
+  var cards = document.querySelectorAll('.card');
+  cards.forEach(function(card) {
+    card.addEventListener('mousemove', function(e) {
+      var rect = card.getBoundingClientRect();
+      card.style.setProperty('--mx', (e.clientX - rect.left) + 'px');
+      card.style.setProperty('--my', (e.clientY - rect.top) + 'px');
+    });
+  });
+
+  /* 8. Scroll Reveal (płynne pojawianie się elementów podczas przewijania) */
+  var reveals = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    var obs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.14 });
+    reveals.forEach(function(el) { obs.observe(el); });
+  } else {
+    reveals.forEach(function(el) { el.classList.add('in-view'); });
+  }
+
+  /* 9. Powiadomienia Toast dla przycisków Pobierz / Discord */
+  var toast = document.getElementById('toast');
+  var toastTitle = document.getElementById('toastTitle');
+  var toastDesc = document.getElementById('toastDesc');
+  var toastTimer = null;
+
+  function showToast(title, desc) {
+    if (!toast) return;
+    toastTitle.textContent = title;
+    toastDesc.textContent = desc;
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function() {
+      toast.classList.remove('show');
+    }, 3500);
+  }
+
+  document.querySelectorAll('.trigger-dl').forEach(function(btn) {
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      showToast('Pobieranie DEZO CLIENT', 'Rozpoczęto pobieranie instalatora dla systemu Windows (64-bit).');
+    });
+  });
+
+  document.querySelectorAll('.trigger-dc').forEach(function(btn) {
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      showToast('Społeczność Discord', 'Przekierowywanie na oficjalny serwer Discord DEZO CLIENT...');
+    });
+  });
 })();
 </script>
 </body>
 </html>
-
