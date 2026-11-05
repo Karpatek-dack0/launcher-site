@@ -595,7 +595,7 @@ header {
   box-shadow: 0 12px 32px rgba(168, 85, 247, 0.75);
 }
 
-/* Siatka modyfikacji w zakładce Menedżer Modów */
+/* Siatka modyfikacji */
 .mods-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(11.5rem, 1fr));
@@ -657,7 +657,6 @@ header {
   transform: translateX(1rem);
 }
 
-/* Suwak RAM w zakładce Konfiguracja RAM */
 .ram-box {
   background: rgba(13, 6, 26, 0.8);
   border: 1px solid var(--line);
@@ -684,9 +683,7 @@ header {
   .side-status { display: none; }
 }
 
-/* ==========================================================================
-   STATYSTYKI (4 KARTY)
-   ========================================================================== */
+/* Statystyki */
 .stats {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
@@ -740,9 +737,7 @@ header {
   line-height: 1.65;
 }
 
-/* ==========================================================================
-   SEKCJA MOŻLIWOŚCI (BENTO GRID)
-   ========================================================================== */
+/* Bento grid */
 .head {
   text-align: center;
   display: flex;
@@ -900,7 +895,6 @@ section {
   max-width: 34rem;
 }
 
-/* Animowane kroki 1 -> 2 -> 3 */
 .steps {
   display: flex;
   flex-direction: column;
@@ -951,11 +945,6 @@ section {
   font-size: 0.7rem;
   font-weight: 600;
   color: #e9d5ff;
-  transition: transform 0.3s, border-color 0.3s;
-}
-
-.card:hover .chips span {
-  border-color: rgba(192, 132, 252, 0.6);
 }
 
 @media (max-width: 860px) {
@@ -963,9 +952,7 @@ section {
   .card.s2 { grid-column: auto; }
 }
 
-/* ==========================================================================
-   SEKCJA FAQ (AKORDEON)
-   ========================================================================== */
+/* FAQ */
 .faq {
   display: grid;
   grid-template-columns: 0.85fr 1.15fr;
@@ -1067,9 +1054,7 @@ details p {
   .faq .l { position: static; }
 }
 
-/* ==========================================================================
-   FINALNY BANER CTA
-   ========================================================================== */
+/* Baner CTA */
 .final {
   border: 1px solid rgba(168, 85, 247, 0.35);
   border-radius: 2.5rem;
@@ -1105,9 +1090,7 @@ details p {
   }
 }
 
-/* ==========================================================================
-   STOPKA
-   ========================================================================== */
+/* Stopka */
 footer {
   border-top: 1px solid var(--line);
   margin-top: 3rem;
@@ -1181,9 +1164,7 @@ footer {
   user-select: none;
 }
 
-/* ==========================================================================
-   POWIADOMIENIE TOAST
-   ========================================================================== */
+/* Powiadomienie Toast */
 .toast {
   position: fixed;
   bottom: 1.8rem;
@@ -1245,7 +1226,6 @@ footer {
 </head>
 <body>
 
-<!-- Tło: siatka oraz pływające fioletowe kule -->
 <div class="bg-grid" aria-hidden="true"></div>
 <div class="ambient-orbs" aria-hidden="true">
   <div class="orb orb-1"></div>
@@ -1253,7 +1233,6 @@ footer {
   <div class="orb orb-3"></div>
 </div>
 
-<!-- Nawigacja -->
 <header>
   <div class="wrap nav">
     <a class="logo" href="#">
@@ -1268,14 +1247,14 @@ footer {
       <a class="btn g trigger-dc" href="#discord" aria-label="Discord">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.3 4.4A19.8 19.8 0 0 0 15.4 3c-.2.4-.4.9-.6 1.3a18.3 18.3 0 0 0-5.5 0C9.1 3.9 8.9 3.4 8.7 3A19.7 19.7 0 0 0 3.7 4.4C.5 9-.3 13.6.1 18.1a19.9 19.9 0 0 0 6 3c.5-.6.9-1.3 1.2-2-.7-.3-1.3-.6-1.9-.9l.4-.3a14.3 14.3 0 0 0 12.1 0l.4.3c-.6.4-1.2.7-1.9.9.4.7.8 1.4 1.2 2a19.8 19.8 0 0 0 6-3c.5-5.2-.8-9.7-3.5-13.7zM8 15.3c-1.2 0-2.2-1.1-2.2-2.4S6.8 10.5 8 10.5s2.2 1.1 2.2 2.4-.9 2.4-2.2 2.4zm8 0c-1.2 0-2.2-1.1-2.2-2.4s1-2.4 2.2-2.4 2.2 1.1 2.2 2.4-1 2.4-2.2 2.4z"/></svg>
       </a>
-      <a class="btn p trigger-dl" href="#pobierz">Pobierz</a>
+      <!-- Bezpośredni link do pobierania z GitHub -->
+      <a class="btn p trigger-dl" href="https://github.com/Karpatek-dack0/launcher-site/releases/download/v3.6/DezoClient-Setup.exe">Pobierz</a>
     </div>
   </div>
 </header>
 
 <main>
   <div class="wrap">
-    <!-- Sekcja Hero -->
     <section class="hero">
       <span class="pill reveal">Nowoczesny launcher Minecraft</span>
       <h1 class="reveal" style="--d: 0.08s">
@@ -1285,7 +1264,8 @@ footer {
         Lekki i szybki launcher stworzony z myślą o płynnej rozgrywce. Błyskawiczny start, wygodne zarządzanie wersjami i modami bez zbędnych komplikacji.
       </p>
       <div class="cta reveal" style="--d: 0.24s" id="pobierz">
-        <a class="btn p trigger-dl" href="#pobierz-instalator">
+        <!-- Bezpośredni link do pobierania z GitHub -->
+        <a class="btn p trigger-dl" href="https://github.com/Karpatek-dack0/launcher-site/releases/download/v3.6/DezoClient-Setup.exe">
           <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
           Pobierz launcher
         </a>
@@ -1294,15 +1274,13 @@ footer {
         </a>
       </div>
 
-      <!-- Interaktywny Podgląd Launchera 3D -->
       <div class="stage reveal" style="--d: 0.32s" id="podglad">
         <div class="win" id="launcherWin" role="region" aria-label="Interaktywny podgląd launchera DEZO CLIENT">
           <div class="bar">
             <div class="bar-dots"><b></b><b></b><b></b></div>
-            <span class="bar-title">DEZO CLIENT // v2.4 STABLE</span>
+            <span class="bar-title">DEZO CLIENT // v3.6 STABLE</span>
           </div>
           <div class="app">
-            <!-- Pasek boczny z zakładkami -->
             <div class="side" role="tablist">
               <button class="on" data-tab="tab-start" role="tab" aria-selected="true">🚀 Start Gry</button>
               <button data-tab="tab-mods" role="tab" aria-selected="false">📦 Menedżer Modów</button>
@@ -1313,9 +1291,7 @@ footer {
               </div>
             </div>
 
-            <!-- Główny widok w oknie launchera -->
             <div class="main-view">
-              <!-- Zakładka 1: Start -->
               <div class="tab-pane active" id="tab-start">
                 <div class="pane-badges">
                   <span class="pane-badge">Profil: Główny</span>
@@ -1332,7 +1308,6 @@ footer {
                 </div>
               </div>
 
-              <!-- Zakładka 2: Menedżer Modów -->
               <div class="tab-pane" id="tab-mods">
                 <div>
                   <small style="color:var(--mut);font-size:.75rem">Włączone pakiety optymalizacyjne:</small>
@@ -1349,7 +1324,6 @@ footer {
                 <small style="color:var(--mut);font-size:.72rem">Automatyczne pobieranie i dopasowywanie wersji modów.</small>
               </div>
 
-              <!-- Zakładka 3: Wygląd okna -->
               <div class="tab-pane" id="tab-cosmetics">
                 <div>
                   <small style="color:var(--mut);font-size:.75rem">Dostosuj interfejs launchera:</small>
@@ -1364,7 +1338,6 @@ footer {
                 <small style="color:var(--mut);font-size:.72rem">Wszystkie ustawienia zapisywane są lokalnie na Twoim urządzeniu.</small>
               </div>
 
-              <!-- Zakładka 4: Konfiguracja RAM -->
               <div class="tab-pane" id="tab-profiles">
                 <div>
                   <small style="color:var(--mut);font-size:.75rem">Alokacja zasobów systemowych:</small>
@@ -1385,7 +1358,6 @@ footer {
       </div>
     </section>
 
-    <!-- Statystyki -->
     <div class="stats">
       <div class="stat reveal" style="--d: 0.05s">
         <div class="ico">
@@ -1428,7 +1400,6 @@ footer {
       </div>
     </div>
 
-    <!-- Sekcja Funkcje (Bento Grid) -->
     <section id="mozliwosci">
       <div class="head reveal">
         <span class="pill">Funkcje launchera</span>
@@ -1437,7 +1408,6 @@ footer {
       </div>
 
       <div class="bento">
-        <!-- Karta 1 -->
         <div class="card s2 reveal" style="--d: 0.05s">
           <div class="viz">
             <span class="tag">Stabilna praca · Pełna optymalizacja</span>
@@ -1449,7 +1419,6 @@ footer {
           </div>
         </div>
 
-        <!-- Karta 2 -->
         <div class="card reveal" style="--d: 0.12s">
           <div class="viz c">
             <div class="steps" id="autoSteps">
@@ -1464,7 +1433,6 @@ footer {
           </div>
         </div>
 
-        <!-- Karta 3 -->
         <div class="card reveal" style="--d: 0.18s">
           <div class="viz c">
             <div class="chips" style="margin:0">
@@ -1478,7 +1446,6 @@ footer {
           </div>
         </div>
 
-        <!-- Karta 4 -->
         <div class="card s2 reveal" style="--d: 0.24s">
           <div class="viz c">
             <div class="big purple-grad">100% Free</div>
@@ -1496,7 +1463,6 @@ footer {
       </div>
     </section>
 
-    <!-- Sekcja FAQ -->
     <section id="faq">
       <div class="faq">
         <div class="l reveal">
@@ -1534,13 +1500,13 @@ footer {
       </div>
     </section>
 
-    <!-- Końcowy baner CTA -->
     <section>
       <div class="final reveal">
         <h2>Gotowy na<br><span class="purple-grad">płynną grę?</span></h2>
         <p>Pobierz DEZO CLIENT, stwórz swój profil i ciesz się stabilną rozgrywką bez zbędnych lagów.</p>
         <div class="cta">
-          <a class="btn p trigger-dl" href="#pobierz-instalator">Pobierz DEZO CLIENT</a>
+          <!-- Bezpośredni link do pobierania z GitHub -->
+          <a class="btn p trigger-dl" href="https://github.com/Karpatek-dack0/launcher-site/releases/download/v3.6/DezoClient-Setup.exe">Pobierz DEZO CLIENT</a>
           <a class="btn g trigger-dc" href="#discord">Dołącz do Discorda</a>
         </div>
       </div>
@@ -1548,7 +1514,6 @@ footer {
   </div>
 </main>
 
-<!-- Stopka -->
 <footer>
   <div class="wrap">
     <div class="ft">
@@ -1588,18 +1553,16 @@ footer {
   </div>
 </footer>
 
-<!-- Powiadomienie Toast -->
 <div class="toast" id="toast" role="status" aria-live="polite">
   <div class="toast-icon">⚡</div>
   <div class="toast-body">
     <b id="toastTitle">Pobieranie DEZO CLIENT</b>
-    <span id="toastDesc">Instalator DezoClient-Setup.exe jest przygotowywany...</span>
+    <span id="toastDesc">Pobieranie instalatora DezoClient-Setup.exe zostało rozpoczęte.</span>
   </div>
 </div>
 
 <script>
 (function() {
-  /* 1. Słupki telemetryczne */
   var heights = [42, 68, 54, 85, 62, 95, 74, 88, 64, 98, 78, 92, 70, 100, 84, 96];
   var barsContainer = document.getElementById('bars');
   if (barsContainer) {
@@ -1611,7 +1574,6 @@ footer {
     });
   }
 
-  /* 2. Automatyczna animacja kroków w karcie Bento */
   var stepsBox = document.getElementById('autoSteps');
   if (stepsBox) {
     var stepItems = stepsBox.querySelectorAll('div');
@@ -1623,7 +1585,6 @@ footer {
     }, 2200);
   }
 
-  /* 3. Zakładki w oknie launchera 3D */
   var tabButtons = document.querySelectorAll('.side button[data-tab]');
   var tabPanes = document.querySelectorAll('.tab-pane');
   tabButtons.forEach(function(btn) {
@@ -1643,7 +1604,6 @@ footer {
     });
   });
 
-  /* 4. Przełączniki modów w podglądzie */
   var modItems = document.querySelectorAll('.mod-item');
   modItems.forEach(function(item) {
     item.addEventListener('click', function() {
@@ -1651,7 +1611,6 @@ footer {
     });
   });
 
-  /* 5. Suwak RAM */
   var ramSlider = document.getElementById('ramSlider');
   var ramVal = document.getElementById('ramVal');
   if (ramSlider && ramVal) {
@@ -1662,7 +1621,6 @@ footer {
     });
   }
 
-  /* 6. Przycisk "Uruchom grę" w makiecie */
   var mockPlayBtn = document.getElementById('mockPlayBtn');
   var launchStatusText = document.getElementById('launchStatusText');
   if (mockPlayBtn && launchStatusText) {
@@ -1680,7 +1638,6 @@ footer {
     });
   }
 
-  /* 7. Efekt poświaty pod kursorem na kartach Bento */
   var cards = document.querySelectorAll('.card');
   cards.forEach(function(card) {
     card.addEventListener('mousemove', function(e) {
@@ -1690,7 +1647,6 @@ footer {
     });
   });
 
-  /* 8. Scroll Reveal */
   var reveals = document.querySelectorAll('.reveal');
   if ('IntersectionObserver' in window) {
     var obs = new IntersectionObserver(function(entries) {
@@ -1706,7 +1662,6 @@ footer {
     reveals.forEach(function(el) { el.classList.add('in-view'); });
   }
 
-  /* 9. Powiadomienia Toast */
   var toast = document.getElementById('toast');
   var toastTitle = document.getElementById('toastTitle');
   var toastDesc = document.getElementById('toastDesc');
@@ -1723,10 +1678,10 @@ footer {
     }, 3500);
   }
 
+  // Dla przycisków pobierania pokazujemy powiadomienie Toast i pozwalamy na pobranie pliku z GitHub
   document.querySelectorAll('.trigger-dl').forEach(function(btn) {
     btn.addEventListener('click', function(e) {
-      e.preventDefault();
-      showToast('Pobieranie DEZO CLIENT', 'Pobieranie instalatora DezoClient-Setup.exe zostało rozpoczęte.');
+      showToast('Pobieranie DEZO CLIENT', 'Rozpoczęto pobieranie pliku DezoClient-Setup.exe.');
     });
   });
 
