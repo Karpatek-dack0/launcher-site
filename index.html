@@ -1,1 +1,260 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>DEZO CLIENT – Wydajność to nasza specjalność</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{color-scheme:dark;--bg:#000;--fg:#fff;--mut:#a1a1aa;--mut2:#d4d4d8;--line:rgba(255,255,255,.1);--glass:rgba(255,255,255,.04);--ok:#34d399;--dc:#5865F2;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:"Unbounded",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.5;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:absolute;inset:0 0 auto;height:125svh;z-index:-1;background:radial-gradient(circle at 15% 5%,rgba(255,255,255,.14),transparent 30%),radial-gradient(circle at 90% 35%,rgba(255,255,255,.08),transparent 30%);-webkit-mask-image:linear-gradient(to bottom,#000 45%,transparent);mask-image:linear-gradient(to bottom,#000 45%,transparent)}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:80rem;margin:0 auto;padding:0 1.5rem}
+.silver{background:linear-gradient(90deg,#fff,#d4d4d8 50%,#71717a);-webkit-background-clip:text;background-clip:text;color:transparent}
+h1,h2,h3{margin:0;letter-spacing:-.03em;line-height:1.08}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.6rem;height:3.5rem;padding:0 2rem;border-radius:.9rem;font:600 .95rem "Unbounded",sans-serif;border:1px solid transparent;cursor:pointer;transition:transform .25s,background .3s,border-color .3s;white-space:nowrap}
+.btn:hover{transform:scale(1.04)}
+.btn:focus-visible,.nav a:focus-visible,summary:focus-visible,button:focus-visible{outline:2px solid #fff;outline-offset:3px}
+.btn.w{background:#fff;color:#000}.btn.w:hover{background:#e4e4e7}
+.btn.d{background:var(--dc);color:#fff}.btn.d:hover{background:#4752C4}
+.btn.g{background:var(--glass);border-color:rgba(255,255,255,.15);color:#fff}.btn.g:hover{background:var(--dc);border-color:var(--dc)}
+svg{flex:none}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;height:4rem}
+.nav{display:flex;align-items:center;justify-content:space-between;height:4rem}
+.logo{display:flex;align-items:center;gap:.7rem;font-weight:700;font-size:1.05rem;letter-spacing:-.02em}
+.mark{width:2.2rem;height:2.2rem;border-radius:.6rem;background:linear-gradient(135deg,#fff,#71717a);color:#000;display:grid;place-items:center;font-weight:700}
+.nav ul{display:flex;gap:.25rem;list-style:none;margin:0;padding:0}
+.nav ul a{display:block;padding:.5rem 1rem;border-radius:.6rem;font-size:.8rem;font-weight:600;color:var(--mut);transition:.25s}
+.nav ul a:hover{background:rgba(255,255,255,.06);color:#fff}
+.nav .r{display:flex;gap:.6rem}
+.nav .btn{height:2.5rem;padding:0 1rem;font-size:.78rem;border-radius:.6rem}
+@media(max-width:760px){.nav ul{display:none}}
+.hero{text-align:center;padding:4rem 0 2rem;display:flex;flex-direction:column;align-items:center;gap:1.8rem}
+.join{display:flex;align-items:center;gap:.8rem;flex-wrap:wrap;justify-content:center;font-weight:700;color:var(--mut2)}
+.av{display:flex}.av i{width:2.5rem;height:2.5rem;border-radius:50%;border:2px solid #000;margin-left:-.9rem;display:block}
+.av i:first-child{margin-left:0}
+.hero h1{font-size:clamp(2.3rem,7.5vw,5.25rem);max-width:62rem;padding-bottom:.3rem}
+.hero p{max-width:40rem;color:var(--mut);font-size:1.05rem;line-height:2;margin:0}
+.cta{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center}
+.stage{perspective:1400px;margin-top:1rem;width:100%;max-width:68rem}
+.win{transform:rotateX(26deg) scale(.92);border:1px solid var(--line);border-radius:1.5rem;background:#0a0a0a;box-shadow:0 40px 120px rgba(255,255,255,.12),0 30px 60px #000;overflow:hidden;text-align:left;transition:transform 1.2s cubic-bezier(.22,1,.36,1)}
+.stage:hover .win{transform:rotateX(0) scale(1)}
+.bar{display:flex;gap:.4rem;padding:.9rem 1.1rem;border-bottom:1px solid var(--line)}
+.bar b{width:.7rem;height:.7rem;border-radius:50%;background:#3f3f46}
+.app{display:grid;grid-template-columns:11rem 1fr;min-height:22rem}
+.side{border-right:1px solid var(--line);padding:1rem;display:flex;flex-direction:column;gap:.4rem;font-size:.75rem;font-weight:600;color:var(--mut)}
+.side span{padding:.65rem .8rem;border-radius:.6rem}.side .on{background:rgba(255,255,255,.08);color:#fff}
+.main{padding:1.5rem;display:flex;flex-direction:column;justify-content:flex-end;gap:1rem;background:linear-gradient(to top,rgba(255,255,255,.05),transparent)}
+.main h3{font-size:2rem}.main small{color:var(--mut);font-size:.75rem}
+.play{align-self:flex-start;background:#fff;color:#000;border-radius:.7rem;padding:.8rem 2.2rem;font-weight:700;font-size:.85rem}
+@media(max-width:640px){.app{grid-template-columns:1fr}.side{display:none}}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:2.5rem 2rem;padding:5rem 0}
+.stat{display:flex;gap:1rem;align-items:flex-start}
+.ico{position:relative;width:3.5rem;height:3.5rem;border-radius:.9rem;border:1px solid var(--line);background:var(--glass);display:grid;place-items:center}
+.stat b{display:block;font-size:2.2rem;letter-spacing:-.03em;line-height:1}
+.stat span{display:block;color:var(--mut);font-size:.8rem;margin-top:.5rem;max-width:16rem;line-height:1.6}
+.live::after{content:"";position:absolute;top:-.2rem;right:-.2rem;width:.75rem;height:.75rem;border-radius:50%;background:var(--ok);border:2px solid #000;animation:ping 2s infinite}
+@keyframes ping{50%{box-shadow:0 0 0 .4rem rgba(52,211,153,.25)}}
+.head{text-align:center;display:flex;flex-direction:column;align-items:center;gap:1.2rem;margin-bottom:3.5rem}
+.pill{display:inline-flex;align-items:center;gap:.5rem;padding:.4rem 1rem;border-radius:99px;background:var(--glass);border:1px solid var(--line);font-size:.7rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--mut2)}
+.pill::before{content:"";width:.4rem;height:.4rem;border-radius:50%;background:#fff;box-shadow:0 0 8px #fff}
+.head h2{font-size:clamp(1.9rem,4.5vw,3.2rem);max-width:48rem}
+.head p{max-width:34rem;color:var(--mut);line-height:1.9;margin:0}
+section{padding:5rem 0}
+.bento{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+.card{background:var(--glass);border:1px solid var(--line);border-radius:1.5rem;padding:1.5rem;display:flex;flex-direction:column;gap:1.5rem;transition:transform .4s,border-color .4s;backdrop-filter:blur(8px)}
+.card:hover{transform:translateY(-4px);border-color:rgba(255,255,255,.22)}
+.card.s2{grid-column:span 2}
+.viz{height:12rem;border-radius:1rem;border:1px solid rgba(255,255,255,.06);background:rgba(0,0,0,.4);display:flex;align-items:flex-end;justify-content:center;gap:.4rem;padding:1.2rem;position:relative;overflow:hidden}
+.viz.c{align-items:center;flex-direction:column;justify-content:center}
+.viz .bars{position:absolute;inset:3rem 1.2rem 1.2rem;display:flex;align-items:flex-end;gap:.4rem}
+.bars i{flex:1;border-radius:.4rem .4rem 0 0;background:linear-gradient(to top,rgba(255,255,255,.1),rgba(255,255,255,.85));transform-origin:bottom;animation:bp 2.4s ease-in-out infinite}
+@keyframes bp{50%{transform:scaleY(.7)}}
+.tag{position:absolute;top:.9rem;left:.9rem;display:flex;gap:.5rem;align-items:center;padding:.3rem .7rem;border-radius:.5rem;border:1px solid var(--line);background:rgba(0,0,0,.6);font-size:.72rem;font-weight:700}
+.tag::before{content:"";width:.4rem;height:.4rem;border-radius:50%;background:var(--ok);box-shadow:0 0 8px var(--ok)}
+.card h3{display:flex;align-items:center;gap:.8rem;font-size:1.25rem}
+.card h3 span{width:2.5rem;height:2.5rem;border-radius:.7rem;border:1px solid var(--line);background:var(--glass);display:grid;place-items:center}
+.card p{margin:.9rem 0 0;color:var(--mut);font-size:.85rem;line-height:1.9;max-width:32rem}
+.steps{display:flex;flex-direction:column;gap:.5rem;width:100%;max-width:15rem}
+.steps div{padding:.55rem .8rem;border-radius:.7rem;border:1px solid var(--line);background:var(--glass);font-size:.72rem;font-weight:600;color:var(--mut2)}
+.steps .on{background:#fff;color:#000}
+.big{font-size:4.2rem;font-weight:700;letter-spacing:-.05em;line-height:1}
+.chips{display:flex;gap:.5rem;flex-wrap:wrap;justify-content:center;margin-top:1rem}
+.chips span{padding:.3rem .8rem;border-radius:99px;border:1px solid var(--line);background:var(--glass);font-size:.68rem;font-weight:600;color:var(--mut2)}
+@media(max-width:860px){.bento{grid-template-columns:1fr}.card.s2{grid-column:auto}}
+.vers{overflow:hidden;padding:2rem 0;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.track{display:flex;gap:1.2rem;width:max-content;animation:mq 40s linear infinite}
+.vers:hover .track{animation-play-state:paused}
+@keyframes mq{to{transform:translateX(-50%)}}
+.ver{width:min(80vw,22rem);border:1px solid var(--line);border-radius:1.5rem;background:#09090b;overflow:hidden;transition:transform .4s,border-color .4s}
+.ver:hover{transform:translateY(-6px);border-color:rgba(255,255,255,.3)}
+.vimg{height:9.5rem;position:relative;display:flex;align-items:flex-end;padding:.8rem 1.4rem}
+.vimg::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,#09090b,transparent 70%)}
+.vimg h3{position:relative;z-index:1;font-size:2.2rem}
+.new{position:absolute;top:1rem;right:1rem;z-index:1;font-size:.68rem;font-weight:600;color:var(--ok);background:rgba(0,0,0,.6);border:1px solid rgba(52,211,153,.4);padding:.25rem .7rem;border-radius:99px}
+.vbody{padding:.8rem 1.4rem 1.4rem}
+.vbody div{display:flex;justify-content:space-between;align-items:center;margin-bottom:.6rem}
+.vbody b{font-size:.68rem;letter-spacing:.15em;text-transform:uppercase}
+.vbody em{font-style:normal;font-size:.68rem;font-weight:600;color:var(--mut2);border:1px solid var(--line);background:var(--glass);padding:.1rem .5rem;border-radius:.4rem}
+.vbody p{margin:0;color:var(--mut);font-size:.8rem;line-height:1.8}
+.fps{display:grid;grid-template-columns:.85fr 1.15fr;gap:4rem;align-items:center}
+.fps h2{font-size:clamp(2.2rem,5vw,3.8rem);margin-bottom:1.5rem}
+.fps p{color:var(--mut);line-height:1.9;max-width:28rem;margin:0 0 2rem}
+.plus{display:flex;align-items:baseline;gap:.8rem}.plus b{font-size:clamp(3.5rem,7vw,5rem);letter-spacing:-.05em;line-height:1}.plus span{color:var(--mut);font-size:.75rem;max-width:9rem}
+.chart{border:1px solid var(--line);background:#000;border-radius:1.5rem;padding:2rem;display:flex;flex-direction:column;gap:1.6rem}
+.row div{display:flex;justify-content:space-between;font-size:.85rem;font-weight:700;margin-bottom:.6rem}
+.row.o div{color:var(--mut)}
+.track2{height:.75rem;border-radius:99px;background:rgba(255,255,255,.06);overflow:hidden}
+.fill{height:100%;border-radius:99px;background:linear-gradient(90deg,#d4d4d8,#fff);transform-origin:left;transform:scaleX(0);transition:transform 1.2s cubic-bezier(.22,1,.36,1)}
+.row.o .fill{background:#3f3f46}
+.chart.in .fill{transform:scaleX(var(--w))}
+.chart small{border-top:1px solid var(--line);padding-top:1.2rem;color:var(--mut);font-size:.68rem;line-height:1.8}
+@media(max-width:860px){.fps{grid-template-columns:1fr;gap:2.5rem}}
+.faq{display:grid;grid-template-columns:.85fr 1.15fr;gap:4rem}
+.faq h2{font-size:clamp(2.2rem,5vw,3.8rem);margin-bottom:1.5rem}
+.faq .l p{color:var(--mut);line-height:1.9;max-width:28rem;margin:0 0 1.5rem}
+.faq .l{align-self:start;position:sticky;top:7rem}
+details{border-bottom:1px solid var(--line)}
+.list{border-top:1px solid var(--line)}
+summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:1.2rem;padding:1.5rem 0;font-weight:700;font-size:1rem;color:var(--mut2);transition:color .3s}
+summary::-webkit-details-marker{display:none}
+summary:hover,details[open] summary{color:#fff}
+summary span{flex:1}
+summary i{width:2.3rem;height:2.3rem;border-radius:50%;border:1px solid rgba(255,255,255,.15);display:grid;place-items:center;transition:.4s;font-style:normal;font-size:1.2rem;line-height:1}
+details[open] summary i{background:#fff;color:#000;transform:rotate(135deg);border-color:#fff}
+details p{margin:0;padding:0 3.5rem 1.7rem 0;color:var(--mut);line-height:1.9;font-size:.9rem}
+@media(max-width:860px){.faq{grid-template-columns:1fr;gap:2.5rem}.faq .l{position:static}}
+.final{border:1px solid var(--line);border-radius:2.5rem;background:#000;padding:4rem 3rem;display:flex;flex-direction:column;gap:1.6rem;align-items:flex-start;background-image:radial-gradient(circle at 90% 50%,rgba(255,255,255,.1),transparent 45%)}
+.final h2{font-size:clamp(2.2rem,5vw,3.8rem)}
+.final p{color:var(--mut);max-width:28rem;line-height:1.9;margin:0}
+@media(max-width:640px){.final{padding:2.5rem 1.5rem;align-items:center;text-align:center}}
+footer{border-top:1px solid var(--line);margin-top:3rem;padding:3rem 0 2rem}
+.ft{display:flex;justify-content:space-between;flex-wrap:wrap;gap:2rem}
+.ft p{color:var(--mut);font-size:.8rem;line-height:1.9;max-width:20rem;margin:1rem 0 0}
+.ft ul{list-style:none;margin:.8rem 0 0;padding:0;display:flex;flex-direction:column;gap:.7rem;font-size:.8rem}
+.ft ul a{color:var(--mut2)}.ft ul a:hover{color:#fff}
+.ft h4{margin:0;font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--mut)}
+.copy{display:flex;justify-content:space-between;flex-wrap:wrap;gap:.5rem;margin-top:3rem;color:var(--mut);font-size:.72rem}
+.big-word{font-size:clamp(2.5rem,12vw,9rem);font-weight:700;letter-spacing:-.04em;text-align:center;margin:2rem 0 0;background:linear-gradient(to bottom,rgba(255,255,255,.14),transparent);-webkit-background-clip:text;background-clip:text;color:transparent;line-height:1}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.track{animation:none}.win{transform:none}.fill{transform:scaleX(var(--w))}}
+</style>
+</head>
+<body>
+<header><div class="wrap nav">
+  <a class="logo" href="#"><span class="mark">D</span>DEZOCLIENT</a>
+  <ul><li><a href="#o-nas">O nas</a></li><li><a href="#wersje">Wersje</a></li><li><a href="#fps">FPS</a></li><li><a href="#faq">FAQ</a></li></ul>
+  <div class="r">
+    <a class="btn g" href="#" aria-label="Discord"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.3 4.4A19.8 19.8 0 0 0 15.4 3c-.2.4-.4.9-.6 1.3a18.3 18.3 0 0 0-5.5 0C9.1 3.9 8.9 3.4 8.7 3A19.7 19.7 0 0 0 3.7 4.4C.5 9 -.3 13.6.1 18.1a19.9 19.9 0 0 0 6 3c.5-.6.9-1.3 1.2-2-.7-.3-1.3-.6-1.9-.9l.4-.3a14.3 14.3 0 0 0 12.1 0l.4.3c-.6.4-1.2.7-1.9.9.4.7.8 1.4 1.2 2a19.8 19.8 0 0 0 6-3c.5-5.2-.8-9.7-3.5-13.7zM8 15.3c-1.2 0-2.2-1.1-2.2-2.4S6.800 10.500 8 10.500s2.200 1.100 2.200 2.400-.9 2.400-2.200 2.400zm8 0c-1.200 0-2.200-1.100-2.200-2.400s1-2.400 2.200-2.400 2.200 1.100 2.200 2.400-1 2.400-2.200 2.400z"/></svg></a>
+    <a class="btn w" href="#pobierz">Pobierz</a>
+  </div>
+</div></header>
+
+<main>
+<div class="wrap">
+<section class="hero" style="padding-top:4rem">
+  <div class="join"><span>Dołącz do <span style="color:#fff">100+</span> graczy</span><span class="av"><i style="background:#6b7280"></i><i style="background:#9ca3af"></i><i style="background:#d1d5db"></i></span></div>
+  <h1><span class="silver">Wydajność to nasza specjalność</span></h1>
+  <p>DEZO CLIENT to lekki launcher Minecraft stworzony z myślą o płynnej grze. Szybkie uruchamianie, wysoki FPS i wszystko, czego potrzebujesz, w jednym miejscu.</p>
+  <div class="cta" id="pobierz">
+    <a class="btn w" href="#"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>Pobierz</a>
+    <a class="btn d" href="#">Discord</a>
+  </div>
+  <div class="stage"><div class="win" role="img" aria-label="Okno launchera DEZO CLIENT">
+    <div class="bar"><b></b><b></b><b></b></div>
+    <div class="app"><div class="side"><span class="on">Start</span><span>Mody</span><span>Skiny</span><span>Konta</span><span>Znajomi</span></div>
+    <div class="main"><small>Ostatnio grane</small><h3>Minecraft 1.21.1</h3><small>Fabric · 12 modów</small><div class="play">Graj</div></div></div>
+  </div></div>
+</section>
+
+<div class="stats">
+  <div class="stat"><div class="ico live"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-2.5a2 2 0 0 0-1.9 1.5l-2.3 8.4a.25.25 0 0 1-.5 0L9.200 2.200a.25.25 0 0 0-.5 0L6.400 10.500A2 2 0 0 1 4.500 12H2"/></svg></div><div><b>0</b><span>Graczy z otwartym launcherem teraz</span></div></div>
+  <div class="stat"><div class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg></div><div><b>0</b><span>Pobrań i instalacji launchera</span></div></div>
+  <div class="stat"><div class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 20 12 6 21 6 3"/></svg></div><div><b>0</b><span>Uruchomień gry przyciskiem „Graj”</span></div></div>
+  <div class="stat"><div class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2h4M12 14l3-3"/><circle cx="12" cy="14" r="8"/></svg></div><div><b>&lt;2 sek.</b><span>Średni czas uruchomienia launchera</span></div></div>
+</div>
+
+<section id="o-nas">
+  <div class="head"><span class="pill">O nas</span><h2 class="silver">Stworzony przez graczy, dla graczy</h2><p>Wszystko, czego potrzebujesz do płynnej gry w Minecraft — w jednym, lekkim launcherze.</p></div>
+  <div class="bento">
+    <div class="card s2"><div class="viz"><span class="tag" id="fpsTag">1200 FPS</span><div class="bars" id="bars"></div></div>
+      <div><h3><span>⚡</span>Wydajność</h3><p>Lekki launcher z gotowymi optymalizacjami. Więcej FPS, mniej zacięć i szybkie uruchamianie gry nawet na słabszym sprzęcie.</p></div></div>
+    <div class="card"><div class="viz c"><div class="steps"><div>1 &nbsp;Zaloguj się</div><div>2 &nbsp;Wybierz wersję</div><div class="on">3 &nbsp;Graj</div></div></div>
+      <div><h3><span>✓</span>Prostota</h3><p>Zaloguj się, wybierz wersję i kliknij Graj. Bez ręcznej instalacji modów i grzebania w plikach.</p></div></div>
+    <div class="card"><div class="viz c"><div class="chips" style="margin:0"><span>Konto Microsoft</span><span>Konto offline</span></div></div>
+      <div><h3><span>🛡</span>Bezpieczeństwo</h3><p>Logowanie przez oficjalne konto Microsoft. Twoje dane zostają u Ciebie, a launcher aktualizuje się automatycznie.</p></div></div>
+    <div class="card s2"><div class="viz c"><div class="big silver">0 zł</div><div class="chips"><span>Bez opłat</span><span>Bez subskrypcji</span><span>Bez limitów</span></div></div>
+      <div><h3><span>🎁</span>Za darmo</h3><p>Launcher pobierasz i używasz za darmo, bez ukrytych opłat i subskrypcji. Po prostu pobierz i graj.</p></div></div>
+  </div>
+</section>
+</div>
+
+<section id="wersje">
+  <div class="wrap"><div class="head" style="margin-bottom:1rem"><span class="pill">Wersje</span><h2 class="silver">Graj na swojej ulubionej wersji</h2><p>Od 1.20.1 po najnowsze wydania — każda z Fabric, instalowana jednym kliknięciem.</p></div></div>
+  <div class="vers"><div class="track" id="track"></div></div>
+</section>
+
+<div class="wrap">
+<section id="fps"><div class="fps">
+  <div><h2>Więcej FPS.<br><span class="silver">Ta sama gra.</span></h2>
+  <p>DEZO CLIENT obok popularnych launcherów, na tym samym komputerze. Gotowe optymalizacje robią różnicę od pierwszego uruchomienia.</p>
+  <div class="plus"><b>+71%</b><span>więcej FPS niż następny launcher</span></div></div>
+  <div class="chart" id="chart"><div class="pill" style="align-self:flex-start">Średni FPS</div>
+    <div class="row"><div><span>DEZO CLIENT</span><span>1200 FPS</span></div><div class="track2"><div class="fill" style="--w:1"></div></div></div>
+    <div class="row o"><div><span>Launcher B</span><span>700 FPS</span></div><div class="track2"><div class="fill" style="--w:.58"></div></div></div>
+    <div class="row o"><div><span>Launcher C</span><span>500 FPS</span></div><div class="track2"><div class="fill" style="--w:.42"></div></div></div>
+    <small>Sprzęt testowy: uzupełnij swoją specyfikację (CPU · GPU · RAM)</small></div>
+</div></section>
+
+<section id="faq"><div class="faq">
+  <div class="l"><h2>Masz<br><span class="silver">pytania?</span></h2><p>Najczęściej zadawane pytania o DEZO CLIENT — od instalacji po mody i konta.</p><a class="btn g" href="#">Dołącz do Discorda</a></div>
+  <div class="list">
+    <details open><summary><span>Czy DEZO CLIENT jest darmowy?</span><i>+</i></summary><p>Tak. Launcher pobierasz i używasz za darmo, bez ukrytych opłat i subskrypcji.</p></details>
+    <details><summary><span>Jakie są wymagania?</span><i>+</i></summary><p>Komputer z Windows 10 lub 11 (64-bit). Launcher sam wykrywa zainstalowaną Javę, a w ustawieniach możesz wybrać inną wersję i przydzielić grze więcej pamięci RAM.</p></details>
+    <details><summary><span>Czy mogę grać bez konta Microsoft?</span><i>+</i></summary><p>Tak, możesz dodać konto offline, podając tylko nick. Do gry na serwerach premium i z własnym skinem potrzebne jest konto Microsoft z kupionym Minecraftem.</p></details>
+    <details><summary><span>Jak zainstalować mody?</span><i>+</i></summary><p>Wejdź w zakładkę Mody, wyszukaj mod i kliknij Zainstaluj. Mod trafi do wybranego profilu, bez ręcznego kopiowania plików.</p></details>
+    <details><summary><span>Czy mogę przenieść profile z innego launchera?</span><i>+</i></summary><p>Tak. Przy tworzeniu nowego profilu możesz zaimportować go z innego launchera razem z modami.</p></details>
+    <details><summary><span>Windows pokazuje ostrzeżenie przy instalacji. Co zrobić?</span><i>+</i></summary><p>To standardowy komunikat Windows SmartScreen dla nowych programów. Kliknij „Więcej informacji”, a potem „Uruchom mimo to”.</p></details>
+    <details><summary><span>Gdzie mogę uzyskać pomoc?</span><i>+</i></summary><p>Najszybciej na naszym Discordzie. Chętnie pomożemy z instalacją i konfiguracją.</p></details>
+  </div>
+</div></section>
+
+<section><div class="final">
+  <h2>Wchodzisz<br><span class="silver">do gry?</span></h2>
+  <p>Pobierz DEZO CLIENT i dołącz do naszej społeczności na Discordzie. Instalacja zajmuje mniej niż minutę.</p>
+  <div class="cta"><a class="btn w" href="#">Pobierz</a><a class="btn g" href="#">Discord</a></div>
+</div></section>
+</div>
+</main>
+
+<footer><div class="wrap">
+  <div class="ft">
+    <div><a class="logo" href="#"><span class="mark">D</span>DEZOCLIENT</a><p>Lekki i wydajny launcher Minecraft. Pobierz, zaloguj się i graj bez zbędnego czekania.</p></div>
+    <div><h4>Strona</h4><ul><li><a href="#o-nas">O nas</a></li><li><a href="#wersje">Wersje</a></li><li><a href="#fps">FPS</a></li><li><a href="#faq">FAQ</a></li></ul></div>
+    <div><h4>Dokumentacja</h4><ul><li><a href="#">Regulamin</a></li><li><a href="#">Polityka prywatności</a></li></ul></div>
+    <div><h4>Społeczność</h4><ul><li><a href="#">Discord</a></li><li><a href="#">GitHub</a></li></ul></div>
+  </div>
+  <div class="big-word" aria-hidden="true">DEZOCLIENT</div>
+  <div class="copy"><span>© 2026 DEZO CLIENT. Wszelkie prawa zastrzeżone.</span><span>Minecraft nie jest produktem Mojang ani Microsoft.</span></div>
+</div></footer>
+
+<script>
+(function(){
+  var h=[38,62,48,80,56,92,70,86,60,96,74,88,66,100,82,94],b=document.getElementById('bars');
+  h.forEach(function(v,i){var e=document.createElement('i');e.style.height=v+'%';e.style.animationDelay=(-i*.15)+'s';b.appendChild(e)});
+  var v=[["26.3","Najnowsza","Wilderness Bound","Najnowsze wydanie z nowymi biomami."],["26.1","","Tiny Takeover","Młode moby i świetna baza pod serwery."],["1.21.4","","The Garden Awakens","Mroczny klimat idealny pod shadery."],["1.21.1","","Tricky Trials","Najpopularniejsza baza pod mody."],["1.20.4","","Trails & Tales","Dopracowana wersja serii 1.20."],["1.20.1","","Trails & Tales","Klasyka modowania z ogromnym wyborem paczek."]];
+  var g=["#3b3b46,#18181b","#2a3a2e,#0f1511","#3a3a34,#141412","#3a2a22,#16100d","#3a2a34,#150f13","#3a3320,#15130c"],t=document.getElementById('track'),html='';
+  for(var k=0;k<2;k++)v.forEach(function(x,i){html+='<article class="ver"'+(k?' aria-hidden="true"':'')+'><div class="vimg" style="background:linear-gradient(135deg,'+g[i]+')">'+(x[1]?'<span class="new">'+x[1]+'</span>':'')+'<h3>'+x[0]+'</h3></div><div class="vbody"><div><b>'+x[2]+'</b><em>Fabric</em></div><p>'+x[3]+'</p></div></article>'});
+  t.innerHTML=html;
+  var c=document.getElementById('chart');
+  if('IntersectionObserver' in window){new IntersectionObserver(function(e,o){if(e[0].isIntersecting){c.classList.add('in');o.disconnect()}},{threshold:.3}).observe(c)}else{c.classList.add('in')}
+})();
+</script>
+</body>
+</html>
 
