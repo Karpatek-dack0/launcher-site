@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>DEZO CLIENT — Zdominuj każdy serwer w swoim stylu</title>
+<title>DEZO CLIENT — Twój ulubiony launcher Minecraft</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -532,7 +532,7 @@ header {
   flex-direction: column;
   justify-content: space-between;
   height: 100%;
-   gap: 1.2rem;
+  gap: 1.2rem;
   animation: fadePane 0.35s ease;
 }
 
@@ -595,7 +595,7 @@ header {
   box-shadow: 0 12px 32px rgba(168, 85, 247, 0.75);
 }
 
-/* Siatka modułów w zakładce Moduły */
+/* Siatka modyfikacji w zakładce Menedżer Modów */
 .mods-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(11.5rem, 1fr));
@@ -657,7 +657,7 @@ header {
   transform: translateX(1rem);
 }
 
-/* Suwak RAM w zakładce Profile */
+/* Suwak RAM w zakładce Konfiguracja RAM */
 .ram-box {
   background: rgba(13, 6, 26, 0.8);
   border: 1px solid var(--line);
@@ -1182,7 +1182,7 @@ footer {
 }
 
 /* ==========================================================================
-   POWIADOMIENIE TOAST (ZAMIAST ALERTÓW)
+   POWIADOMIENIE TOAST
    ========================================================================== */
 .toast {
   position: fixed;
@@ -1253,44 +1253,44 @@ footer {
   <div class="orb orb-3"></div>
 </div>
 
-<!-- Pasek nawigacji -->
+<!-- Nawigacja -->
 <header>
   <div class="wrap nav">
     <a class="logo" href="#">
       <span class="mark">D</span>DEZOCLIENT
     </a>
     <ul>
-      <li><a href="#podglad">Podgląd</a></li>
-      <li><a href="#mozliwosci">Możliwości</a></li>
+      <li><a href="#podglad">Launcher</a></li>
+      <li><a href="#mozliwosci">Funkcje</a></li>
       <li><a href="#faq">FAQ</a></li>
     </ul>
     <div class="r">
-      <a class="btn g trigger-dc" href="#discord" aria-label="Serwer Discord">
+      <a class="btn g trigger-dc" href="#discord" aria-label="Discord">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.3 4.4A19.8 19.8 0 0 0 15.4 3c-.2.4-.4.9-.6 1.3a18.3 18.3 0 0 0-5.5 0C9.1 3.9 8.9 3.4 8.7 3A19.7 19.7 0 0 0 3.7 4.4C.5 9-.3 13.6.1 18.1a19.9 19.9 0 0 0 6 3c.5-.6.9-1.3 1.2-2-.7-.3-1.3-.6-1.9-.9l.4-.3a14.3 14.3 0 0 0 12.1 0l.4.3c-.6.4-1.2.7-1.9.9.4.7.8 1.4 1.2 2a19.8 19.8 0 0 0 6-3c.5-5.2-.8-9.7-3.5-13.7zM8 15.3c-1.2 0-2.2-1.1-2.2-2.4S6.8 10.5 8 10.5s2.2 1.1 2.2 2.4-.9 2.4-2.2 2.4zm8 0c-1.2 0-2.2-1.1-2.2-2.4s1-2.4 2.2-2.4 2.2 1.1 2.2 2.4-1 2.4-2.2 2.4z"/></svg>
       </a>
-      <a class="btn p trigger-dl" href="#pobierz">Pobierz klienta</a>
+      <a class="btn p trigger-dl" href="#pobierz">Pobierz</a>
     </div>
   </div>
 </header>
 
 <main>
   <div class="wrap">
-    <!-- Sekcja Hero (bez "Dołącz do 100+ graczy") -->
+    <!-- Sekcja Hero -->
     <section class="hero">
-      <span class="pill reveal">Nowa generacja klienta Minecraft</span>
+      <span class="pill reveal">Nowoczesny launcher Minecraft</span>
       <h1 class="reveal" style="--d: 0.08s">
-        <span class="purple-grad">Zdominuj każdy serwer w swoim stylu</span>
+        <span class="purple-grad">Wszystko, czego potrzebuje gracz w jednym miejscu</span>
       </h1>
       <p class="reveal" style="--d: 0.16s">
-        Autorski launcher zaprojektowany dla graczy, którzy nie uznają kompromisów. Błyskawiczny start, wbudowane moduły użytkowe, pełna personalizacja i zero zbędnego obciążenia systemu.
+        Lekki i szybki launcher stworzony z myślą o płynnej rozgrywce. Błyskawiczny start, wygodne zarządzanie wersjami i modami bez zbędnych komplikacji.
       </p>
       <div class="cta reveal" style="--d: 0.24s" id="pobierz">
         <a class="btn p trigger-dl" href="#pobierz-instalator">
           <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
-          Pobierz teraz
+          Pobierz launcher
         </a>
         <a class="btn g trigger-dc" href="#discord">
-          Serwer Discord
+          Dołącz na Discorda
         </a>
       </div>
 
@@ -1299,17 +1299,17 @@ footer {
         <div class="win" id="launcherWin" role="region" aria-label="Interaktywny podgląd launchera DEZO CLIENT">
           <div class="bar">
             <div class="bar-dots"><b></b><b></b><b></b></div>
-            <span class="bar-title">DEZO CLIENT // v2.4 OBSIDIAN PURPLE</span>
+            <span class="bar-title">DEZO CLIENT // v2.4 STABLE</span>
           </div>
           <div class="app">
-            <!-- Pasek boczny z interaktywnymi zakładkami -->
+            <!-- Pasek boczny z zakładkami -->
             <div class="side" role="tablist">
-              <button class="on" data-tab="tab-start" role="tab" aria-selected="true">⚡ Panel Startowy</button>
-              <button data-tab="tab-mods" role="tab" aria-selected="false">🎛️ Moduły HUD</button>
-              <button data-tab="tab-cosmetics" role="tab" aria-selected="false">👑 Kosmetyki</button>
-              <button data-tab="tab-profiles" role="tab" aria-selected="false">⚙️ Pamięć i Profil</button>
+              <button class="on" data-tab="tab-start" role="tab" aria-selected="true">🚀 Start Gry</button>
+              <button data-tab="tab-mods" role="tab" aria-selected="false">📦 Menedżer Modów</button>
+              <button data-tab="tab-cosmetics" role="tab" aria-selected="false">🎨 Wygląd okna</button>
+              <button data-tab="tab-profiles" role="tab" aria-selected="false">⚙️ Konfiguracja RAM</button>
               <div class="side-status">
-                <i></i> Silnik zoptymalizowany
+                <i></i> System gotowy
               </div>
             </div>
 
@@ -1318,66 +1318,66 @@ footer {
               <!-- Zakładka 1: Start -->
               <div class="tab-pane active" id="tab-start">
                 <div class="pane-badges">
-                  <span class="pane-badge">Profil: PvP &amp; Survival</span>
-                  <span class="pane-badge">Aktywne moduły: 14</span>
-                  <span class="pane-badge">Tryb: Ultra Low Latency</span>
+                  <span class="pane-badge">Profil: Główny</span>
+                  <span class="pane-badge">Wersja: 1.21.4</span>
+                  <span class="pane-badge">Optymalizacja: Włączona</span>
                 </div>
                 <div class="pane-hero">
-                  <small>Gotowy do natychmiastowego wejścia</small>
-                  <h3 class="purple-grad">DEZO Obsidian 1.21+</h3>
-                  <small id="launchStatusText">Zoptymalizowany silnik · Automatyczna pamięć RAM</small>
+                  <small>Ostatnio uruchamiana wersja</small>
+                  <h3 class="purple-grad">Minecraft 1.21.4</h3>
+                  <small id="launchStatusText">Fabric Loader · Stabilny profil optymalizacyjny</small>
                 </div>
                 <div class="play-row">
-                  <button class="play-btn" id="mockPlayBtn" type="button">Uruchom Grę</button>
+                  <button class="play-btn" id="mockPlayBtn" type="button">Uruchom grę</button>
                 </div>
               </div>
 
-              <!-- Zakładka 2: Moduły HUD (Interaktywne przełączniki) -->
+              <!-- Zakładka 2: Menedżer Modów -->
               <div class="tab-pane" id="tab-mods">
                 <div>
-                  <small style="color:var(--mut);font-size:.75rem">Kliknij moduł, aby przełączyć jego status na żywo:</small>
-                  <h3 style="font-size:1.35rem;margin:.3rem 0 1rem">Wbudowane moduły użytkowe</h3>
+                  <small style="color:var(--mut);font-size:.75rem">Włączone pakiety optymalizacyjne:</small>
+                  <h3 style="font-size:1.35rem;margin:.3rem 0 1rem">Modyfikacje wydajnościowe</h3>
                   <div class="mods-grid">
-                    <div class="mod-item active"><span>Keystrokes RGB</span><div class="switch"></div></div>
-                    <div class="mod-item active"><span>ToggleSprint</span><div class="switch"></div></div>
-                    <div class="mod-item active"><span>Status Zbroi HUD</span><div class="switch"></div></div>
-                    <div class="mod-item active"><span>Zoom &amp; Fullbright</span><div class="switch"></div></div>
-                    <div class="mod-item"><span>Licznik CPS</span><div class="switch"></div></div>
-                    <div class="mod-item active"><span>Fizyka Przedmiotów</span><div class="switch"></div></div>
+                    <div class="mod-item active"><span>Sodium Core</span><div class="switch"></div></div>
+                    <div class="mod-item active"><span>Lithium Engine</span><div class="switch"></div></div>
+                    <div class="mod-item active"><span>Mod Menu</span><div class="switch"></div></div>
+                    <div class="mod-item active"><span>Iris Shaders</span><div class="switch"></div></div>
+                    <div class="mod-item"><span>Xaero's Minimap</span><div class="switch"></div></div>
+                    <div class="mod-item active"><span>Mouse Tweaks</span><div class="switch"></div></div>
                   </div>
                 </div>
-                <small style="color:var(--mut);font-size:.72rem">Wszystkie dodatki są w pełni dozwolone na serwerach wieloosobowych.</small>
+                <small style="color:var(--mut);font-size:.72rem">Automatyczne pobieranie i dopasowywanie wersji modów.</small>
               </div>
 
-              <!-- Zakładka 3: Kosmetyki -->
+              <!-- Zakładka 3: Wygląd okna -->
               <div class="tab-pane" id="tab-cosmetics">
                 <div>
-                  <small style="color:var(--mut);font-size:.75rem">Wyróżnij się na lobby serwerowym:</small>
-                  <h3 style="font-size:1.35rem;margin:.3rem 0 1rem">Kolekcja Fioletowej Nebuli</h3>
+                  <small style="color:var(--mut);font-size:.75rem">Dostosuj interfejs launchera:</small>
+                  <h3 style="font-size:1.35rem;margin:.3rem 0 1rem">Motywy i preferencje</h3>
                   <div class="mods-grid">
-                    <div class="mod-item active"><span>Peleryna Void</span><div class="switch"></div></div>
-                    <div class="mod-item active"><span>Skrzydła Nebuli</span><div class="switch"></div></div>
-                    <div class="mod-item"><span>Fioletowa Aura</span><div class="switch"></div></div>
-                    <div class="mod-item"><span>Korona Dezo</span><div class="switch"></div></div>
+                    <div class="mod-item active"><span>Obsydianowy Fiolet</span><div class="switch"></div></div>
+                    <div class="mod-item active"><span>Płynne animacje</span><div class="switch"></div></div>
+                    <div class="mod-item"><span>Dźwięki powiadomień</span><div class="switch"></div></div>
+                    <div class="mod-item active"><span>Minimalistyczny panel</span><div class="switch"></div></div>
                   </div>
                 </div>
-                <small style="color:var(--mut);font-size:.72rem">Kosmetyki widoczne dla wszystkich użytkowników DEZO CLIENT.</small>
+                <small style="color:var(--mut);font-size:.72rem">Wszystkie ustawienia zapisywane są lokalnie na Twoim urządzeniu.</small>
               </div>
 
-              <!-- Zakładka 4: Pamięć i Profil -->
+              <!-- Zakładka 4: Konfiguracja RAM -->
               <div class="tab-pane" id="tab-profiles">
                 <div>
-                  <small style="color:var(--mut);font-size:.75rem">Konfiguracja zasobów sprzętowych:</small>
-                  <h3 style="font-size:1.35rem;margin:.3rem 0 1rem">Przydział pamięci RAM</h3>
+                  <small style="color:var(--mut);font-size:.75rem">Alokacja zasobów systemowych:</small>
+                  <h3 style="font-size:1.35rem;margin:.3rem 0 1rem">Zarządzanie pamięcią RAM</h3>
                   <div class="ram-box">
                     <div style="display:flex;justify-content:space-between;font-size:.82rem;font-weight:700">
-                      <span>Limit dla procesu gry:</span>
+                      <span>Przydzielona pamięć:</span>
                       <span id="ramVal" style="color:var(--purple-bright)">6144 MB (6 GB)</span>
                     </div>
                     <input type="range" min="2048" max="16384" step="512" value="6144" class="ram-slider" id="ramSlider" aria-label="Przydział pamięci RAM">
                   </div>
                 </div>
-                <small style="color:var(--mut);font-size:.72rem">Automatyczne czyszczenie nieużywanej pamięci (Garbage Collector) jest aktywne.</small>
+                <small style="color:var(--mut);font-size:.72rem">Wbudowany Garbage Collector dba o płynną pracę Javy bez przycięć.</small>
               </div>
             </div>
           </div>
@@ -1385,15 +1385,15 @@ footer {
       </div>
     </section>
 
-    <!-- Statystyki (4 karty z nowym tekstem) -->
+    <!-- Statystyki -->
     <div class="stats">
       <div class="stat reveal" style="--d: 0.05s">
         <div class="ico">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
         </div>
         <div>
-          <b>&lt; 1.5s</b>
-          <span>Ekspresowy start klienta od pierwszego kliknięcia</span>
+          <b>&lt; 1 s</b>
+          <span>Błyskawiczne uruchamianie aplikacji i procesów</span>
         </div>
       </div>
 
@@ -1403,7 +1403,7 @@ footer {
         </div>
         <div>
           <b>100%</b>
-          <span>Darmowy dostęp do wszystkich funkcji i modułów</span>
+          <span>Darmowe narzędzie bez ukrytych opłat i subskrypcji</span>
         </div>
       </div>
 
@@ -1412,8 +1412,8 @@ footer {
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3"/></svg>
         </div>
         <div>
-          <b>Zero</b>
-          <span>Zbędnych procesów obciążających Twój procesor w tle</span>
+          <b>0 %</b>
+          <span>Lekki kod bez obciążania zasobów komputera</span>
         </div>
       </div>
 
@@ -1422,30 +1422,30 @@ footer {
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
         </div>
         <div>
-          <b>24/7</b>
-          <span>Aktywne wsparcie społeczności i regularne aktualizacje</span>
+          <b>Auto</b>
+          <span>Automatyczna aktualizacja wersji i bibliotek</span>
         </div>
       </div>
     </div>
 
-    <!-- Sekcja Możliwości (Bento Grid) -->
+    <!-- Sekcja Funkcje (Bento Grid) -->
     <section id="mozliwosci">
       <div class="head reveal">
-        <span class="pill">Możliwości</span>
-        <h2 class="purple-grad">Zbudowany od podstaw. Dopracowany w każdym detalu.</h2>
-        <p>Zapomnij o ręcznym wgrywaniu dziesiątek plików. Wszystko, czego potrzebujesz do płynnej i wygodnej rozgrywki, masz od razu pod ręką.</p>
+        <span class="pill">Funkcje launchera</span>
+        <h2 class="purple-grad">Wszystko pod ręką, dokładnie tak, jak lubisz.</h2>
+        <p>Nasz launcher łączy wygodę zarządzania profilami z maksymalną wydajnością gry. Zapomnij o skomplikowanej konfiguracji.</p>
       </div>
 
       <div class="bento">
         <!-- Karta 1 -->
         <div class="card s2 reveal" style="--d: 0.05s">
           <div class="viz">
-            <span class="tag">Stabilny frametime · Zero przycięć</span>
+            <span class="tag">Stabilna praca · Pełna optymalizacja</span>
             <div class="bars" id="bars"></div>
           </div>
           <div>
-            <h3><span>⚡</span>Zoptymalizowany pod czystą akcję</h3>
-            <p>Wycięliśmy wszystko, co spowalnia klasycznego Minecrafta. Inteligentne zarządzanie pamięcią RAM i zoptymalizowany kod sprawiają, że gra reaguje natychmiastowo — nawet w środku największej zadymy.</p>
+            <h3><span>⚡</span>Wydajność na każdym sprzęcie</h3>
+            <p>Lekka architektura launchera dba o to, by gra zużywała optymalną ilość zasobów. Ciesz się stabilną pracą i płynną rozgrywką bez zbędnych spadków klatek.</p>
           </div>
         </div>
 
@@ -1453,14 +1453,14 @@ footer {
         <div class="card reveal" style="--d: 0.12s">
           <div class="viz c">
             <div class="steps" id="autoSteps">
-              <div class="on">1 &nbsp;Wybierz profil</div>
-              <div>2 &nbsp;Włącz dodatki</div>
-              <div>3 &nbsp;Wbijaj do gry</div>
+              <div class="on">1 &nbsp;Załóż profil</div>
+              <div>2 &nbsp;Wybierz wersję</div>
+              <div>3 &nbsp;Kliknij Graj</div>
             </div>
           </div>
           <div>
-            <h3><span>✓</span>Gotowy w 3 ruchach</h3>
-            <p>Tworzysz profil, zaznaczasz interesujące Cię opcje i wchodzisz na serwer. Żadnego przekopywania folderów ani błędów z kompatybilnością.</p>
+            <h3><span>✓</span>Prosta obsługa</h3>
+            <p>Intuicyjny interfejs pozwala skonfigurować grę w kilka sekund. Bez ręcznego szukania plików instalacyjnych.</p>
           </div>
         </div>
 
@@ -1468,29 +1468,29 @@ footer {
         <div class="card reveal" style="--d: 0.18s">
           <div class="viz c">
             <div class="chips" style="margin:0">
-              <span>Microsoft Premium</span>
-              <span>Profil Offline</span>
+              <span>Konto Microsoft</span>
+              <span>Konto Offline</span>
             </div>
           </div>
           <div>
-            <h3><span>🛡</span>Pełna swoboda kont</h3>
-            <p>Wspieramy bezpieczne logowanie przez oficjalne konto Microsoft oraz szybkie profile lokalne bez premki. Ty decydujesz, jak grasz.</p>
+            <h3><span>🛡</span>Twoje konto, Twoje zasady</h3>
+            <p>Loguj się oficjalnie przez Microsoft lub korzystaj z kont lokalnych. Pełna kompatybilność z serwerami typu Premium i Non-Premium.</p>
           </div>
         </div>
 
         <!-- Karta 4 -->
         <div class="card s2 reveal" style="--d: 0.24s">
           <div class="viz c">
-            <div class="big purple-grad">0 PLN</div>
+            <div class="big purple-grad">100% Free</div>
             <div class="chips">
-              <span>Zero mikropłatności</span>
-              <span>Brak abonamentu</span>
-              <span>Pełna wersja</span>
+              <span>Bez reklam</span>
+              <span>Bez limitów</span>
+              <span>Otwarty dostęp</span>
             </div>
           </div>
           <div>
-            <h3><span>💎</span>Całkowicie darmowy. Na zawsze.</h3>
-            <p>Nie zamykamy kluczowych funkcji za płatnymi subskrypcjami. Pobierasz raz i korzystasz z pełnego potencjału DEZO CLIENT bez żadnych ukrytych kosztów.</p>
+            <h3><span>💎</span>Bez ukrytych kosztów</h3>
+            <p>Żadnych płatnych subskrypcji czy blokad funkcji. DEZO CLIENT powstał z pasji do tworzenia najlepszych narzędzi dla graczy Minecraft.</p>
           </div>
         </div>
       </div>
@@ -1500,35 +1500,35 @@ footer {
     <section id="faq">
       <div class="faq">
         <div class="l reveal">
-          <h2>Masz<br><span class="purple-grad">wątpliwości?</span></h2>
-          <p>Zebraliśmy odpowiedzi na najczęstsze pytania dotyczące instalacji, działania oraz konfiguracji naszego klienta.</p>
+          <h2>Masz<br><span class="purple-grad">pytania?</span></h2>
+          <p>Wszystko, co warto wiedzieć przed rozpoczęciem korzystania z naszego launchera.</p>
           <a class="btn g trigger-dc" href="#discord">Zapytaj na Discordzie</a>
         </div>
 
         <div class="list reveal" style="--d: 0.12s">
           <details open>
-            <summary><span>Czy korzystanie z DEZO CLIENT coś kosztuje?</span><i>+</i></summary>
-            <p>Ani grosza. Klient jest w 100% darmowy — nie wymagamy podpinania karty ani wykupywania abonamentu, żeby odblokować jakiekolwiek funkcje.</p>
+            <summary><span>Czy pobranie i używanie DEZO CLIENT jest darmowe?</span><i>+</i></summary>
+            <p>Tak! Launcher jest w pełni darmowy, nie pobieramy żadnych opłat ani nie wprowadzamy płatnych subskrypcji.</p>
           </details>
           <details>
-            <summary><span>Na jakim sprzęcie zadziała launcher?</span><i>+</i></summary>
-            <p>Wystarczy komputer z systemem Windows 10 lub 11 (wersja 64-bitowa). DEZO automatycznie dobierze odpowiednie środowisko Java i pozwoli Ci wygodnie ustawić limit pamięci RAM za pomocą prostego suwaka.</p>
+            <summary><span>Jakie są wymagania systemowe launchera?</span><i>+</i></summary>
+            <p>Wystarczy komputer z systemem Windows 10 lub 11 oraz zainstalowane środowisko w wersji 64-bit. Launcher sam wykrywa i konfiguruje odpowiednią wersję Javy.</p>
           </details>
           <details>
-            <summary><span>Nie mam konta Premium — czy mogę grać?</span><i>+</i></summary>
-            <p>Jasne! Możesz utworzyć profil offline w kilka sekund, wpisując wyłącznie swój nick. Jeśli jednak posiadasz oryginalnego Minecrafta, zalogujesz się bezpiecznie przez oficjalny system Microsoft.</p>
+            <summary><span>Czy mogę grać bez oryginalnego konta Minecraft?</span><i>+</i></summary>
+            <p>Oczywiście. Możesz dodać profil offline i grać na serwerach Non-Premium. Dla posiadaczy oryginału dostępne jest bezpieczne logowanie Microsoft.</p>
           </details>
           <details>
-            <summary><span>Jak działają wbudowane dodatki i modyfikacje?</span><i>+</i></summary>
-            <p>Wbudowany menedżer pozwala włączać i wyłączać przydatne moduły oraz mody jednym kliknięciem bezpośrednio w oknie klienta. Koniec z ręcznym przerzucaniem plików .jar do folderu gry.</p>
+            <summary><span>Jak działa instalowanie modyfikacji w launcherze?</span><i>+</i></summary>
+            <p>Wszystkie popularne mody i paczki pobierzesz bezpośrednio z poziomu zakładek w launcherze. Aplikacja automatycznie dba o zależności i poprawną ścieżkę instalacji.</p>
           </details>
           <details>
-            <summary><span>Dlaczego Windows wyświetla niebieskie okno SmartScreen?</span><i>+</i></summary>
-            <p>To standardowe zabezpieczenie systemu Windows dla nowych programów od niezależnych twórców. Wystarczy kliknąć „Więcej informacji”, a następnie „Uruchom mimo to” — nasz instalator jest całkowicie bezpieczny.</p>
+            <summary><span>Dlaczego system Windows pokazuje ostrzeżenie SmartScreen?</span><i>+</i></summary>
+            <p>To powszechny komunikat dla nowych plików wykonywalnych od niezależnych autorów. Wystarczy kliknąć „Więcej informacji”, a następnie „Uruchom mimo to”.</p>
           </details>
           <details>
-            <summary><span>Znalazłem błąd lub potrzebuję pomocy — gdzie pisać?</span><i>+</i></summary>
-            <p>Wbijaj bezpośrednio na naszego Discorda! Nasza administracja oraz społeczność szybko pomogą Ci rozwiązać każdy problem techniczny.</p>
+            <summary><span>Gdzie mogę szukać pomocy w razie problemów?</span><i>+</i></summary>
+            <p>Najszybciej uzyskasz wsparcie na naszym oficjalnym serwerze Discord, gdzie chętnie odpowiadamy na pytania i pomagamy w konfiguracji.</p>
           </details>
         </div>
       </div>
@@ -1537,8 +1537,8 @@ footer {
     <!-- Końcowy baner CTA -->
     <section>
       <div class="final reveal">
-        <h2>Wchodzisz na<br><span class="purple-grad">wyższy poziom?</span></h2>
-        <p>Pobierz instalator, skonfiguruj swój profil w kilkadziesiąt sekund i poczuj różnicę już przy pierwszym uruchomieniu.</p>
+        <h2>Gotowy na<br><span class="purple-grad">płynną grę?</span></h2>
+        <p>Pobierz DEZO CLIENT, stwórz swój profil i ciesz się stabilną rozgrywką bez zbędnych lagów.</p>
         <div class="cta">
           <a class="btn p trigger-dl" href="#pobierz-instalator">Pobierz DEZO CLIENT</a>
           <a class="btn g trigger-dc" href="#discord">Dołącz do Discorda</a>
@@ -1554,13 +1554,13 @@ footer {
     <div class="ft">
       <div>
         <a class="logo" href="#"><span class="mark">D</span>DEZOCLIENT</a>
-        <p>Nowoczesny, lekki klient Minecraft tworzony z pasją. Pobierz, skonfiguruj pod siebie i graj bez ograniczeń.</p>
+        <p>Szybki i niezawodny launcher Minecraft. Stworzony przez graczy, dla graczy.</p>
       </div>
       <div>
         <h4>Nawigacja</h4>
         <ul>
-          <li><a href="#podglad">Podgląd</a></li>
-          <li><a href="#mozliwosci">Możliwości</a></li>
+          <li><a href="#podglad">Launcher</a></li>
+          <li><a href="#mozliwosci">Funkcje</a></li>
           <li><a href="#faq">FAQ</a></li>
           <li><a href="#pobierz">Pobierz</a></li>
         </ul>
@@ -1568,7 +1568,7 @@ footer {
       <div>
         <h4>Informacje</h4>
         <ul>
-          <li><a href="#regulamin">Warunki korzystania</a></li>
+          <li><a href="#regulamin">Regulamin</a></li>
           <li><a href="#prywatnosc">Polityka prywatności</a></li>
         </ul>
       </div>
@@ -1576,7 +1576,7 @@ footer {
         <h4>Społeczność</h4>
         <ul>
           <li><a class="trigger-dc" href="#discord">Serwer Discord</a></li>
-          <li><a href="#status">Status serwerów</a></li>
+          <li><a href="#status">Status usługi</a></li>
         </ul>
       </div>
     </div>
@@ -1599,7 +1599,7 @@ footer {
 
 <script>
 (function() {
-  /* 1. Generowanie fioletowych słupków telemetrycznych w karcie Możliwości */
+  /* 1. Słupki telemetryczne */
   var heights = [42, 68, 54, 85, 62, 95, 74, 88, 64, 98, 78, 92, 70, 100, 84, 96];
   var barsContainer = document.getElementById('bars');
   if (barsContainer) {
@@ -1611,7 +1611,7 @@ footer {
     });
   }
 
-  /* 2. Automatyczna animacja kroków 1 -> 2 -> 3 w drugiej karcie Bento */
+  /* 2. Automatyczna animacja kroków w karcie Bento */
   var stepsBox = document.getElementById('autoSteps');
   if (stepsBox) {
     var stepItems = stepsBox.querySelectorAll('div');
@@ -1623,7 +1623,7 @@ footer {
     }, 2200);
   }
 
-  /* 3. Interaktywne zakładki wewnątrz okna launchera 3D */
+  /* 3. Zakładki w oknie launchera 3D */
   var tabButtons = document.querySelectorAll('.side button[data-tab]');
   var tabPanes = document.querySelectorAll('.tab-pane');
   tabButtons.forEach(function(btn) {
@@ -1643,7 +1643,7 @@ footer {
     });
   });
 
-  /* 4. Interaktywne przełączniki modułów w podglądzie launchera */
+  /* 4. Przełączniki modów w podglądzie */
   var modItems = document.querySelectorAll('.mod-item');
   modItems.forEach(function(item) {
     item.addEventListener('click', function() {
@@ -1651,7 +1651,7 @@ footer {
     });
   });
 
-  /* 5. Suwak pamięci RAM w podglądzie launchera */
+  /* 5. Suwak RAM */
   var ramSlider = document.getElementById('ramSlider');
   var ramVal = document.getElementById('ramVal');
   if (ramSlider && ramVal) {
@@ -1662,25 +1662,25 @@ footer {
     });
   }
 
-  /* 6. Przycisk "Uruchom Grę" wewnątrz makiety launchera */
+  /* 6. Przycisk "Uruchom grę" w makiecie */
   var mockPlayBtn = document.getElementById('mockPlayBtn');
   var launchStatusText = document.getElementById('launchStatusText');
   if (mockPlayBtn && launchStatusText) {
     mockPlayBtn.addEventListener('click', function() {
-      mockPlayBtn.textContent = 'Uruchamianie...';
-      launchStatusText.textContent = 'Weryfikacja plików i alokacja pamięci RAM...';
+      mockPlayBtn.textContent = 'Inicjalizacja...';
+      launchStatusText.textContent = 'Sprawdzanie plików i alokacja pamięci RAM...';
       setTimeout(function() {
-        mockPlayBtn.textContent = 'Gra jest aktywna ✓';
-        launchStatusText.textContent = 'DEZO CLIENT działa w tle · Miłej rozgrywki!';
+        mockPlayBtn.textContent = 'Gra uruchomiona ✓';
+        launchStatusText.textContent = 'DEZO CLIENT działa · Miłej rozgrywki!';
       }, 900);
       setTimeout(function() {
-        mockPlayBtn.textContent = 'Uruchom Grę';
-        launchStatusText.textContent = 'Zoptymalizowany silnik · Automatyczna pamięć RAM';
+        mockPlayBtn.textContent = 'Uruchom grę';
+        launchStatusText.textContent = 'Fabric Loader · Stabilny profil optymalizacyjny';
       }, 3600);
     });
   }
 
-  /* 7. Śledzenie kursora na kartach Bento (efekt fioletowej poświaty pod myszką) */
+  /* 7. Efekt poświaty pod kursorem na kartach Bento */
   var cards = document.querySelectorAll('.card');
   cards.forEach(function(card) {
     card.addEventListener('mousemove', function(e) {
@@ -1690,7 +1690,7 @@ footer {
     });
   });
 
-  /* 8. Scroll Reveal (płynne pojawianie się elementów podczas przewijania) */
+  /* 8. Scroll Reveal */
   var reveals = document.querySelectorAll('.reveal');
   if ('IntersectionObserver' in window) {
     var obs = new IntersectionObserver(function(entries) {
@@ -1706,7 +1706,7 @@ footer {
     reveals.forEach(function(el) { el.classList.add('in-view'); });
   }
 
-  /* 9. Powiadomienia Toast dla przycisków Pobierz / Discord */
+  /* 9. Powiadomienia Toast */
   var toast = document.getElementById('toast');
   var toastTitle = document.getElementById('toastTitle');
   var toastDesc = document.getElementById('toastDesc');
@@ -1726,14 +1726,14 @@ footer {
   document.querySelectorAll('.trigger-dl').forEach(function(btn) {
     btn.addEventListener('click', function(e) {
       e.preventDefault();
-      showToast('Pobieranie DEZO CLIENT', 'Rozpoczęto pobieranie instalatora dla systemu Windows (64-bit).');
+      showToast('Pobieranie DEZO CLIENT', 'Pobieranie instalatora DezoClient-Setup.exe zostało rozpoczęte.');
     });
   });
 
   document.querySelectorAll('.trigger-dc').forEach(function(btn) {
     btn.addEventListener('click', function(e) {
       e.preventDefault();
-      showToast('Społeczność Discord', 'Przekierowywanie na oficjalny serwer Discord DEZO CLIENT...');
+      showToast('Społeczność Discord', 'Przekierowywanie do oficjalnego serwera Discord...');
     });
   });
 })();
