@@ -193,6 +193,32 @@ details[open] summary i{color:#fff}
 .ti{background:var(--on);color:var(--sun)}
 .toast{box-shadow:0 1.5rem 3rem rgba(168,85,247,.45)}
 
+/* Ulepszenia */
+#fx{position:fixed;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none}
+.prog{position:fixed;top:0;left:0;right:0;height:3px;z-index:60;background:linear-gradient(90deg,#6b21a8,#c084fc,#fff);transform:scaleX(0);transform-origin:left;box-shadow:0 0 12px #a855f7}
+.cur{position:fixed;left:0;top:0;width:1.7rem;height:1.7rem;margin:-.85rem 0 0 -.85rem;border-radius:50%;background:radial-gradient(circle,rgba(216,180,254,.9),rgba(168,85,247,.35) 60%,transparent 72%);filter:blur(2px);mix-blend-mode:screen;pointer-events:none;z-index:200;opacity:0;transition:opacity .3s}
+@media(pointer:coarse){.cur{display:none}}
+.curtain{position:fixed;inset:0;z-index:300;background:var(--bg);display:grid;place-items:center;pointer-events:none;animation:curtain 1.1s cubic-bezier(.7,0,.2,1) .9s forwards}
+.curtain b{font:800 clamp(2rem,9vw,6rem) var(--display);letter-spacing:-.04em;animation:cb .9s cubic-bezier(.2,.8,.2,1) both}
+@keyframes cb{from{filter:blur(28px);opacity:0;letter-spacing:.25em}}
+@keyframes curtain{to{transform:translate3d(0,-100%,0) skewY(-4deg);filter:blur(18px);visibility:hidden}}
+.hero h1 .w{animation-delay:calc(1.2s + var(--i)*.12s)}
+.win{animation-delay:1.6s}
+.win.tilting{transition:transform .12s linear}
+.btn{transition:transform .35s cubic-bezier(.2,.8,.2,1),background .25s,color .25s,letter-spacing .35s,translate .25s ease-out}
+.hero .cta .btn.sun{animation:ring 2.6s ease-out infinite 2.4s}
+@keyframes ring{0%{box-shadow:0 0 0 0 rgba(192,132,252,.7)}70%,100%{box-shadow:0 0 0 1.4rem rgba(192,132,252,0)}}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);padding:4rem 1.5rem 2rem}
+.stat{padding:0 1.5rem;border-left:1px solid var(--line)}
+.stat b{display:block;font:800 clamp(2.6rem,6vw,5rem)/1 var(--display);letter-spacing:-.04em;background:linear-gradient(180deg,#fff,#c084fc);-webkit-background-clip:text;background-clip:text;color:transparent}
+.stat em{font-style:normal}
+.stat span{display:block;margin-top:.6rem;color:var(--mist);max-width:15rem}
+@media(max-width:760px){.stats{grid-template-columns:1fr 1fr;gap:2rem 0}}
+.tape.rev{background:transparent;color:var(--ink);border-color:rgba(192,132,252,.5);transform:rotate(1.2deg) scale(1.03);margin:2rem 0 -1rem}
+.tape.rev .tape-in{animation-direction:reverse;-webkit-text-stroke:1px rgba(216,180,254,.8);color:transparent}
+.row::after{content:"";position:absolute;inset:0;background:radial-gradient(22rem circle at var(--rx,50%) var(--ry,50%),rgba(192,132,252,.18),transparent 60%);opacity:0;transition:opacity .3s;pointer-events:none;z-index:0}
+.row:hover::after{opacity:1}
+@media(prefers-reduced-motion:reduce){.curtain,.cur,#fx,.prog{display:none}}
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important}
   .rv,.hero h1 .w{opacity:1;filter:none;transform:none}.win{transform:none;opacity:1;filter:none}.tape-in{filter:none;transform:none}
@@ -200,6 +226,10 @@ details[open] summary i{color:#fff}
 </style>
 </head>
 <body>
+<div class="curtain" aria-hidden="true"><b>DEZO CLIENT</b></div>
+<div class="prog" id="prog" aria-hidden="true"></div>
+<div class="cur" id="cur" aria-hidden="true"></div>
+<canvas id="fx" aria-hidden="true"></canvas>
 
 <header>
   <div class="wrap nav">
@@ -285,6 +315,18 @@ details[open] summary i{color:#fff}
   <div class="tape" aria-hidden="true"><div class="tape-in" id="tape">
     <span>Start w mniej niż sekundę</span><span>100% za darmo</span><span>Bez reklam</span><span>Automatyczne aktualizacje</span>
     <span>Start w mniej niż sekundę</span><span>100% za darmo</span><span>Bez reklam</span><span>Automatyczne aktualizacje</span>
+  </div></div>
+
+  <div class="wrap stats">
+    <div class="stat rv"><b><em class="cnt" data-pre="&lt; " data-to="1">0</em> s</b><span>od kliknięcia do gotowego launchera</span></div>
+    <div class="stat rv" style="--d:.08s"><b><em class="cnt" data-to="3">0</em></b><span>kliknięcia do startu gry</span></div>
+    <div class="stat rv" style="--d:.16s"><b><em class="cnt" data-to="0">0</em> zł</b><span>za launcher, mody i aktualizacje</span></div>
+    <div class="stat rv" style="--d:.24s"><b><em class="cnt" data-to="16">0</em> GB</b><span>RAM do przydzielenia jednym suwakiem</span></div>
+  </div>
+
+  <div class="tape rev" aria-hidden="true"><div class="tape-in" id="tape2">
+    <span>Fabric</span><span>Sodium</span><span>Lithium</span><span>Iris Shaders</span><span>Mod Menu</span>
+    <span>Fabric</span><span>Sodium</span><span>Lithium</span><span>Iris Shaders</span><span>Mod Menu</span>
   </div></div>
 
   <section class="light" id="mozliwosci">
@@ -418,6 +460,76 @@ details[open] summary i{color:#fff}
   function show(a,b){tt.textContent=a;td.textContent=b;toast.classList.add('show');clearTimeout(tm);tm=setTimeout(function(){toast.classList.remove('show')},3500)}
   $('.trigger-dl').forEach(function(b){b.addEventListener('click',function(){show('Pobieranie DEZO CLIENT','Rozpoczęto pobieranie pliku DezoClient-Setup.exe.')})});
   $('.trigger-dc').forEach(function(b){b.addEventListener('click',function(e){e.preventDefault();show('Społeczność Discord','Przekierowywanie do oficjalnego serwera Discord…')})});
+})();
+(function(){
+  var R=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var q=function(s){return document.querySelector(s)},qa=function(s){return document.querySelectorAll(s)};
+
+  // Pasek postępu
+  var prog=q('#prog');
+  function pr(){var m=document.documentElement.scrollHeight-innerHeight;prog.style.transform='scaleX('+(m>0?scrollY/m:0)+')'}
+  addEventListener('scroll',pr,{passive:true});pr();
+
+  // Liczniki
+  function count(el){
+    var to=+el.getAttribute('data-to'),pre=el.getAttribute('data-pre')||'',t0=performance.now();
+    if(R||to===0){el.textContent=pre+to;return}
+    (function f(t){var p=Math.min((t-t0)/1400,1),e=1-Math.pow(1-p,4);el.textContent=pre+Math.round(to*e);if(p<1)requestAnimationFrame(f)})(t0);
+  }
+  if('IntersectionObserver' in window){
+    var co=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){count(e.target);co.unobserve(e.target)}})},{threshold:.6});
+    qa('.cnt').forEach(function(el){co.observe(el)});
+  }else qa('.cnt').forEach(count);
+
+  // Podświetlenie wierszy za kursorem
+  qa('.row').forEach(function(r){r.addEventListener('mousemove',function(e){var b=r.getBoundingClientRect();r.style.setProperty('--rx',(e.clientX-b.left)+'px');r.style.setProperty('--ry',(e.clientY-b.top)+'px')})});
+
+  // Magnetyczne przyciski
+  qa('.btn').forEach(function(b){
+    b.addEventListener('mousemove',function(e){var r=b.getBoundingClientRect();b.style.translate=((e.clientX-r.left-r.width/2)*.22)+'px '+((e.clientY-r.top-r.height/2)*.35)+'px'});
+    b.addEventListener('mouseleave',function(){b.style.translate=''});
+  });
+
+  // Pochylanie okna launchera 3D
+  var stg=q('.stage'),win=q('.win');
+  if(!R&&matchMedia('(pointer:fine)').matches){
+    stg.addEventListener('mousemove',function(e){var r=stg.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
+      win.classList.add('tilting');win.style.transform='rotateY('+(x*16)+'deg) rotateX('+(-y*12)+'deg) scale(1.02)'});
+    stg.addEventListener('mouseleave',function(){win.classList.remove('tilting');win.style.transform=''});
+  }
+  if(R)return;
+
+  // Kursor z rozmyciem ruchu (rozciąga się w kierunku ruchu)
+  var cur=q('#cur'),mx=innerWidth/2,my=innerHeight/2,px=mx,py=my;
+  addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY;cur.style.opacity=1});
+  document.addEventListener('mouseleave',function(){cur.style.opacity=0});
+
+  // Tło: gwiezdne smugi, które wydłużają się wraz z prędkością scrolla
+  var cv=q('#fx'),c=cv.getContext('2d'),W,H,P=[],i;
+  function rs(){W=cv.width=innerWidth;H=cv.height=innerHeight}
+  rs();addEventListener('resize',rs);
+  for(i=0;i<110;i++)P.push({x:Math.random(),y:Math.random(),z:Math.random()*.9+.1});
+  var ly=scrollY,v=0,t2=q('#tape2');
+  (function loop(){
+    var y=scrollY;v+=((y-ly)-v)*.15;ly=y;
+    c.clearRect(0,0,W,H);
+    for(i=0;i<P.length;i++){
+      var p=P[i];
+      p.y-=(.0004+Math.abs(v)*.0006)*p.z*(v<0?-1:1);
+      if(p.y<-.1)p.y=1.1;if(p.y>1.1)p.y=-.1;
+      var len=3+p.z*4+Math.abs(v)*p.z*3,px2=p.x*W+(mx/W-.5)*p.z*40,py2=p.y*H;
+      c.strokeStyle='rgba(192,132,252,'+(.15+p.z*.5)+')';c.lineWidth=p.z*2;c.lineCap='round';
+      c.beginPath();c.moveTo(px2,py2);c.lineTo(px2,py2+len);c.stroke();
+    }
+    // kursor
+    px+=(mx-px)*.2;py+=(my-py)*.2;
+    var dx=mx-px,dy=my-py,d=Math.sqrt(dx*dx+dy*dy),s=1+Math.min(d/30,2.4);
+    cur.style.transform='translate3d('+px+'px,'+py+'px,0) rotate('+Math.atan2(dy,dx)+'rad) scale('+s+','+(1/Math.sqrt(s))+')';
+    // druga taśma
+    var a=Math.min(Math.abs(v),60);
+    t2.style.setProperty('--mb',(a*.16).toFixed(2)+'px');t2.style.setProperty('--sk',(v*.12).toFixed(2)+'deg');
+    requestAnimationFrame(loop);
+  })();
 })();
 </script>
 </body>
