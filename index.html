@@ -6,1691 +6,418 @@
 <title>DEZO CLIENT — Twój ulubiony launcher Minecraft</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-/* ==========================================================================
-   ZMIENNE KOLORYSTYCZNE I RESET (CZARNO-FIOLETOWY MOTYW)
-   ========================================================================== */
-:root {
-  color-scheme: dark;
-  --bg: #040208;
-  --bg-elevated: #0a0514;
-  --bg-card: rgba(16, 9, 32, 0.65);
-  --fg: #ffffff;
-  --mut: #a39bb5;
-  --mut2: #dfd7f2;
-  --purple-main: #a855f7;
-  --purple-bright: #c084fc;
-  --purple-deep: #6b21a8;
-  --purple-glow: rgba(168, 85, 247, 0.45);
-  --line: rgba(168, 85, 247, 0.16);
-  --line-hover: rgba(192, 132, 252, 0.45);
-  --glass: rgba(147, 51, 234, 0.07);
-  --dc: #5865F2;
-  --ok: #a855f7;
-  box-sizing: border-box;
-  padding-top: env(safe-area-inset-top, 0px);
-  padding-bottom: env(safe-area-inset-bottom, 0px);
-}
-
-html {
-  scroll-behavior: smooth;
-  scroll-padding-top: 5rem;
-}
-
-*, *::before, *::after {
-  box-sizing: inherit;
-}
-
-body {
-  margin: 0;
-  background-color: var(--bg);
-  color: var(--fg);
-  font-family: "Unbounded", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  line-height: 1.5;
-  overflow-x: hidden;
-  -webkit-font-smoothing: antialiased;
-  position: relative;
-}
-
-/* Futurystyczna siatka w tle */
-.bg-grid {
-  position: fixed;
-  inset: 0;
-  z-index: -2;
-  background-image: 
-    linear-gradient(to right, rgba(168, 85, 247, 0.05) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(168, 85, 247, 0.05) 1px, transparent 1px);
-  background-size: 3.5rem 3.5rem;
-  -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 25%, #000 35%, transparent 100%);
-  mask-image: radial-gradient(ellipse 80% 70% at 50% 25%, #000 35%, transparent 100%);
-  pointer-events: none;
-}
-
-/* Pływające fioletowe kule światła (Nebula Orbs) */
-.ambient-orbs {
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  overflow: hidden;
-  pointer-events: none;
-}
-
-.orb {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(110px);
-  opacity: 0.45;
-  animation: floatOrb 18s ease-in-out infinite alternate;
-}
-
-.orb-1 {
-  width: 38rem;
-  height: 38rem;
-  background: radial-gradient(circle, #9333ea 0%, transparent 70%);
-  top: -12rem;
-  left: -8rem;
-}
-
-.orb-2 {
-  width: 34rem;
-  height: 34rem;
-  background: radial-gradient(circle, #7e22ce 0%, transparent 70%);
-  top: 22vh;
-  right: -10rem;
-  animation-delay: -6s;
-  animation-duration: 22s;
-}
-
-.orb-3 {
-  width: 30rem;
-  height: 30rem;
-  background: radial-gradient(circle, #c084fc 0%, transparent 70%);
-  bottom: 5vh;
-  left: 20vw;
-  opacity: 0.22;
-  animation-delay: -11s;
-  animation-duration: 25s;
-}
-
-@keyframes floatOrb {
-  0% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(3rem, 4rem) scale(1.12); }
-  100% { transform: translate(-2rem, -3rem) scale(0.94); }
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-.wrap {
-  max-width: 80rem;
-  margin: 0 auto;
-  padding: 0 1.5rem;
-}
-
-/* Animowany fioletowo-srebrny gradient tekstu */
-.purple-grad {
-  background: linear-gradient(90deg, #ffffff 0%, #e9d5ff 30%, #a855f7 65%, #f3e8ff 100%);
-  background-size: 200% auto;
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  animation: textShimmer 6s linear infinite;
-}
-
-@keyframes textShimmer {
-  to { background-position: 200% center; }
-}
-
-h1, h2, h3 {
-  margin: 0;
-  letter-spacing: -0.03em;
-  line-height: 1.1;
-}
-
-/* ==========================================================================
-   ANIMACJE POJAWIANIA SIĘ PRZY SCROLLOWANIU (SCROLL REVEAL)
-   ========================================================================== */
-.reveal {
-  opacity: 0;
-  transform: translateY(32px) scale(0.98);
-  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-  transition-delay: var(--d, 0s);
-}
-
-.reveal.in-view {
-  opacity: 1;
-  transform: translateY(0) scale(1);
-}
-
-/* ==========================================================================
-   PRZYCISKI Z EFEKTEM POŚWIATY I POŁYSKU
-   ========================================================================== */
-.btn {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.65rem;
-  height: 3.6rem;
-  padding: 0 2.1rem;
-  border-radius: 0.95rem;
-  font: 600 0.92rem "Unbounded", sans-serif;
-  border: 1px solid transparent;
-  cursor: pointer;
-  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s, background 0.3s, border-color 0.3s;
-  white-space: nowrap;
-  overflow: hidden;
-}
-
-.btn::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -120%;
-  width: 60%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.28), transparent);
-  transform: skewX(-25deg);
-  transition: left 0.65s ease;
-}
-
-.btn:hover::after {
-  left: 140%;
-}
-
-.btn:hover {
-  transform: translateY(-3px) scale(1.02);
-}
-
-.btn:active {
-  transform: translateY(0) scale(0.98);
-}
-
-.btn:focus-visible, .nav a:focus-visible, summary:focus-visible, button:focus-visible {
-  outline: 2px solid var(--purple-bright);
-  outline-offset: 3px;
-}
-
-/* Główny fioletowy przycisk */
-.btn.p {
-  background: linear-gradient(135deg, #a855f7 0%, #7e22ce 100%);
-  color: #fff;
-  border-color: rgba(216, 180, 254, 0.35);
-  box-shadow: 0 10px 30px -5px rgba(168, 85, 247, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.25);
-}
-
-.btn.p:hover {
-  box-shadow: 0 15px 40px -3px rgba(168, 85, 247, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.4);
-  border-color: rgba(233, 213, 255, 0.65);
-}
-
-/* Przycisk szklany / ciemny fiolet */
-.btn.g {
-  background: rgba(20, 10, 38, 0.75);
-  border-color: rgba(168, 85, 247, 0.28);
-  color: #f3e8ff;
-  backdrop-filter: blur(10px);
-}
-
-.btn.g:hover {
-  background: rgba(147, 51, 234, 0.22);
-  border-color: var(--purple-bright);
-  box-shadow: 0 8px 25px rgba(147, 51, 234, 0.3);
-}
-
-svg {
-  flex: none;
-}
-
-/* ==========================================================================
-   NAWIGACJA
-   ========================================================================== */
-header {
-  position: sticky;
-  top: env(safe-area-inset-top, 0px);
-  z-index: 50;
-  height: 4.5rem;
-  background: rgba(4, 2, 8, 0.72);
-  backdrop-filter: blur(16px);
-  border-bottom: 1px solid rgba(168, 85, 247, 0.12);
-}
-
-.nav {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 100%;
-}
-
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  font-weight: 800;
-  font-size: 1.08rem;
-  letter-spacing: -0.02em;
-}
-
-.mark {
-  width: 2.35rem;
-  height: 2.35rem;
-  border-radius: 0.65rem;
-  background: linear-gradient(135deg, #c084fc 0%, #7e22ce 100%);
-  color: #fff;
-  display: grid;
-  place-items: center;
-  font-weight: 800;
-  box-shadow: 0 0 20px rgba(168, 85, 247, 0.6);
-  border: 1px solid rgba(255, 255, 255, 0.25);
-}
-
-.nav ul {
-  display: flex;
-  gap: 0.35rem;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.nav ul a {
-  display: block;
-  padding: 0.55rem 1.05rem;
-  border-radius: 0.65rem;
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: var(--mut);
-  transition: color 0.25s, background 0.25s;
-}
-
-.nav ul a:hover {
-  background: rgba(168, 85, 247, 0.12);
-  color: #fff;
-}
-
-.nav .r {
-  display: flex;
-  gap: 0.65rem;
-}
-
-.nav .btn {
-  height: 2.65rem;
-  padding: 0 1.15rem;
-  font-size: 0.78rem;
-  border-radius: 0.68rem;
-}
-
-@media (max-width: 760px) {
-  .nav ul { display: none; }
-}
-
-/* ==========================================================================
-   SEKCJA HERO + INTERAKTYWNE OKNO LAUNCHERA 3D
-   ========================================================================== */
-.hero {
-  text-align: center;
-  padding: 4.5rem 0 2.5rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1.8rem;
-}
-
-.pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.55rem;
-  padding: 0.45rem 1.1rem;
-  border-radius: 99px;
-  background: rgba(147, 51, 234, 0.12);
-  border: 1px solid rgba(168, 85, 247, 0.32);
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--mut2);
-  box-shadow: 0 0 24px rgba(168, 85, 247, 0.2);
-}
-
-.pill::before {
-  content: "";
-  width: 0.45rem;
-  height: 0.45rem;
-  border-radius: 50%;
-  background: var(--purple-bright);
-  box-shadow: 0 0 10px var(--purple-bright);
-  animation: pulseDot 2s infinite;
-}
-
-@keyframes pulseDot {
-  0%, 100% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(1.4); opacity: 0.6; }
-}
-
-.hero h1 {
-  font-size: clamp(2.25rem, 6.8vw, 4.9rem);
-  max-width: 64rem;
-  padding-bottom: 0.2rem;
-}
-
-.hero p {
-  max-width: 43rem;
-  color: var(--mut);
-  font-size: 1.02rem;
-  line-height: 1.95;
-  margin: 0;
-}
-
-.cta {
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-/* Scena 3D dla okna launchera */
-.stage {
-  perspective: 1500px;
-  margin-top: 1.5rem;
-  width: 100%;
-  max-width: 68rem;
-}
-
-.win {
-  transform: rotateX(18deg) scale(0.95);
-  border: 1px solid rgba(168, 85, 247, 0.35);
-  border-radius: 1.5rem;
-  background: linear-gradient(165deg, #0d061a 0%, #05020a 100%);
-  box-shadow: 
-    0 40px 120px -15px rgba(147, 51, 234, 0.32),
-    0 30px 60px #000,
-    inset 0 1px 0 rgba(255, 255, 255, 0.15);
-  overflow: hidden;
-  text-align: left;
-  transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.4s, box-shadow 0.4s;
-  will-change: transform;
-}
-
-.stage:hover .win {
-  transform: rotateX(0deg) scale(1);
-  border-color: rgba(192, 132, 252, 0.6);
-  box-shadow: 
-    0 45px 135px -10px rgba(168, 85, 247, 0.45),
-    0 30px 60px #000;
-}
-
-.bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0.95rem 1.25rem;
-  border-bottom: 1px solid var(--line);
-  background: rgba(16, 7, 32, 0.7);
-}
-
-.bar-dots {
-  display: flex;
-  gap: 0.45rem;
-}
-
-.bar-dots b {
-  width: 0.72rem;
-  height: 0.72rem;
-  border-radius: 50%;
-  background: #3b2754;
-}
-
-.bar-dots b:first-child { background: #a855f7; box-shadow: 0 0 8px #a855f7; }
-.bar-dots b:nth-child(2) { background: #7e22ce; }
-
-.bar-title {
-  font-size: 0.68rem;
-  color: var(--mut);
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  font-weight: 600;
-}
-
-.app {
-  display: grid;
-  grid-template-columns: 13.5rem 1fr;
-  min-height: 24rem;
-}
-
-.side {
-  border-right: 1px solid var(--line);
-  padding: 1.15rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.45rem;
-  background: rgba(8, 3, 18, 0.6);
-}
-
-.side button {
-  all: unset;
-  cursor: pointer;
-  padding: 0.75rem 0.95rem;
-  border-radius: 0.7rem;
-  font-size: 0.76rem;
-  font-weight: 600;
-  color: var(--mut);
-  display: flex;
-  align-items: center;
-  gap: 0.65rem;
-  transition: all 0.25s ease;
-  border: 1px solid transparent;
-}
-
-.side button:hover {
-  color: #fff;
-  background: rgba(168, 85, 247, 0.1);
-}
-
-.side button.on {
-  background: linear-gradient(90deg, rgba(168, 85, 247, 0.25), rgba(168, 85, 247, 0.08));
-  color: #fff;
-  border-color: rgba(168, 85, 247, 0.35);
-  box-shadow: 0 4px 15px rgba(147, 51, 234, 0.2);
-}
-
-.side-status {
-  margin-top: auto;
-  padding: 0.75rem;
-  border-radius: 0.75rem;
-  background: rgba(168, 85, 247, 0.08);
-  border: 1px solid rgba(168, 85, 247, 0.18);
-  font-size: 0.68rem;
-  color: var(--mut2);
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.side-status i {
-  width: 0.5rem;
-  height: 0.5rem;
-  border-radius: 50%;
-  background: #c084fc;
-  box-shadow: 0 0 8px #c084fc;
-}
-
-.main-view {
-  padding: 1.8rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  position: relative;
-  background: 
-    radial-gradient(circle at 85% 20%, rgba(168, 85, 247, 0.2), transparent 55%),
-    linear-gradient(to top, rgba(168, 85, 247, 0.08), transparent);
-}
-
-.tab-pane {
-  display: none;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 100%;
-  gap: 1.2rem;
-  animation: fadePane 0.35s ease;
-}
-
-.tab-pane.active {
-  display: flex;
-}
-
-@keyframes fadePane {
-  from { opacity: 0; transform: translateY(8px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.pane-badges {
-  display: flex;
-  gap: 0.6rem;
-  flex-wrap: wrap;
-}
-
-.pane-badge {
-  font-size: 0.68rem;
-  font-weight: 600;
-  padding: 0.35rem 0.75rem;
-  border-radius: 0.5rem;
-  background: rgba(168, 85, 247, 0.14);
-  border: 1px solid rgba(168, 85, 247, 0.3);
-  color: #e9d5ff;
-}
-
-.pane-hero h3 {
-  font-size: clamp(1.5rem, 3vw, 2.2rem);
-  margin: 0.35rem 0;
-}
-
-.pane-hero small {
-  color: var(--mut);
-  font-size: 0.78rem;
-}
-
-.play-row {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  flex-wrap: wrap;
-}
-
-.play-btn {
-  background: linear-gradient(135deg, #a855f7, #7e22ce);
-  color: #fff;
-  border: 1px solid rgba(233, 213, 255, 0.4);
-  border-radius: 0.8rem;
-  padding: 0.9rem 2.2rem;
-  font: 700 0.85rem "Unbounded", sans-serif;
-  cursor: pointer;
-  box-shadow: 0 8px 25px rgba(168, 85, 247, 0.5);
-  transition: transform 0.25s, box-shadow 0.25s;
-}
-
-.play-btn:hover {
-  transform: scale(1.04);
-  box-shadow: 0 12px 32px rgba(168, 85, 247, 0.75);
-}
-
-/* Siatka modyfikacji */
-.mods-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(11.5rem, 1fr));
-  gap: 0.75rem;
-}
-
-.mod-item {
-  padding: 0.85rem 1rem;
-  border-radius: 0.85rem;
-  background: rgba(13, 6, 26, 0.8);
-  border: 1px solid var(--line);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  cursor: pointer;
-  transition: border-color 0.25s, background 0.25s;
-}
-
-.mod-item:hover {
-  border-color: var(--line-hover);
-}
-
-.mod-item span {
-  font-size: 0.75rem;
-  font-weight: 600;
-}
-
-.switch {
-  width: 2.3rem;
-  height: 1.25rem;
-  border-radius: 99px;
-  background: #27173a;
-  position: relative;
-  transition: background 0.25s;
-}
-
-.switch::after {
-  content: "";
-  position: absolute;
-  top: 0.18rem;
-  left: 0.2rem;
-  width: 0.9rem;
-  height: 0.9rem;
-  border-radius: 50%;
-  background: #fff;
-  transition: transform 0.25s;
-}
-
-.mod-item.active {
-  border-color: rgba(168, 85, 247, 0.5);
-  background: rgba(147, 51, 234, 0.14);
-}
-
-.mod-item.active .switch {
-  background: var(--purple-main);
-}
-
-.mod-item.active .switch::after {
-  transform: translateX(1rem);
-}
-
-.ram-box {
-  background: rgba(13, 6, 26, 0.8);
-  border: 1px solid var(--line);
-  padding: 1.1rem;
-  border-radius: 0.9rem;
-}
-
-.ram-slider {
-  width: 100%;
-  accent-color: var(--purple-main);
-  margin-top: 0.7rem;
-  cursor: pointer;
-}
-
-@media (max-width: 680px) {
-  .app { grid-template-columns: 1fr; }
-  .side {
-    flex-direction: row;
-    overflow-x: auto;
-    border-right: none;
-    border-bottom: 1px solid var(--line);
-    padding: 0.75rem;
-  }
-  .side-status { display: none; }
-}
-
-/* Statystyki */
-.stats {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
-  gap: 2rem 1.5rem;
-  padding: 5rem 0;
-}
-
-.stat {
-  display: flex;
-  gap: 1.1rem;
-  align-items: flex-start;
-  padding: 1.35rem;
-  border-radius: 1.25rem;
-  background: rgba(15, 7, 30, 0.5);
-  border: 1px solid var(--line);
-  transition: transform 0.35s, border-color 0.35s, box-shadow 0.35s;
-}
-
-.stat:hover {
-  transform: translateY(-5px);
-  border-color: var(--line-hover);
-  box-shadow: 0 15px 35px -10px rgba(147, 51, 234, 0.25);
-}
-
-.ico {
-  position: relative;
-  width: 3.4rem;
-  height: 3.4rem;
-  border-radius: 0.9rem;
-  border: 1px solid rgba(168, 85, 247, 0.35);
-  background: linear-gradient(135deg, rgba(168, 85, 247, 0.2), rgba(107, 33, 168, 0.1));
-  color: #e9d5ff;
-  display: grid;
-  place-items: center;
-  box-shadow: 0 0 20px rgba(168, 85, 247, 0.2);
-}
-
-.stat b {
-  display: block;
-  font-size: 2rem;
-  letter-spacing: -0.03em;
-  line-height: 1;
-  color: #fff;
-}
-
-.stat span {
-  display: block;
-  color: var(--mut);
-  font-size: 0.78rem;
-  margin-top: 0.5rem;
-  line-height: 1.65;
-}
-
-/* Bento grid */
-.head {
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1.15rem;
-  margin-bottom: 3.5rem;
-}
-
-.head h2 {
-  font-size: clamp(1.9rem, 4.4vw, 3.1rem);
-  max-width: 48rem;
-}
-
-.head p {
-  max-width: 38rem;
-  color: var(--mut);
-  line-height: 1.9;
-  margin: 0;
-  font-size: 0.95rem;
-}
-
-section {
-  padding: 4.5rem 0;
-}
-
-.bento {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.2rem;
-}
-
-.card {
-  background: var(--bg-card);
-  border: 1px solid var(--line);
-  border-radius: 1.6rem;
-  padding: 1.6rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.4s, box-shadow 0.4s;
-  backdrop-filter: blur(12px);
-  position: relative;
-  overflow: hidden;
-}
-
-.card::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(500px circle at var(--mx, 50%) var(--my, 0%), rgba(168, 85, 247, 0.12), transparent 60%);
-  pointer-events: none;
-}
-
-.card:hover {
-  transform: translateY(-6px);
-  border-color: var(--line-hover);
-  box-shadow: 0 25px 50px -15px rgba(147, 51, 234, 0.28);
-}
-
-.card.s2 {
-  grid-column: span 2;
-}
-
-.viz {
-  height: 12.5rem;
-  border-radius: 1.1rem;
-  border: 1px solid rgba(168, 85, 247, 0.16);
-  background: radial-gradient(circle at 50% 100%, rgba(126, 34, 206, 0.22), rgba(4, 2, 8, 0.85));
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  gap: 0.45rem;
-  padding: 1.2rem;
-  position: relative;
-  overflow: hidden;
-}
-
-.viz.c {
-  align-items: center;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.viz .bars {
-  position: absolute;
-  inset: 3.2rem 1.2rem 1.2rem;
-  display: flex;
-  align-items: flex-end;
-  gap: 0.45rem;
-}
-
-.bars i {
-  flex: 1;
-  border-radius: 0.45rem 0.45rem 0 0;
-  background: linear-gradient(to top, rgba(126, 34, 206, 0.15), #a855f7 70%, #e9d5ff);
-  box-shadow: 0 0 15px rgba(168, 85, 247, 0.35);
-  transform-origin: bottom;
-  animation: bp 2.2s ease-in-out infinite;
-}
-
-@keyframes bp {
-  50% { transform: scaleY(0.55); opacity: 0.75; }
-}
-
-.tag {
-  position: absolute;
-  top: 0.95rem;
-  left: 0.95rem;
-  display: flex;
-  gap: 0.5rem;
-  align-items: center;
-  padding: 0.35rem 0.8rem;
-  border-radius: 0.55rem;
-  border: 1px solid rgba(168, 85, 247, 0.35);
-  background: rgba(10, 4, 20, 0.8);
-  font-size: 0.72rem;
-  font-weight: 700;
-  color: #f3e8ff;
-}
-
-.tag::before {
-  content: "";
-  width: 0.45rem;
-  height: 0.45rem;
-  border-radius: 50%;
-  background: var(--purple-main);
-  box-shadow: 0 0 10px var(--purple-main);
-}
-
-.card h3 {
-  display: flex;
-  align-items: center;
-  gap: 0.85rem;
-  font-size: 1.25rem;
-}
-
-.card h3 span {
-  width: 2.5rem;
-  height: 2.5rem;
-  border-radius: 0.75rem;
-  border: 1px solid rgba(168, 85, 247, 0.35);
-  background: rgba(168, 85, 247, 0.14);
-  display: grid;
-  place-items: center;
-  color: #e9d5ff;
-  box-shadow: 0 0 16px rgba(168, 85, 247, 0.25);
-}
-
-.card p {
-  margin: 0.85rem 0 0;
-  color: var(--mut);
-  font-size: 0.85rem;
-  line-height: 1.9;
-  max-width: 34rem;
-}
-
-.steps {
-  display: flex;
-  flex-direction: column;
-  gap: 0.55rem;
-  width: 100%;
-  max-width: 15.5rem;
-}
-
-.steps div {
-  padding: 0.6rem 0.9rem;
-  border-radius: 0.75rem;
-  border: 1px solid var(--line);
-  background: rgba(14, 7, 28, 0.7);
-  font-size: 0.73rem;
-  font-weight: 600;
-  color: var(--mut2);
-  transition: all 0.4s ease;
-}
-
-.steps div.on {
-  background: linear-gradient(90deg, #a855f7, #7e22ce);
-  color: #fff;
-  border-color: #d8b4fe;
-  transform: scale(1.04);
-  box-shadow: 0 6px 20px rgba(168, 85, 247, 0.45);
-}
-
-.big {
-  font-size: 4rem;
-  font-weight: 800;
-  letter-spacing: -0.05em;
-  line-height: 1;
-}
-
-.chips {
-  display: flex;
-  gap: 0.55rem;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin-top: 1rem;
-}
-
-.chips span {
-  padding: 0.4rem 0.9rem;
-  border-radius: 99px;
-  border: 1px solid rgba(168, 85, 247, 0.3);
-  background: rgba(168, 85, 247, 0.1);
-  font-size: 0.7rem;
-  font-weight: 600;
-  color: #e9d5ff;
-}
-
-@media (max-width: 860px) {
-  .bento { grid-template-columns: 1fr; }
-  .card.s2 { grid-column: auto; }
-}
+:root{
+  color-scheme:dark;
+  --bg:#05020a; --on:#12081f; --cobalt:#a855f7; --ink:#f5eeff; --paper:#0d0818; --sun:#c084fc; --mist:#b3a6cc; --line:rgba(192,132,252,.2);
+  --display:"Bricolage Grotesque","Arial Narrow",system-ui,sans-serif;
+  --body:"Instrument Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+html{scroll-behavior:smooth;scroll-padding-top:5rem;height:auto}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--cobalt);color:var(--paper);font:400 1rem/1.6 var(--body);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+h1,h2,h3{font-family:var(--display);margin:0;line-height:.95;letter-spacing:-.035em;font-weight:800}
+.wrap{max-width:78rem;margin:0 auto;padding:0 1.5rem}
+
+/* Ruch z rozmyciem: wejście elementów */
+.rv{opacity:0;filter:blur(18px);transform:translate3d(0,40px,0) scale(.97);
+  transition:opacity .9s cubic-bezier(.2,.8,.2,1),filter .9s cubic-bezier(.2,.8,.2,1),transform .9s cubic-bezier(.2,.8,.2,1);transition-delay:var(--d,0s)}
+.rv.in{opacity:1;filter:blur(0);transform:none}
+
+/* Przyciski */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.6rem;height:3.4rem;padding:0 1.8rem;border-radius:99px;
+  font:600 1rem var(--body);border:2px solid transparent;cursor:pointer;position:relative;overflow:hidden;
+  transition:transform .35s cubic-bezier(.2,.8,.2,1),background .25s,color .25s,letter-spacing .35s}
+.btn:hover{transform:translateY(-3px) skewX(-6deg);letter-spacing:.02em}
+.btn:active{transform:scale(.97)}
+.btn.sun{background:var(--sun);color:var(--ink)}
+.btn.sun:hover{background:#fff}
+.btn.line{border-color:rgba(244,246,255,.55);color:var(--paper)}
+.btn.line:hover{background:var(--paper);color:var(--cobalt)}
+.btn.ink{background:var(--ink);color:var(--paper)}
+.btn.ink:hover{background:var(--cobalt)}
+:focus-visible{outline:3px solid var(--sun);outline-offset:3px}
+
+/* Nagłówek */
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:rgba(35,56,255,.78);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:4.5rem}
+.logo{display:flex;align-items:center;gap:.7rem;font:800 1.25rem var(--display);letter-spacing:-.03em}
+.mark{width:2.3rem;height:2.3rem;border-radius:.7rem .7rem .7rem .2rem;background:var(--sun);color:var(--ink);display:grid;place-items:center;font:800 1.2rem var(--display);transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.logo:hover .mark{transform:rotate(-12deg) scale(1.1)}
+.nav ul{display:flex;gap:2rem;list-style:none;margin:0;padding:0}
+.nav ul a{font-weight:500;opacity:.8;transition:opacity .2s;position:relative}
+.nav ul a:hover{opacity:1}
+.nav ul a::after{content:"";position:absolute;left:0;right:0;bottom:-.2rem;height:2px;background:var(--sun);transform:scaleX(0);transform-origin:left;transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+.nav ul a:hover::after{transform:scaleX(1)}
+.nav .r{display:flex;gap:.6rem}
+.nav .btn{height:2.7rem;padding:0 1.3rem;font-size:.92rem}
+@media(max-width:760px){.nav ul{display:none}}
+
+/* Hero */
+.hero{display:grid;grid-template-columns:1fr 1.05fr;gap:3rem;align-items:center;padding:4rem 0 5rem;min-height:calc(100vh - 4.5rem)}
+.hero h1{font-size:clamp(3rem,8.2vw,7rem)}
+.hero h1 .w{display:inline-block;opacity:0;filter:blur(22px);transform:translate3d(-40px,0,0) skewX(-14deg);
+  animation:wordIn 1s cubic-bezier(.2,.8,.2,1) forwards;animation-delay:calc(.15s + var(--i)*.12s)}
+@keyframes wordIn{60%{filter:blur(4px)}to{opacity:1;filter:blur(0);transform:none}}
+.hero p{max-width:30rem;font-size:1.15rem;color:var(--mist);margin:1.8rem 0 2.2rem}
+.cta{display:flex;gap:.8rem;flex-wrap:wrap}
+.hero-copy .rv{--d:.7s}
+
+/* Okno launchera */
+.stage{perspective:1600px}
+.win{background:var(--paper);color:var(--ink);border-radius:1.4rem;overflow:hidden;box-shadow:0 2.5rem 6rem -1rem rgba(5,8,50,.65);
+  transform:rotateY(-12deg) rotateX(5deg) rotateZ(1.5deg);transition:transform .9s cubic-bezier(.2,.8,.2,1);animation:winIn 1.3s cubic-bezier(.2,.8,.2,1) .4s both}
+.stage:hover .win{transform:none}
+@keyframes winIn{from{opacity:0;filter:blur(26px);transform:translate3d(160px,0,0) rotateY(-30deg) skewX(-10deg)}}
+.bar{display:flex;align-items:center;gap:1rem;padding:.8rem 1.1rem;background:var(--ink);color:var(--mist);font-size:.82rem}
+.dots{display:flex;gap:.4rem}.dots b{width:.65rem;height:.65rem;border-radius:50%;background:var(--mist);opacity:.5}.dots b:first-child{background:var(--sun);opacity:1}
+.app{display:grid;grid-template-columns:11.5rem 1fr;min-height:23rem}
+.side{display:flex;flex-direction:column;gap:.3rem;padding:1rem;border-right:1px solid var(--line)}
+.side button{all:unset;cursor:pointer;padding:.7rem .85rem;border-radius:.75rem;font:500 .88rem var(--body);display:flex;gap:.6rem;transition:background .25s,transform .3s cubic-bezier(.2,.8,.2,1)}
+.side button:hover{background:rgba(35,56,255,.08);transform:translateX(4px)}
+.side button.on{background:var(--cobalt);color:#fff}
+.side button:focus-visible{outline:3px solid var(--cobalt);outline-offset:2px}
+.ok{margin-top:auto;font-size:.8rem;display:flex;align-items:center;gap:.5rem;padding:.6rem .85rem;opacity:.75}
+.ok i{width:.55rem;height:.55rem;border-radius:50%;background:#16c060;animation:pulse 2s infinite}
+@keyframes pulse{50%{transform:scale(1.6);opacity:.4}}
+.pane{display:none;flex-direction:column;justify-content:space-between;gap:1.2rem;padding:1.6rem;height:100%}
+.pane.active{display:flex;animation:paneIn .55s cubic-bezier(.2,.8,.2,1)}
+@keyframes paneIn{from{opacity:0;filter:blur(12px);transform:translate3d(24px,0,0) skewX(-4deg)}}
+.pane h3{font-size:clamp(1.8rem,3.4vw,2.6rem);color:var(--cobalt);margin:.3rem 0}
+.pane small{color:rgba(10,15,61,.65);font-size:.85rem}
+.badges{display:flex;gap:.5rem;flex-wrap:wrap}.badges span{font-size:.8rem;font-weight:600;padding:.3rem .75rem;border-radius:99px;background:rgba(35,56,255,.1);color:var(--cobalt)}
+.play{background:var(--sun);color:var(--ink);border:0;border-radius:99px;padding:1rem 2.4rem;font:800 1rem var(--display);cursor:pointer;transition:transform .3s cubic-bezier(.2,.8,.2,1),background .2s}
+.play:hover{transform:scale(1.06) skewX(-6deg);background:#ffc400}
+.mods{display:grid;grid-template-columns:repeat(auto-fit,minmax(10.5rem,1fr));gap:.6rem}
+.mod{display:flex;justify-content:space-between;align-items:center;padding:.75rem .9rem;border-radius:.8rem;border:1.5px solid var(--line);cursor:pointer;font-weight:500;font-size:.88rem;transition:border-color .25s,background .25s,transform .3s cubic-bezier(.2,.8,.2,1)}
+.mod:hover{transform:translateY(-2px);border-color:var(--cobalt)}
+.sw{width:2.2rem;height:1.2rem;border-radius:99px;background:#cdd3f5;position:relative;transition:background .25s}
+.sw::after{content:"";position:absolute;top:.15rem;left:.15rem;width:.9rem;height:.9rem;border-radius:50%;background:#fff;transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+.mod.active{background:rgba(35,56,255,.08);border-color:var(--cobalt)}.mod.active .sw{background:var(--cobalt)}.mod.active .sw::after{transform:translateX(1rem)}
+.ram{padding:1rem;border:1.5px solid var(--line);border-radius:.9rem}
+.ram input{width:100%;accent-color:var(--cobalt);margin-top:.7rem;cursor:pointer}
+@media(max-width:900px){.hero{grid-template-columns:1fr;min-height:0}.win{transform:none}}
+@media(max-width:620px){.app{grid-template-columns:1fr}.side{flex-direction:row;overflow-x:auto;border-right:0;border-bottom:1px solid var(--line)}.ok{display:none}}
+
+/* Taśma z rozmyciem zależnym od prędkości scrolla */
+.tape{background:var(--sun);color:var(--ink);overflow:hidden;transform:rotate(-1.6deg) scale(1.03);margin:-1rem 0 1rem;padding:1.1rem 0;border-block:3px solid var(--ink)}
+.tape-in{display:flex;width:max-content;gap:3rem;font:800 clamp(1.8rem,4vw,3rem)/1 var(--display);letter-spacing:-.03em;white-space:nowrap;
+  animation:tape 28s linear infinite;filter:blur(var(--mb,0px));transform:skewX(var(--sk,0deg))}
+.tape-in span::after{content:"✦";margin-left:3rem;font-size:.7em}
+@keyframes tape{to{translate:-50% 0}}
+
+/* Funkcje na jasnym tle */
+.light{background:var(--paper);color:var(--ink);border-radius:2.5rem 2.5rem 0 0;padding:6rem 0 5rem;margin-top:3rem}
+.feat{display:grid;grid-template-columns:.9fr 1.1fr;gap:4rem}
+.feat .l{position:sticky;top:7rem;align-self:start}
+.feat h2{font-size:clamp(2.4rem,5.5vw,4.4rem)}
+.feat .l p{color:rgba(10,15,61,.7);max-width:26rem;margin:1.4rem 0 0}
+.row{display:grid;grid-template-columns:5rem 1fr;gap:1.5rem;padding:2rem 0;border-top:2px solid var(--ink);position:relative}
+.row:last-child{border-bottom:2px solid var(--ink)}
+.row::before{content:"";position:absolute;inset:0;background:var(--sun);transform:scaleY(0);transform-origin:bottom;transition:transform .5s cubic-bezier(.2,.8,.2,1);z-index:0}
+.row:hover::before{transform:scaleY(1)}
+.row>*{position:relative;z-index:1}
+.row .ic{width:4rem;height:4rem;border-radius:1.1rem;background:var(--cobalt);color:#fff;display:grid;place-items:center;font-size:1.6rem;transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.row:hover .ic{transform:rotate(-10deg) scale(1.1)}
+.row h3{font-size:1.9rem;margin-bottom:.6rem}
+.row p{margin:0;color:rgba(10,15,61,.75);max-width:34rem}
+.bars{display:flex;align-items:flex-end;gap:.3rem;height:3.2rem;margin-top:1.1rem}
+.bars i{width:.55rem;border-radius:.2rem;background:var(--cobalt);transform-origin:bottom;animation:bp 1.8s ease-in-out infinite}
+@keyframes bp{50%{transform:scaleY(.4)}}
+.steps{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:1.1rem}
+.steps span{padding:.4rem .9rem;border-radius:99px;border:1.5px solid var(--ink);font-weight:600;font-size:.88rem;transition:background .4s,color .4s,transform .4s}
+.steps span.on{background:var(--ink);color:var(--paper);transform:scale(1.06)}
+@media(max-width:860px){.feat{grid-template-columns:1fr;gap:2.5rem}.feat .l{position:static}.row{grid-template-columns:1fr}}
 
 /* FAQ */
-.faq {
-  display: grid;
-  grid-template-columns: 0.85fr 1.15fr;
-  gap: 4rem;
-}
+.faq-s{background:var(--paper);color:var(--ink);padding:1rem 0 6rem}
+.faq{display:grid;grid-template-columns:.8fr 1.2fr;gap:4rem}
+.faq .l{position:sticky;top:7rem;align-self:start}
+.faq h2{font-size:clamp(2.4rem,5vw,4rem);margin-bottom:1.2rem}
+.faq .l p{color:rgba(10,15,61,.7);max-width:24rem;margin:0 0 1.6rem}
+details{border-top:2px solid var(--ink)}details:last-child{border-bottom:2px solid var(--ink)}
+summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:1rem;padding:1.4rem 0;font:600 1.1rem var(--display);letter-spacing:-.01em;transition:color .25s,padding-left .35s cubic-bezier(.2,.8,.2,1)}
+summary::-webkit-details-marker{display:none}
+summary:hover{color:var(--cobalt);padding-left:.6rem}
+summary span{flex:1}
+summary i{font-style:normal;width:2.2rem;height:2.2rem;border-radius:50%;background:var(--ink);color:var(--paper);display:grid;place-items:center;transition:transform .45s cubic-bezier(.2,.8,.2,1),background .25s}
+details[open] summary i{transform:rotate(135deg);background:var(--cobalt)}
+details p{margin:0;padding:0 3rem 1.5rem 0;color:rgba(10,15,61,.75);animation:paneIn .5s cubic-bezier(.2,.8,.2,1)}
+@media(max-width:860px){.faq{grid-template-columns:1fr;gap:2rem}.faq .l{position:static}}
 
-.faq h2 {
-  font-size: clamp(2.1rem, 4.8vw, 3.5rem);
-  margin-bottom: 1.4rem;
-}
+/* Finał */
+.final{background:var(--ink);padding:6rem 0 2rem;position:relative;overflow:hidden}
+.final h2{font-size:clamp(3rem,9vw,8rem);max-width:60rem}
+.final p{color:var(--mist);max-width:30rem;font-size:1.15rem;margin:1.6rem 0 2rem}
+.final .glow{position:absolute;right:-8rem;top:-6rem;width:32rem;height:32rem;border-radius:50%;background:var(--cobalt);filter:blur(90px);opacity:.7;animation:drift 14s ease-in-out infinite alternate}
+@keyframes drift{to{transform:translate3d(-6rem,5rem,0) scale(1.2)}}
+.final .wrap{position:relative}
+footer .ft{display:flex;justify-content:space-between;flex-wrap:wrap;gap:2.5rem;margin-top:5rem;padding-top:2.5rem;border-top:1px solid rgba(244,246,255,.2)}
+.ft p{color:var(--mist);max-width:20rem;margin:.8rem 0 0;font-size:.92rem}
+.ft h4{margin:0 0 .8rem;font:600 1rem var(--display);color:var(--sun)}
+.ft ul{list-style:none;margin:0;padding:0;display:grid;gap:.5rem;font-size:.92rem}
+.ft ul a{color:var(--mist);transition:color .2s}.ft ul a:hover{color:#fff}
+.copy{display:flex;justify-content:space-between;flex-wrap:wrap;gap:.5rem;padding:2rem 0;color:var(--mist);font-size:.82rem}
 
-.faq .l p {
-  color: var(--mut);
-  line-height: 1.9;
-  max-width: 28rem;
-  margin: 0 0 1.8rem;
-  font-size: 0.92rem;
-}
+/* Powiadomienie */
+.toast{position:fixed;right:1.5rem;bottom:calc(1.5rem + env(safe-area-inset-bottom,0px));z-index:100;display:flex;gap:.9rem;align-items:center;background:var(--sun);color:var(--ink);padding:1rem 1.3rem;border-radius:1.1rem;max-width:23rem;
+  box-shadow:0 1.5rem 3rem rgba(5,8,50,.5);transform:translate3d(0,160%,0) skewX(-8deg);opacity:0;filter:blur(10px);transition:transform .5s cubic-bezier(.2,.8,.2,1),opacity .4s,filter .5s}
+.toast.show{transform:none;opacity:1;filter:blur(0)}
+.toast b{display:block;font:800 1rem var(--display)}.toast span{font-size:.85rem}
+.ti{width:2.4rem;height:2.4rem;border-radius:.7rem;background:var(--ink);color:var(--sun);display:grid;place-items:center;flex:none}
 
-.faq .l {
-  align-self: start;
-  position: sticky;
-  top: 7rem;
-}
+/* Motyw czarno-fioletowy */
+body{background:radial-gradient(60rem 40rem at 85% -5%,rgba(168,85,247,.28),transparent 60%),var(--bg);color:var(--ink)}
+header{background:rgba(5,2,10,.78)}
+.mark,.btn.sun,.play,.tape,.toast{color:var(--on)}
+.btn.line{color:var(--ink);border-color:rgba(192,132,252,.5)}
+.btn.line:hover{background:var(--ink);color:var(--on)}
+.btn.ink{background:var(--cobalt);color:#fff}.btn.ink:hover{background:#c084fc;color:var(--on)}
+.win{border:1px solid rgba(192,132,252,.35);box-shadow:0 2.5rem 6rem -1rem rgba(168,85,247,.45)}
+.bar{background:#1a0f2e;color:var(--mist)}
+.side button:hover{background:rgba(168,85,247,.14)}
+.pane small{color:rgba(243,236,255,.65)}
+.badges span{background:rgba(168,85,247,.16);color:#d8b4fe}
+.mod.active{background:rgba(168,85,247,.14)}
+.sw{background:#2a1b45}
+.tape{border-block-color:var(--bg)}
+.feat .l p,.row p,.faq .l p,details p{color:rgba(243,236,255,.72)}
+.row{border-top-color:rgba(192,132,252,.35)}.row:last-child{border-bottom-color:rgba(192,132,252,.35)}
+.row::before{background:rgba(168,85,247,.14)}
+details{border-top-color:rgba(192,132,252,.35)}details:last-child{border-bottom-color:rgba(192,132,252,.35)}
+details[open] summary i{color:#fff}
+.final{background:var(--bg)}
+.ti{background:var(--on);color:var(--sun)}
+.toast{box-shadow:0 1.5rem 3rem rgba(168,85,247,.45)}
 
-details {
-  border-bottom: 1px solid var(--line);
-  transition: background 0.3s;
-}
-
-.list {
-  border-top: 1px solid var(--line);
-}
-
-summary {
-  list-style: none;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 1.2rem;
-  padding: 1.5rem 0.5rem;
-  font-weight: 700;
-  font-size: 0.98rem;
-  color: var(--mut2);
-  transition: color 0.3s;
-}
-
-summary::-webkit-details-marker {
-  display: none;
-}
-
-summary:hover, details[open] summary {
-  color: #fff;
-}
-
-summary span {
-  flex: 1;
-}
-
-summary i {
-  width: 2.35rem;
-  height: 2.35rem;
-  border-radius: 50%;
-  border: 1px solid rgba(168, 85, 247, 0.35);
-  background: rgba(168, 85, 247, 0.08);
-  color: #e9d5ff;
-  display: grid;
-  place-items: center;
-  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), background 0.3s, border-color 0.3s;
-  font-style: normal;
-  font-size: 1.2rem;
-  line-height: 1;
-}
-
-details[open] summary i {
-  background: var(--purple-main);
-  color: #fff;
-  transform: rotate(135deg);
-  border-color: #e9d5ff;
-  box-shadow: 0 0 18px rgba(168, 85, 247, 0.6);
-}
-
-details p {
-  margin: 0;
-  padding: 0 3.2rem 1.7rem 0.5rem;
-  color: var(--mut);
-  line-height: 1.9;
-  font-size: 0.88rem;
-  animation: fadeFaq 0.35s ease;
-}
-
-@keyframes fadeFaq {
-  from { opacity: 0; transform: translateY(-6px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@media (max-width: 860px) {
-  .faq { grid-template-columns: 1fr; gap: 2.5rem; }
-  .faq .l { position: static; }
-}
-
-/* Baner CTA */
-.final {
-  border: 1px solid rgba(168, 85, 247, 0.35);
-  border-radius: 2.5rem;
-  background: 
-    radial-gradient(circle at 88% 50%, rgba(168, 85, 247, 0.28), transparent 50%),
-    linear-gradient(135deg, #0d051a 0%, #05020a 100%);
-  padding: 4.2rem 3.2rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1.6rem;
-  align-items: flex-start;
-  box-shadow: 0 30px 90px -20px rgba(147, 51, 234, 0.3);
-  position: relative;
-  overflow: hidden;
-}
-
-.final h2 {
-  font-size: clamp(2.1rem, 4.8vw, 3.6rem);
-}
-
-.final p {
-  color: var(--mut);
-  max-width: 32rem;
-  line-height: 1.9;
-  margin: 0;
-}
-
-@media (max-width: 640px) {
-  .final {
-    padding: 2.6rem 1.6rem;
-    align-items: center;
-    text-align: center;
-  }
-}
-
-/* Stopka */
-footer {
-  border-top: 1px solid var(--line);
-  margin-top: 3rem;
-  padding: 3.5rem 0 2rem;
-  background: rgba(4, 2, 8, 0.85);
-}
-
-.ft {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 2.5rem;
-}
-
-.ft p {
-  color: var(--mut);
-  font-size: 0.8rem;
-  line-height: 1.9;
-  max-width: 22rem;
-  margin: 1rem 0 0;
-}
-
-.ft ul {
-  list-style: none;
-  margin: 0.9rem 0 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  font-size: 0.8rem;
-}
-
-.ft ul a {
-  color: var(--mut2);
-  transition: color 0.25s;
-}
-
-.ft ul a:hover {
-  color: var(--purple-bright);
-}
-
-.ft h4 {
-  margin: 0;
-  font-size: 0.68rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--purple-bright);
-}
-
-.copy {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-top: 3rem;
-  color: var(--mut);
-  font-size: 0.72rem;
-}
-
-.big-word {
-  font-size: clamp(2.5rem, 12vw, 9rem);
-  font-weight: 800;
-  letter-spacing: -0.04em;
-  text-align: center;
-  margin: 2.5rem 0 0;
-  background: linear-gradient(to bottom, rgba(168, 85, 247, 0.22), transparent);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  line-height: 1;
-  user-select: none;
-}
-
-/* Powiadomienie Toast */
-.toast {
-  position: fixed;
-  bottom: 1.8rem;
-  right: 1.8rem;
-  z-index: 100;
-  background: rgba(15, 7, 30, 0.95);
-  border: 1px solid var(--purple-main);
-  border-radius: 1rem;
-  padding: 1rem 1.4rem;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 30px rgba(168, 85, 247, 0.4);
-  display: flex;
-  align-items: center;
-  gap: 0.9rem;
-  transform: translateY(150%);
-  opacity: 0;
-  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.4s;
-  backdrop-filter: blur(12px);
-  max-width: 24rem;
-}
-
-.toast.show {
-  transform: translateY(0);
-  opacity: 1;
-}
-
-.toast-icon {
-  width: 2.4rem;
-  height: 2.4rem;
-  border-radius: 0.7rem;
-  background: linear-gradient(135deg, #a855f7, #7e22ce);
-  display: grid;
-  place-items: center;
-  color: #fff;
-  flex-shrink: 0;
-}
-
-.toast-body b {
-  display: block;
-  font-size: 0.8rem;
-  color: #fff;
-}
-
-.toast-body span {
-  display: block;
-  font-size: 0.72rem;
-  color: var(--mut);
-  margin-top: 0.2rem;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation: none !important;
-    transition: none !important;
-  }
-  .win { transform: none; }
-  .reveal { opacity: 1; transform: none; }
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .rv,.hero h1 .w{opacity:1;filter:none;transform:none}.win{transform:none;opacity:1;filter:none}.tape-in{filter:none;transform:none}
 }
 </style>
 </head>
 <body>
 
-<div class="bg-grid" aria-hidden="true"></div>
-<div class="ambient-orbs" aria-hidden="true">
-  <div class="orb orb-1"></div>
-  <div class="orb orb-2"></div>
-  <div class="orb orb-3"></div>
-</div>
-
 <header>
   <div class="wrap nav">
-    <a class="logo" href="#">
-      <span class="mark">D</span>DEZOCLIENT
-    </a>
+    <a class="logo" href="#"><span class="mark">D</span>DEZO CLIENT</a>
     <ul>
       <li><a href="#podglad">Launcher</a></li>
       <li><a href="#mozliwosci">Funkcje</a></li>
       <li><a href="#faq">FAQ</a></li>
     </ul>
     <div class="r">
-      <a class="btn g trigger-dc" href="#discord" aria-label="Discord">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.3 4.4A19.8 19.8 0 0 0 15.4 3c-.2.4-.4.9-.6 1.3a18.3 18.3 0 0 0-5.5 0C9.1 3.9 8.9 3.4 8.7 3A19.7 19.7 0 0 0 3.7 4.4C.5 9-.3 13.6.1 18.1a19.9 19.9 0 0 0 6 3c.5-.6.9-1.3 1.2-2-.7-.3-1.3-.6-1.9-.9l.4-.3a14.3 14.3 0 0 0 12.1 0l.4.3c-.6.4-1.2.7-1.9.9.4.7.8 1.4 1.2 2a19.8 19.8 0 0 0 6-3c.5-5.2-.8-9.7-3.5-13.7zM8 15.3c-1.2 0-2.2-1.1-2.2-2.4S6.8 10.5 8 10.5s2.2 1.1 2.2 2.4-.9 2.4-2.2 2.4zm8 0c-1.2 0-2.2-1.1-2.2-2.4s1-2.4 2.2-2.4 2.2 1.1 2.2 2.4-1 2.4-2.2 2.4z"/></svg>
-      </a>
-      <!-- Bezpośredni link do pobierania z GitHub -->
-      <a class="btn p trigger-dl" href="https://github.com/Karpatek-dack0/launcher-site/releases/download/v3.6/DezoClient-Setup.exe">Pobierz</a>
+      <a class="btn line trigger-dc" href="#discord">Discord</a>
+      <a class="btn sun trigger-dl" href="https://github.com/Karpatek-dack0/launcher-site/releases/download/v3.6/DezoClient-Setup.exe">Pobierz</a>
     </div>
   </div>
 </header>
 
 <main>
-  <div class="wrap">
-    <section class="hero">
-      <span class="pill reveal">Nowoczesny launcher Minecraft</span>
-      <h1 class="reveal" style="--d: 0.08s">
-        <span class="purple-grad">Wszystko, czego potrzebuje gracz w jednym miejscu</span>
+  <div class="wrap hero" id="pobierz">
+    <div class="hero-copy">
+      <h1 aria-label="Wszystko, czego potrzebuje gracz w jednym miejscu">
+        <span class="w" style="--i:0">Wszystko,</span> <span class="w" style="--i:1">czego</span> <span class="w" style="--i:2">potrzebuje</span> <span class="w" style="--i:3">gracz</span> <span class="w" style="--i:4">w&nbsp;jednym</span> <span class="w" style="--i:5">miejscu</span>
       </h1>
-      <p class="reveal" style="--d: 0.16s">
-        Lekki i szybki launcher stworzony z myślą o płynnej rozgrywce. Błyskawiczny start, wygodne zarządzanie wersjami i modami bez zbędnych komplikacji.
-      </p>
-      <div class="cta reveal" style="--d: 0.24s" id="pobierz">
-        <!-- Bezpośredni link do pobierania z GitHub -->
-        <a class="btn p trigger-dl" href="https://github.com/Karpatek-dack0/launcher-site/releases/download/v3.6/DezoClient-Setup.exe">
-          <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
-          Pobierz launcher
-        </a>
-        <a class="btn g trigger-dc" href="#discord">
-          Dołącz na Discorda
-        </a>
-      </div>
-
-      <div class="stage reveal" style="--d: 0.32s" id="podglad">
-        <div class="win" id="launcherWin" role="region" aria-label="Interaktywny podgląd launchera DEZO CLIENT">
-          <div class="bar">
-            <div class="bar-dots"><b></b><b></b><b></b></div>
-            <span class="bar-title">DEZO CLIENT // v3.6 STABLE</span>
-          </div>
-          <div class="app">
-            <div class="side" role="tablist">
-              <button class="on" data-tab="tab-start" role="tab" aria-selected="true">🚀 Start Gry</button>
-              <button data-tab="tab-mods" role="tab" aria-selected="false">📦 Menedżer Modów</button>
-              <button data-tab="tab-cosmetics" role="tab" aria-selected="false">🎨 Wygląd okna</button>
-              <button data-tab="tab-profiles" role="tab" aria-selected="false">⚙️ Konfiguracja RAM</button>
-              <div class="side-status">
-                <i></i> System gotowy
-              </div>
-            </div>
-
-            <div class="main-view">
-              <div class="tab-pane active" id="tab-start">
-                <div class="pane-badges">
-                  <span class="pane-badge">Profil: Główny</span>
-                  <span class="pane-badge">Wersja: 1.21.4</span>
-                  <span class="pane-badge">Optymalizacja: Włączona</span>
-                </div>
-                <div class="pane-hero">
-                  <small>Ostatnio uruchamiana wersja</small>
-                  <h3 class="purple-grad">Minecraft 1.21.4</h3>
-                  <small id="launchStatusText">Fabric Loader · Stabilny profil optymalizacyjny</small>
-                </div>
-                <div class="play-row">
-                  <button class="play-btn" id="mockPlayBtn" type="button">Uruchom grę</button>
-                </div>
-              </div>
-
-              <div class="tab-pane" id="tab-mods">
-                <div>
-                  <small style="color:var(--mut);font-size:.75rem">Włączone pakiety optymalizacyjne:</small>
-                  <h3 style="font-size:1.35rem;margin:.3rem 0 1rem">Modyfikacje wydajnościowe</h3>
-                  <div class="mods-grid">
-                    <div class="mod-item active"><span>Sodium Core</span><div class="switch"></div></div>
-                    <div class="mod-item active"><span>Lithium Engine</span><div class="switch"></div></div>
-                    <div class="mod-item active"><span>Mod Menu</span><div class="switch"></div></div>
-                    <div class="mod-item active"><span>Iris Shaders</span><div class="switch"></div></div>
-                    <div class="mod-item"><span>Xaero's Minimap</span><div class="switch"></div></div>
-                    <div class="mod-item active"><span>Mouse Tweaks</span><div class="switch"></div></div>
-                  </div>
-                </div>
-                <small style="color:var(--mut);font-size:.72rem">Automatyczne pobieranie i dopasowywanie wersji modów.</small>
-              </div>
-
-              <div class="tab-pane" id="tab-cosmetics">
-                <div>
-                  <small style="color:var(--mut);font-size:.75rem">Dostosuj interfejs launchera:</small>
-                  <h3 style="font-size:1.35rem;margin:.3rem 0 1rem">Motywy i preferencje</h3>
-                  <div class="mods-grid">
-                    <div class="mod-item active"><span>Obsydianowy Fiolet</span><div class="switch"></div></div>
-                    <div class="mod-item active"><span>Płynne animacje</span><div class="switch"></div></div>
-                    <div class="mod-item"><span>Dźwięki powiadomień</span><div class="switch"></div></div>
-                    <div class="mod-item active"><span>Minimalistyczny panel</span><div class="switch"></div></div>
-                  </div>
-                </div>
-                <small style="color:var(--mut);font-size:.72rem">Wszystkie ustawienia zapisywane są lokalnie na Twoim urządzeniu.</small>
-              </div>
-
-              <div class="tab-pane" id="tab-profiles">
-                <div>
-                  <small style="color:var(--mut);font-size:.75rem">Alokacja zasobów systemowych:</small>
-                  <h3 style="font-size:1.35rem;margin:.3rem 0 1rem">Zarządzanie pamięcią RAM</h3>
-                  <div class="ram-box">
-                    <div style="display:flex;justify-content:space-between;font-size:.82rem;font-weight:700">
-                      <span>Przydzielona pamięć:</span>
-                      <span id="ramVal" style="color:var(--purple-bright)">6144 MB (6 GB)</span>
-                    </div>
-                    <input type="range" min="2048" max="16384" step="512" value="6144" class="ram-slider" id="ramSlider" aria-label="Przydział pamięci RAM">
-                  </div>
-                </div>
-                <small style="color:var(--mut);font-size:.72rem">Wbudowany Garbage Collector dba o płynną pracę Javy bez przycięć.</small>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <div class="stats">
-      <div class="stat reveal" style="--d: 0.05s">
-        <div class="ico">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-        </div>
-        <div>
-          <b>&lt; 1 s</b>
-          <span>Błyskawiczne uruchamianie aplikacji i procesów</span>
-        </div>
-      </div>
-
-      <div class="stat reveal" style="--d: 0.12s">
-        <div class="ico">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-        </div>
-        <div>
-          <b>100%</b>
-          <span>Darmowe narzędzie bez ukrytych opłat i subskrypcji</span>
-        </div>
-      </div>
-
-      <div class="stat reveal" style="--d: 0.19s">
-        <div class="ico">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3"/></svg>
-        </div>
-        <div>
-          <b>0 %</b>
-          <span>Lekki kod bez obciążania zasobów komputera</span>
-        </div>
-      </div>
-
-      <div class="stat reveal" style="--d: 0.26s">
-        <div class="ico">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-        </div>
-        <div>
-          <b>Auto</b>
-          <span>Automatyczna aktualizacja wersji i bibliotek</span>
-        </div>
+      <p class="rv">Lekki i szybki launcher stworzony z myślą o płynnej rozgrywce. Błyskawiczny start, wygodne zarządzanie wersjami i modami bez zbędnych komplikacji.</p>
+      <div class="cta rv">
+        <a class="btn sun trigger-dl" href="https://github.com/Karpatek-dack0/launcher-site/releases/download/v3.6/DezoClient-Setup.exe">Pobierz launcher</a>
+        <a class="btn line trigger-dc" href="#discord">Dołącz na Discorda</a>
       </div>
     </div>
 
-    <section id="mozliwosci">
-      <div class="head reveal">
-        <span class="pill">Funkcje launchera</span>
-        <h2 class="purple-grad">Wszystko pod ręką, dokładnie tak, jak lubisz.</h2>
-        <p>Nasz launcher łączy wygodę zarządzania profilami z maksymalną wydajnością gry. Zapomnij o skomplikowanej konfiguracji.</p>
-      </div>
-
-      <div class="bento">
-        <div class="card s2 reveal" style="--d: 0.05s">
-          <div class="viz">
-            <span class="tag">Stabilna praca · Pełna optymalizacja</span>
-            <div class="bars" id="bars"></div>
+    <div class="stage" id="podglad">
+      <div class="win" role="region" aria-label="Interaktywny podgląd launchera DEZO CLIENT">
+        <div class="bar"><div class="dots"><b></b><b></b><b></b></div><span>DEZO CLIENT v3.6</span></div>
+        <div class="app">
+          <div class="side" role="tablist">
+            <button class="on" data-tab="t1" role="tab" aria-selected="true">🚀 Start gry</button>
+            <button data-tab="t2" role="tab" aria-selected="false">📦 Mody</button>
+            <button data-tab="t3" role="tab" aria-selected="false">🎨 Wygląd okna</button>
+            <button data-tab="t4" role="tab" aria-selected="false">⚙️ Pamięć RAM</button>
+            <div class="ok"><i></i>System gotowy</div>
           </div>
           <div>
-            <h3><span>⚡</span>Wydajność na każdym sprzęcie</h3>
-            <p>Lekka architektura launchera dba o to, by gra zużywała optymalną ilość zasobów. Ciesz się stabilną pracą i płynną rozgrywką bez zbędnych spadków klatek.</p>
-          </div>
-        </div>
-
-        <div class="card reveal" style="--d: 0.12s">
-          <div class="viz c">
-            <div class="steps" id="autoSteps">
-              <div class="on">1 &nbsp;Załóż profil</div>
-              <div>2 &nbsp;Wybierz wersję</div>
-              <div>3 &nbsp;Kliknij Graj</div>
+            <div class="pane active" id="t1">
+              <div class="badges"><span>Profil: Główny</span><span>Wersja 1.21.4</span><span>Optymalizacja włączona</span></div>
+              <div><small>Ostatnio uruchamiana wersja</small><h3>Minecraft 1.21.4</h3><small id="st">Fabric Loader · Stabilny profil optymalizacyjny</small></div>
+              <div><button class="play" id="play" type="button">Uruchom grę</button></div>
+            </div>
+            <div class="pane" id="t2">
+              <div><small>Włączone pakiety optymalizacyjne</small><h3 style="font-size:1.6rem;color:var(--ink);margin:.3rem 0 1rem">Mody wydajnościowe</h3>
+                <div class="mods">
+                  <div class="mod active"><span>Sodium Core</span><div class="sw"></div></div>
+                  <div class="mod active"><span>Lithium Engine</span><div class="sw"></div></div>
+                  <div class="mod active"><span>Mod Menu</span><div class="sw"></div></div>
+                  <div class="mod active"><span>Iris Shaders</span><div class="sw"></div></div>
+                  <div class="mod"><span>Xaero’s Minimap</span><div class="sw"></div></div>
+                  <div class="mod active"><span>Mouse Tweaks</span><div class="sw"></div></div>
+                </div></div>
+              <small>Wersje modów są pobierane i dopasowywane automatycznie.</small>
+            </div>
+            <div class="pane" id="t3">
+              <div><small>Dostosuj interfejs launchera</small><h3 style="font-size:1.6rem;color:var(--ink);margin:.3rem 0 1rem">Motywy i preferencje</h3>
+                <div class="mods">
+                  <div class="mod active"><span>Kobaltowy motyw</span><div class="sw"></div></div>
+                  <div class="mod active"><span>Płynne animacje</span><div class="sw"></div></div>
+                  <div class="mod"><span>Dźwięki powiadomień</span><div class="sw"></div></div>
+                  <div class="mod active"><span>Minimalistyczny panel</span><div class="sw"></div></div>
+                </div></div>
+              <small>Ustawienia zapisują się lokalnie na Twoim komputerze.</small>
+            </div>
+            <div class="pane" id="t4">
+              <div><small>Alokacja zasobów systemowych</small><h3 style="font-size:1.6rem;color:var(--ink);margin:.3rem 0 1rem">Pamięć RAM</h3>
+                <div class="ram">
+                  <div style="display:flex;justify-content:space-between;font-weight:600"><span>Przydzielona pamięć</span><span id="rv" style="color:var(--cobalt)">6144 MB (6 GB)</span></div>
+                  <input type="range" min="2048" max="16384" step="512" value="6144" id="rs" aria-label="Przydział pamięci RAM">
+                </div></div>
+              <small>Wbudowany Garbage Collector dba o płynną pracę Javy.</small>
             </div>
           </div>
-          <div>
-            <h3><span>✓</span>Prosta obsługa</h3>
-            <p>Intuicyjny interfejs pozwala skonfigurować grę w kilka sekund. Bez ręcznego szukania plików instalacyjnych.</p>
-          </div>
-        </div>
-
-        <div class="card reveal" style="--d: 0.18s">
-          <div class="viz c">
-            <div class="chips" style="margin:0">
-              <span>Konto Microsoft</span>
-              <span>Konto Offline</span>
-            </div>
-          </div>
-          <div>
-            <h3><span>🛡</span>Twoje konto, Twoje zasady</h3>
-            <p>Loguj się oficjalnie przez Microsoft lub korzystaj z kont lokalnych. Pełna kompatybilność z serwerami typu Premium i Non-Premium.</p>
-          </div>
-        </div>
-
-        <div class="card s2 reveal" style="--d: 0.24s">
-          <div class="viz c">
-            <div class="big purple-grad">100% Free</div>
-            <div class="chips">
-              <span>Bez reklam</span>
-              <span>Bez limitów</span>
-              <span>Otwarty dostęp</span>
-            </div>
-          </div>
-          <div>
-            <h3><span>💎</span>Bez ukrytych kosztów</h3>
-            <p>Żadnych płatnych subskrypcji czy blokad funkcji. DEZO CLIENT powstał z pasji do tworzenia najlepszych narzędzi dla graczy Minecraft.</p>
-          </div>
         </div>
       </div>
-    </section>
-
-    <section id="faq">
-      <div class="faq">
-        <div class="l reveal">
-          <h2>Masz<br><span class="purple-grad">pytania?</span></h2>
-          <p>Wszystko, co warto wiedzieć przed rozpoczęciem korzystania z naszego launchera.</p>
-          <a class="btn g trigger-dc" href="#discord">Zapytaj na Discordzie</a>
-        </div>
-
-        <div class="list reveal" style="--d: 0.12s">
-          <details open>
-            <summary><span>Czy pobranie i używanie DEZO CLIENT jest darmowe?</span><i>+</i></summary>
-            <p>Tak! Launcher jest w pełni darmowy, nie pobieramy żadnych opłat ani nie wprowadzamy płatnych subskrypcji.</p>
-          </details>
-          <details>
-            <summary><span>Jakie są wymagania systemowe launchera?</span><i>+</i></summary>
-            <p>Wystarczy komputer z systemem Windows 10 lub 11 oraz zainstalowane środowisko w wersji 64-bit. Launcher sam wykrywa i konfiguruje odpowiednią wersję Javy.</p>
-          </details>
-          <details>
-            <summary><span>Czy mogę grać bez oryginalnego konta Minecraft?</span><i>+</i></summary>
-            <p>Oczywiście. Możesz dodać profil offline i grać na serwerach Non-Premium. Dla posiadaczy oryginału dostępne jest bezpieczne logowanie Microsoft.</p>
-          </details>
-          <details>
-            <summary><span>Jak działa instalowanie modyfikacji w launcherze?</span><i>+</i></summary>
-            <p>Wszystkie popularne mody i paczki pobierzesz bezpośrednio z poziomu zakładek w launcherze. Aplikacja automatycznie dba o zależności i poprawną ścieżkę instalacji.</p>
-          </details>
-          <details>
-            <summary><span>Dlaczego system Windows pokazuje ostrzeżenie SmartScreen?</span><i>+</i></summary>
-            <p>To powszechny komunikat dla nowych plików wykonywalnych od niezależnych autorów. Wystarczy kliknąć „Więcej informacji”, a następnie „Uruchom mimo to”.</p>
-          </details>
-          <details>
-            <summary><span>Gdzie mogę szukać pomocy w razie problemów?</span><i>+</i></summary>
-            <p>Najszybciej uzyskasz wsparcie na naszym oficjalnym serwerze Discord, gdzie chętnie odpowiadamy na pytania i pomagamy w konfiguracji.</p>
-          </details>
-        </div>
-      </div>
-    </section>
-
-    <section>
-      <div class="final reveal">
-        <h2>Gotowy na<br><span class="purple-grad">płynną grę?</span></h2>
-        <p>Pobierz DEZO CLIENT, stwórz swój profil i ciesz się stabilną rozgrywką bez zbędnych lagów.</p>
-        <div class="cta">
-          <!-- Bezpośredni link do pobierania z GitHub -->
-          <a class="btn p trigger-dl" href="https://github.com/Karpatek-dack0/launcher-site/releases/download/v3.6/DezoClient-Setup.exe">Pobierz DEZO CLIENT</a>
-          <a class="btn g trigger-dc" href="#discord">Dołącz do Discorda</a>
-        </div>
-      </div>
-    </section>
+    </div>
   </div>
+
+  <div class="tape" aria-hidden="true"><div class="tape-in" id="tape">
+    <span>Start w mniej niż sekundę</span><span>100% za darmo</span><span>Bez reklam</span><span>Automatyczne aktualizacje</span>
+    <span>Start w mniej niż sekundę</span><span>100% za darmo</span><span>Bez reklam</span><span>Automatyczne aktualizacje</span>
+  </div></div>
+
+  <section class="light" id="mozliwosci">
+    <div class="wrap feat">
+      <div class="l rv">
+        <h2>Wszystko pod ręką, tak jak lubisz</h2>
+        <p>Launcher łączy wygodne zarządzanie profilami z wydajną grą. Bez skomplikowanej konfiguracji.</p>
+      </div>
+      <div>
+        <div class="row rv">
+          <div class="ic">⚡</div>
+          <div><h3>Wydajność na każdym sprzęcie</h3><p>Lekka architektura pilnuje, by gra zużywała tyle zasobów, ile naprawdę potrzebuje. Mniej spadków klatek, więcej płynności.</p><div class="bars" id="bars"></div></div>
+        </div>
+        <div class="row rv">
+          <div class="ic">✓</div>
+          <div><h3>Prosta obsługa</h3><p>Skonfigurujesz grę w kilka sekund, bez szukania plików instalacyjnych.</p><div class="steps" id="steps"><span class="on">Załóż profil</span><span>Wybierz wersję</span><span>Kliknij Graj</span></div></div>
+        </div>
+        <div class="row rv">
+          <div class="ic">🛡</div>
+          <div><h3>Twoje konto, Twoje zasady</h3><p>Zaloguj się przez Microsoft albo użyj konta lokalnego. Launcher działa z serwerami Premium i Non-Premium.</p></div>
+        </div>
+        <div class="row rv">
+          <div class="ic">💎</div>
+          <div><h3>Zero ukrytych kosztów</h3><p>Bez subskrypcji, reklam i blokad funkcji. DEZO CLIENT powstał z pasji do Minecrafta.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="faq-s" id="faq">
+    <div class="wrap faq">
+      <div class="l rv">
+        <h2>Masz pytania?</h2>
+        <p>Najważniejsze informacje przed pierwszym uruchomieniem launchera.</p>
+        <a class="btn ink trigger-dc" href="#discord">Zapytaj na Discordzie</a>
+      </div>
+      <div class="rv" style="--d:.1s">
+        <details open><summary><span>Czy pobranie i używanie DEZO CLIENT jest darmowe?</span><i>+</i></summary><p>Tak. Launcher jest w pełni darmowy, bez opłat i płatnych subskrypcji.</p></details>
+        <details><summary><span>Jakie są wymagania systemowe launchera?</span><i>+</i></summary><p>Potrzebujesz komputera z 64-bitowym Windowsem 10 lub 11. Launcher sam wykrywa i konfiguruje odpowiednią wersję Javy.</p></details>
+        <details><summary><span>Czy mogę grać bez oryginalnego konta Minecraft?</span><i>+</i></summary><p>Tak. Dodaj profil offline i graj na serwerach Non-Premium. Jeśli masz oryginał, możesz zalogować się przez Microsoft.</p></details>
+        <details><summary><span>Jak działa instalowanie modyfikacji?</span><i>+</i></summary><p>Mody i paczki pobierasz z poziomu launchera. Aplikacja sama dba o zależności i właściwą ścieżkę instalacji.</p></details>
+        <details><summary><span>Dlaczego Windows pokazuje ostrzeżenie SmartScreen?</span><i>+</i></summary><p>To częsty komunikat dla nowych plików od niezależnych autorów. Kliknij „Więcej informacji”, a potem „Uruchom mimo to”.</p></details>
+        <details><summary><span>Gdzie szukać pomocy w razie problemów?</span><i>+</i></summary><p>Najszybciej uzyskasz pomoc na naszym serwerze Discord.</p></details>
+      </div>
+    </div>
+  </section>
 </main>
 
-<footer>
+<footer class="final">
+  <div class="glow" aria-hidden="true"></div>
   <div class="wrap">
+    <h2 class="rv">Gotowy na płynną grę?</h2>
+    <p class="rv">Pobierz DEZO CLIENT, stwórz profil i graj bez zbędnych lagów.</p>
+    <div class="cta rv">
+      <a class="btn sun trigger-dl" href="https://github.com/Karpatek-dack0/launcher-site/releases/download/v3.6/DezoClient-Setup.exe">Pobierz DEZO CLIENT</a>
+      <a class="btn line trigger-dc" href="#discord">Dołącz do Discorda</a>
+    </div>
     <div class="ft">
-      <div>
-        <a class="logo" href="#"><span class="mark">D</span>DEZOCLIENT</a>
-        <p>Szybki i niezawodny launcher Minecraft. Stworzony przez graczy, dla graczy.</p>
-      </div>
-      <div>
-        <h4>Nawigacja</h4>
-        <ul>
-          <li><a href="#podglad">Launcher</a></li>
-          <li><a href="#mozliwosci">Funkcje</a></li>
-          <li><a href="#faq">FAQ</a></li>
-          <li><a href="#pobierz">Pobierz</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Informacje</h4>
-        <ul>
-          <li><a href="#regulamin">Regulamin</a></li>
-          <li><a href="#prywatnosc">Polityka prywatności</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Społeczność</h4>
-        <ul>
-          <li><a class="trigger-dc" href="#discord">Serwer Discord</a></li>
-          <li><a href="#status">Status usługi</a></li>
-        </ul>
-      </div>
+      <div><a class="logo" href="#"><span class="mark">D</span>DEZO CLIENT</a><p>Szybki i niezawodny launcher Minecraft. Stworzony przez graczy, dla graczy.</p></div>
+      <div><h4>Nawigacja</h4><ul><li><a href="#podglad">Launcher</a></li><li><a href="#mozliwosci">Funkcje</a></li><li><a href="#faq">FAQ</a></li><li><a href="#pobierz">Pobierz</a></li></ul></div>
+      <div><h4>Informacje</h4><ul><li><a href="#regulamin">Regulamin</a></li><li><a href="#prywatnosc">Polityka prywatności</a></li></ul></div>
+      <div><h4>Społeczność</h4><ul><li><a class="trigger-dc" href="#discord">Serwer Discord</a></li><li><a href="#status">Status usługi</a></li></ul></div>
     </div>
-    <div class="big-word" aria-hidden="true">DEZOCLIENT</div>
-    <div class="copy">
-      <span>© 2026 DEZO CLIENT. Wszelkie prawa zastrzeżone.</span>
-      <span>Projekt niezależny — nie jest powiązany z Mojang AB ani Microsoft.</span>
-    </div>
+    <div class="copy"><span>© 2026 DEZO CLIENT. Wszelkie prawa zastrzeżone.</span><span>Projekt niezależny — nie jest powiązany z Mojang AB ani Microsoft.</span></div>
   </div>
 </footer>
 
 <div class="toast" id="toast" role="status" aria-live="polite">
-  <div class="toast-icon">⚡</div>
-  <div class="toast-body">
-    <b id="toastTitle">Pobieranie DEZO CLIENT</b>
-    <span id="toastDesc">Pobieranie instalatora DezoClient-Setup.exe zostało rozpoczęte.</span>
-  </div>
+  <div class="ti">⚡</div>
+  <div><b id="tt">Pobieranie DEZO CLIENT</b><span id="td">Rozpoczęto pobieranie pliku DezoClient-Setup.exe.</span></div>
 </div>
 
 <script>
-(function() {
-  var heights = [42, 68, 54, 85, 62, 95, 74, 88, 64, 98, 78, 92, 70, 100, 84, 96];
-  var barsContainer = document.getElementById('bars');
-  if (barsContainer) {
-    heights.forEach(function(val, idx) {
-      var bar = document.createElement('i');
-      bar.style.height = val + '%';
-      bar.style.animationDelay = (-idx * 0.14) + 's';
-      barsContainer.appendChild(bar);
-    });
-  }
+(function(){
+  var $=function(s,c){return (c||document).querySelectorAll(s)};
+  var $1=function(s){return document.querySelector(s)};
 
-  var stepsBox = document.getElementById('autoSteps');
-  if (stepsBox) {
-    var stepItems = stepsBox.querySelectorAll('div');
-    var currentStep = 0;
-    setInterval(function() {
-      stepItems.forEach(function(el) { el.classList.remove('on'); });
-      currentStep = (currentStep + 1) % stepItems.length;
-      stepItems[currentStep].classList.add('on');
-    }, 2200);
-  }
-
-  var tabButtons = document.querySelectorAll('.side button[data-tab]');
-  var tabPanes = document.querySelectorAll('.tab-pane');
-  tabButtons.forEach(function(btn) {
-    btn.addEventListener('click', function() {
-      var targetId = btn.getAttribute('data-tab');
-      tabButtons.forEach(function(b) {
-        b.classList.remove('on');
-        b.setAttribute('aria-selected', 'false');
-      });
-      tabPanes.forEach(function(p) {
-        p.classList.remove('active');
-      });
-      btn.classList.add('on');
-      btn.setAttribute('aria-selected', 'true');
-      var targetPane = document.getElementById(targetId);
-      if (targetPane) targetPane.classList.add('active');
-    });
+  // Słupki wydajności
+  var bars=$1('#bars');
+  [40,66,52,84,60,94,72,88,62,98,76,90].forEach(function(h,i){
+    var b=document.createElement('i');b.style.height=h+'%';b.style.animationDelay=(-i*.14)+'s';bars.appendChild(b);
   });
 
-  var modItems = document.querySelectorAll('.mod-item');
-  modItems.forEach(function(item) {
-    item.addEventListener('click', function() {
-      item.classList.toggle('active');
-    });
+  // Kroki
+  var st=$('#steps span'),si=0;
+  setInterval(function(){st[si].classList.remove('on');si=(si+1)%st.length;st[si].classList.add('on');},2200);
+
+  // Zakładki launchera
+  var tabs=$('.side button[data-tab]'),panes=$('.pane');
+  tabs.forEach(function(b){b.addEventListener('click',function(){
+    tabs.forEach(function(x){x.classList.remove('on');x.setAttribute('aria-selected','false')});
+    panes.forEach(function(p){p.classList.remove('active')});
+    b.classList.add('on');b.setAttribute('aria-selected','true');
+    document.getElementById(b.getAttribute('data-tab')).classList.add('active');
+  })});
+
+  $('.mod').forEach(function(m){m.addEventListener('click',function(){m.classList.toggle('active')})});
+
+  var rs=$1('#rs'),rv=$1('#rv');
+  rs.addEventListener('input',function(){
+    var mb=parseInt(rs.value,10);rv.textContent=mb+' MB ('+(mb/1024).toFixed(1).replace('.0','')+' GB)';
   });
 
-  var ramSlider = document.getElementById('ramSlider');
-  var ramVal = document.getElementById('ramVal');
-  if (ramSlider && ramVal) {
-    ramSlider.addEventListener('input', function() {
-      var mb = parseInt(ramSlider.value, 10);
-      var gb = (mb / 1024).toFixed(1).replace('.0', '');
-      ramVal.textContent = mb + ' MB (' + gb + ' GB)';
-    });
-  }
-
-  var mockPlayBtn = document.getElementById('mockPlayBtn');
-  var launchStatusText = document.getElementById('launchStatusText');
-  if (mockPlayBtn && launchStatusText) {
-    mockPlayBtn.addEventListener('click', function() {
-      mockPlayBtn.textContent = 'Inicjalizacja...';
-      launchStatusText.textContent = 'Sprawdzanie plików i alokacja pamięci RAM...';
-      setTimeout(function() {
-        mockPlayBtn.textContent = 'Gra uruchomiona ✓';
-        launchStatusText.textContent = 'DEZO CLIENT działa · Miłej rozgrywki!';
-      }, 900);
-      setTimeout(function() {
-        mockPlayBtn.textContent = 'Uruchom grę';
-        launchStatusText.textContent = 'Fabric Loader · Stabilny profil optymalizacyjny';
-      }, 3600);
-    });
-  }
-
-  var cards = document.querySelectorAll('.card');
-  cards.forEach(function(card) {
-    card.addEventListener('mousemove', function(e) {
-      var rect = card.getBoundingClientRect();
-      card.style.setProperty('--mx', (e.clientX - rect.left) + 'px');
-      card.style.setProperty('--my', (e.clientY - rect.top) + 'px');
-    });
+  var pb=$1('#play'),pt=$1('#st');
+  pb.addEventListener('click',function(){
+    pb.textContent='Inicjalizacja…';pt.textContent='Sprawdzanie plików i alokacja pamięci RAM…';
+    setTimeout(function(){pb.textContent='Gra uruchomiona ✓';pt.textContent='DEZO CLIENT działa · Miłej rozgrywki!'},900);
+    setTimeout(function(){pb.textContent='Uruchom grę';pt.textContent='Fabric Loader · Stabilny profil optymalizacyjny'},3600);
   });
 
-  var reveals = document.querySelectorAll('.reveal');
-  if ('IntersectionObserver' in window) {
-    var obs = new IntersectionObserver(function(entries) {
-      entries.forEach(function(entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('in-view');
-          obs.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.14 });
-    reveals.forEach(function(el) { obs.observe(el); });
-  } else {
-    reveals.forEach(function(el) { el.classList.add('in-view'); });
+  // Wejście elementów z rozmyciem
+  var rvs=$('.rv');
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.15});
+    rvs.forEach(function(el){io.observe(el)});
+  }else{rvs.forEach(function(el){el.classList.add('in')})}
+
+  // Rozmycie ruchu taśmy zależne od prędkości scrolla
+  var tape=$1('#tape'),lastY=window.scrollY,vel=0,reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function loop(){
+    var y=window.scrollY;vel+=((y-lastY)-vel)*.18;lastY=y;
+    var a=Math.min(Math.abs(vel),60);
+    tape.style.setProperty('--mb',(a*.16).toFixed(2)+'px');
+    tape.style.setProperty('--sk',(-vel*.12).toFixed(2)+'deg');
+    requestAnimationFrame(loop);
   }
+  if(!reduce)requestAnimationFrame(loop);
 
-  var toast = document.getElementById('toast');
-  var toastTitle = document.getElementById('toastTitle');
-  var toastDesc = document.getElementById('toastDesc');
-  var toastTimer = null;
-
-  function showToast(title, desc) {
-    if (!toast) return;
-    toastTitle.textContent = title;
-    toastDesc.textContent = desc;
-    toast.classList.add('show');
-    clearTimeout(toastTimer);
-    toastTimer = setTimeout(function() {
-      toast.classList.remove('show');
-    }, 3500);
-  }
-
-  // Dla przycisków pobierania pokazujemy powiadomienie Toast i pozwalamy na pobranie pliku z GitHub
-  document.querySelectorAll('.trigger-dl').forEach(function(btn) {
-    btn.addEventListener('click', function(e) {
-      showToast('Pobieranie DEZO CLIENT', 'Rozpoczęto pobieranie pliku DezoClient-Setup.exe.');
-    });
-  });
-
-  document.querySelectorAll('.trigger-dc').forEach(function(btn) {
-    btn.addEventListener('click', function(e) {
-      e.preventDefault();
-      showToast('Społeczność Discord', 'Przekierowywanie do oficjalnego serwera Discord...');
-    });
-  });
+  // Powiadomienia
+  var toast=$1('#toast'),tt=$1('#tt'),td=$1('#td'),tm;
+  function show(a,b){tt.textContent=a;td.textContent=b;toast.classList.add('show');clearTimeout(tm);tm=setTimeout(function(){toast.classList.remove('show')},3500)}
+  $('.trigger-dl').forEach(function(b){b.addEventListener('click',function(){show('Pobieranie DEZO CLIENT','Rozpoczęto pobieranie pliku DezoClient-Setup.exe.')})});
+  $('.trigger-dc').forEach(function(b){b.addEventListener('click',function(e){e.preventDefault();show('Społeczność Discord','Przekierowywanie do oficjalnego serwera Discord…')})});
 })();
 </script>
 </body>
