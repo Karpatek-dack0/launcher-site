@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>DezoClient — szybki launcher Minecraft</title>
-<meta name="description" content="DezoClient to darmowy launcher Minecraft z ponad 70 modami wydajności, logowaniem Microsoft i modami z Modrinth jednym kliknięciem.">
+<title>DezoClient — szybki i bezpieczny launcher Minecraft</title>
+<meta name="description" content="DezoClient to darmowy launcher Minecraft z ponad 70 modami wydajności, logowaniem Microsoft, modami z Modrinth i jasnymi zasadami prywatności.">
 <meta name="theme-color" content="#09090c">
 <link rel="icon" type="image/png" href="logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,50 +13,53 @@
 <style>
 :root{
   color-scheme:dark;
-  --bg:#09090c;--bg2:#0e0e12;--c1:#131318;--c2:#1a1a21;--c3:#23232c;
-  --b:rgba(255,255,255,.07);--b2:rgba(255,255,255,.12);
-  --tx:#f4f3f1;--mu:#9a98a3;--mu2:#64636d;
-  --gold:#ffb03d;--ac:#ff7a3d;--pink:#ff3f7a;--ok:#3ddc97;
+  --bg:#09090c;--bg2:#0e0e12;--c1:#131318;--c2:#1a1a21;--c3:#23232c;--c4:#2c2c37;
+  --b:rgba(255,255,255,.07);--b2:rgba(255,255,255,.12);--b3:rgba(255,255,255,.2);
+  --tx:#f4f3f1;--mu:#9a98a3;--mu2:#66656f;
+  --gold:#ffb03d;--ac:#ff7a3d;--pink:#ff3f7a;--ok:#3ddc97;--er:#ff5d6c;--ms:#00a4ef;
   --acg:linear-gradient(120deg,#ffb03d,#ff7a3d 40%,#ff3f7a);
   --sun:linear-gradient(#ffd36b,#ff7a3d 50%,#ff3f7a);
   --display:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;
   --body:"Instrument Sans","Segoe UI",system-ui,-apple-system,Roboto,sans-serif;
-  --ease:cubic-bezier(.16,1,.3,1);
+  --ease:cubic-bezier(.16,1,.3,1);--spring:cubic-bezier(.34,1.56,.64,1);
 }
 *,*::before,*::after{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:5.5rem}
 html,body{overflow-x:clip}
 body{margin:0;background:var(--bg);color:var(--tx);font:400 1rem/1.6 var(--body);-webkit-font-smoothing:antialiased}
-main,footer{overflow-x:clip}
 a{color:inherit;text-decoration:none}
 img{display:block;max-width:100%}
-h1,h2,h3{font-family:var(--display);margin:0;line-height:1;letter-spacing:-.035em;font-weight:800}
+h1,h2,h3,h4{font-family:var(--display);margin:0;line-height:1.02;letter-spacing:-.035em;font-weight:800}
 .wrap{max-width:76rem;margin:0 auto;padding:0 1.5rem}
 :focus-visible{outline:2px solid var(--ac);outline-offset:3px}
 .grad{background:var(--acg);-webkit-background-clip:text;background-clip:text;color:transparent}
-.eyebrow{display:inline-flex;align-items:center;gap:.55rem;padding:.38rem .85rem;border-radius:99px;border:1px solid var(--b2);background:rgba(255,255,255,.04);font:700 .72rem var(--body);letter-spacing:.14em;text-transform:uppercase;color:#ffcfae}
-.eyebrow::before{content:"";width:.45rem;height:.45rem;border-radius:50%;background:var(--ac);box-shadow:0 0 10px var(--ac);animation:blink 2s ease-in-out infinite}
+.eyebrow{display:inline-flex;align-items:center;gap:.55rem;padding:.38rem .9rem .38rem .45rem;border-radius:99px;border:1px solid var(--b2);background:rgba(255,255,255,.04);font:600 .82rem var(--body);color:#ffd9c2}
+.eyebrow b{padding:.12rem .55rem;border-radius:99px;background:var(--acg);color:#fff;font-size:.72rem;letter-spacing:.06em;flex:none}
+@media(max-width:560px){.eyebrow{font-size:.74rem;text-align:left;border-radius:14px}.tour button.st{min-width:0;padding:0 .85rem;height:2.3rem;font-size:.8rem}.tour button.pp{width:2.3rem;height:2.3rem}}
+.kick{display:inline-flex;align-items:center;gap:.55rem;font:700 .74rem var(--body);letter-spacing:.16em;text-transform:uppercase;color:#ffcfae;margin-bottom:1rem}
+.kick::before{content:"";width:.45rem;height:.45rem;border-radius:50%;background:var(--ac);box-shadow:0 0 10px var(--ac);animation:blink 2s ease-in-out infinite}
 @keyframes blink{50%{opacity:.35}}
 
-/* tło: delikatna siatka + poświata */
+/* tło */
 body::before{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;
-  background:radial-gradient(55rem 38rem at 82% -8%,rgba(255,122,61,.16),transparent 60%),radial-gradient(40rem 30rem at -10% 30%,rgba(255,63,122,.09),transparent 60%)}
+  background:radial-gradient(60rem 40rem at 50% -14%,rgba(255,122,61,.18),transparent 60%),radial-gradient(40rem 30rem at -10% 40%,rgba(255,63,122,.08),transparent 60%),radial-gradient(40rem 30rem at 110% 70%,rgba(255,176,61,.06),transparent 60%)}
 body::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
-  background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:56px 56px;
-  -webkit-mask-image:radial-gradient(ellipse at 50% 0%,#000 20%,transparent 70%);mask-image:radial-gradient(ellipse at 50% 0%,#000 20%,transparent 70%)}
+  background-image:linear-gradient(rgba(255,255,255,.028) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.028) 1px,transparent 1px);background-size:56px 56px;
+  -webkit-mask-image:radial-gradient(ellipse at 50% 0%,#000 15%,transparent 65%);mask-image:radial-gradient(ellipse at 50% 0%,#000 15%,transparent 65%)}
 
-/* wejście elementów: przesunięcie + lekkie rozmycie */
-.rv{opacity:0;transform:translate3d(0,24px,0);filter:blur(4px);transition:opacity .8s var(--ease),transform .8s var(--ease),filter .8s var(--ease);transition-delay:var(--d,0s)}
+/* wejście elementów */
+.rv{opacity:0;transform:translate3d(0,26px,0);filter:blur(5px);transition:opacity .9s var(--ease),transform .9s var(--ease),filter .9s var(--ease);transition-delay:var(--d,0s)}
 .rv.in{opacity:1;transform:none;filter:none}
 
 /* przyciski */
-.btn{position:relative;overflow:hidden;display:inline-flex;align-items:center;justify-content:center;gap:.6rem;height:3.25rem;padding:0 1.6rem;border-radius:14px;font:700 .98rem var(--body);border:1px solid transparent;cursor:pointer;white-space:nowrap;transition:transform .35s var(--ease),box-shadow .35s,background .25s,border-color .25s,translate .25s ease-out}
+.btn{position:relative;overflow:hidden;display:inline-flex;align-items:center;justify-content:center;gap:.6rem;height:3.3rem;padding:0 1.65rem;border-radius:14px;font:700 .98rem var(--body);border:1px solid transparent;cursor:pointer;white-space:nowrap;color:var(--tx);background:none;transition:transform .35s var(--ease),box-shadow .35s,background .25s,border-color .25s,translate .25s ease-out}
 .btn svg{width:1.15rem;height:1.15rem;flex:none}
+.btn small{font:600 .76rem var(--body);opacity:.85}
 .btn.pr{background:var(--acg);color:#fff;box-shadow:0 14px 36px -8px rgba(255,106,61,.6)}
-.btn.pr:hover{transform:translateY(-2px);box-shadow:0 18px 44px -8px rgba(255,106,61,.8)}
+.btn.pr:hover{transform:translateY(-2px);box-shadow:0 18px 44px -8px rgba(255,106,61,.85)}
 .btn.pr::after{content:"";position:absolute;inset:0 auto 0 0;width:40%;background:linear-gradient(105deg,transparent,rgba(255,255,255,.55),transparent);transform:translateX(-140%) skewX(-18deg)}
 .btn.pr:hover::after{transition:transform .9s var(--ease);transform:translateX(320%) skewX(-18deg)}
-.btn.gh{background:rgba(255,255,255,.04);border-color:var(--b2);color:var(--tx)}
+.btn.gh{background:rgba(255,255,255,.04);border-color:var(--b2)}
 .btn.gh:hover{background:rgba(255,255,255,.08);transform:translateY(-2px)}
 .btn.dc:hover{background:#5865f2;border-color:#5865f2}
 .btn:active{transform:scale(.97)}
@@ -64,136 +67,267 @@ body::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
 /* nagłówek */
 .prog{position:fixed;top:0;left:0;right:0;height:2px;z-index:70;background:var(--acg);transform:scaleX(0);transform-origin:left}
 header{position:sticky;top:0;z-index:60;transition:background .3s,border-color .3s;border-bottom:1px solid transparent}
-header.solid{background:rgba(9,9,12,.78);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom-color:var(--b)}
+header.solid{background:rgba(9,9,12,.8);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom-color:var(--b)}
 .nav{display:flex;align-items:center;justify-content:space-between;height:4.6rem;gap:1rem}
 .logo{display:flex;align-items:center;gap:.7rem;font:800 1.1rem var(--display);letter-spacing:.08em}
-.logo img{width:2.3rem;height:2.3rem;border-radius:.65rem;box-shadow:0 6px 20px -4px rgba(255,106,61,.5);transition:transform .5s var(--ease)}
-.logo:hover img{transform:rotate(-8deg) scale(1.06)}
-.nav ul{display:flex;gap:.3rem;list-style:none;margin:0;padding:.3rem;border:1px solid var(--b);border-radius:14px;background:rgba(255,255,255,.025)}
-.nav ul a{display:block;padding:.45rem .95rem;border-radius:10px;font-weight:600;font-size:.92rem;color:var(--mu);transition:color .2s,background .2s}
-.nav ul a:hover{color:var(--tx);background:rgba(255,255,255,.06)}
+.logo img{width:2.3rem;height:2.3rem;border-radius:.65rem;box-shadow:0 6px 20px -4px rgba(255,106,61,.5);transition:transform .5s var(--spring)}
+.logo:hover img{transform:rotate(-8deg) scale(1.08)}
+.nav ul{position:relative;display:flex;gap:.2rem;list-style:none;margin:0;padding:.3rem;border:1px solid var(--b);border-radius:14px;background:rgba(255,255,255,.025)}
+.nav ul a{position:relative;z-index:1;display:block;padding:.45rem .9rem;border-radius:10px;font-weight:600;font-size:.9rem;color:var(--mu);transition:color .25s}
+.nav ul a:hover,.nav ul a.on{color:var(--tx)}
+.nav .nind{position:absolute;top:.3rem;height:calc(100% - .6rem);left:0;width:0;border-radius:10px;background:rgba(255,255,255,.07);box-shadow:inset 0 0 0 1px rgba(255,122,61,.28);transition:transform .5s var(--spring),width .5s var(--spring),opacity .3s;opacity:0;pointer-events:none}
 .nav .r{display:flex;gap:.55rem}
 .nav .btn{height:2.6rem;padding:0 1.1rem;font-size:.9rem;border-radius:11px}
-@media(max-width:860px){.nav ul{display:none}}
+@media(max-width:960px){.nav ul{display:none}}
 @media(max-width:520px){.nav .btn.dc span{display:none}.nav .btn.dc{padding:0 .8rem}.logo span{display:none}}
 
 /* hero */
-.hero{position:relative;display:grid;grid-template-columns:1fr 1.15fr;gap:3.5rem;align-items:center;padding:3.5rem 0 5rem;min-height:calc(100vh - 4.6rem)}
-.hero h1{font-size:clamp(2.7rem,5.2vw,4.9rem);margin:1.3rem 0 0}
-.hero h1 .w{display:inline-block;opacity:0;transform:translate3d(0,.35em,0);animation:wIn .9s var(--ease) forwards;animation-delay:calc(.55s + var(--i)*.09s)}
-@keyframes wIn{to{opacity:1;transform:none}}
-.hero p.lead{max-width:31rem;font-size:1.13rem;color:var(--mu);margin:1.5rem 0 2rem}
-.cta{display:flex;gap:.75rem;flex-wrap:wrap}
-.trust{display:flex;flex-wrap:wrap;gap:.4rem 1.3rem;margin-top:1.8rem;color:var(--mu2);font-size:.88rem;font-weight:500}
+.hero{position:relative;text-align:center;padding:4.2rem 0 0}
+.hero h1{font-size:clamp(2.8rem,6.6vw,5.9rem);margin:1.5rem auto 0;max-width:15ch}
+.hero h1 .w{display:inline-block;opacity:0;transform:translate3d(0,.4em,0) rotate(3deg);filter:blur(8px);animation:wIn 1s var(--ease) forwards;animation-delay:calc(.5s + var(--i)*.08s)}
+@keyframes wIn{to{opacity:1;transform:none;filter:none}}
+.hero p.lead{max-width:36rem;margin:1.6rem auto 2.1rem;font-size:1.15rem;color:var(--mu)}
+.cta{display:flex;gap:.75rem;flex-wrap:wrap;justify-content:center}
+.trust{display:flex;flex-wrap:wrap;justify-content:center;gap:.4rem 1.4rem;margin-top:1.6rem;color:var(--mu2);font-size:.88rem;font-weight:500}
 .trust span{display:flex;align-items:center;gap:.45rem}
 .trust svg{width:1rem;height:1rem;color:var(--ok)}
 
-/* słońce w paski (motyw z logo) */
+/* słońce w paski */
 .sun{position:absolute;border-radius:50%;background:var(--sun);pointer-events:none;
   -webkit-mask-image:linear-gradient(#000 50%,transparent 50% 54%,#000 54% 62%,transparent 62% 67.5%,#000 67.5% 76%,transparent 76% 83%,#000 83% 90%,transparent 90%);
   mask-image:linear-gradient(#000 50%,transparent 50% 54%,#000 54% 62%,transparent 62% 67.5%,#000 67.5% 76%,transparent 76% 83%,#000 83% 90%,transparent 90%)}
-.hero .sun{width:min(38rem,82vw);aspect-ratio:1;right:-4rem;top:50%;translate:0 -46%;opacity:.22;animation:sunUp 1.6s var(--ease) .3s both}
-@keyframes sunUp{from{opacity:0;transform:translateY(60px)}}
 
-/* podgląd launchera */
-.stage{position:relative;perspective:1600px}
-.win{position:relative;background:var(--bg);border:1px solid var(--b2);border-radius:18px;overflow:hidden;box-shadow:0 40px 90px -20px rgba(0,0,0,.8),0 0 0 1px rgba(255,122,61,.08),0 30px 80px -30px rgba(255,90,61,.35);
-  transform:rotateY(-9deg) rotateX(4deg);transition:transform .9s var(--ease);animation:winIn 1.2s var(--ease) .5s both}
-.win.tilt{transition:transform .15s linear}
-@keyframes winIn{from{opacity:0;transform:translate3d(60px,20px,0) rotateY(-20deg)}}
-.wbar{display:flex;align-items:center;gap:.6rem;height:2.4rem;padding:0 .9rem;border-bottom:1px solid var(--b);font-size:.72rem;color:var(--mu2);font-weight:600}
-.wbar b{color:var(--tx)}
-.wbar .wd{margin-left:auto;display:flex;gap:.9rem}
-.wbar .wd i{width:.6rem;height:1px;background:var(--mu2);display:block}
-.app{display:grid;grid-template-columns:9.6rem 1fr;height:22.5rem}
-.aside{display:flex;flex-direction:column;gap:.2rem;padding:.8rem .6rem;background:var(--bg2);border-right:1px solid var(--b)}
-.abrand{display:flex;align-items:center;gap:.5rem;padding:0 .35rem .8rem;font:800 .72rem var(--display);letter-spacing:.12em}
-.abrand img{width:1.55rem;height:1.55rem;border-radius:.45rem}
-.aside button{all:unset;cursor:pointer;position:relative;display:flex;align-items:center;gap:.55rem;padding:.55rem .6rem;border-radius:9px;font:600 .78rem var(--body);color:var(--mu);transition:color .2s,background .2s}
-.aside button svg{width:.95rem;height:.95rem}
-.aside button:hover{color:var(--tx);background:rgba(255,255,255,.04)}
-.aside button.on{color:var(--tx);background:linear-gradient(90deg,rgba(255,122,61,.16),rgba(255,63,122,.04) 70%,transparent);box-shadow:inset 0 0 0 1px rgba(255,122,61,.22)}
-.aside button.on svg{color:var(--ac)}
-.aside button:focus-visible{outline:2px solid var(--ac)}
-.acc{margin-top:auto;display:flex;align-items:center;gap:.5rem;padding:.45rem;border-radius:10px;background:var(--c1);border:1px solid var(--b);font-size:.72rem}
-.acc i{width:1.6rem;height:1.6rem;border-radius:.4rem;background:linear-gradient(#3b2a1d 40%,#b88a6a 40%);flex:none}
-.acc b{display:block;font-size:.74rem}.acc small{color:var(--mu);display:flex;align-items:center;gap:.3rem;font-size:.66rem}
-.acc small::before{content:"";width:.35rem;height:.35rem;border-radius:50%;background:#00a4ef}
-.panes{position:relative;padding:.8rem;min-width:0}
-.pane{position:absolute;inset:.8rem;display:none;flex-direction:column;gap:.7rem}
-.pane.on{display:flex;animation:paneIn .45s var(--ease)}
-@keyframes paneIn{from{opacity:0;transform:translateY(8px)}}
-.banner{position:relative;flex:1;border-radius:14px;overflow:hidden;border:1px solid var(--b);
-  background:radial-gradient(90% 90% at 80% 120%,rgba(255,122,61,.5),transparent 55%),radial-gradient(60% 70% at 100% 0%,rgba(255,63,122,.28),transparent 60%),#16121a}
-.banner .sun{width:13rem;aspect-ratio:1;right:1.2rem;bottom:-6.5rem;opacity:.4}
-.steve{position:absolute;right:3.6rem;bottom:.9rem;width:2.6rem;height:6.6rem}
-.steve i{position:absolute;display:block}
-.steve .h{left:.65rem;top:0;width:1.3rem;height:1.3rem;background:linear-gradient(#3b2a1d 32%,#b88a6a 32%)}
-.steve .t{left:.65rem;top:1.3rem;width:1.3rem;height:2rem;background:#2fa1b5}
-.steve .a1,.steve .a2{top:1.3rem;width:.65rem;height:2rem;background:linear-gradient(#2fa1b5 30%,#b88a6a 30%);transform-origin:top center;animation:sw 2.4s ease-in-out infinite}
-.steve .a1{left:0}.steve .a2{left:1.95rem;animation-delay:-1.2s}
-.steve .l{left:.65rem;top:3.3rem;width:1.3rem;height:2rem;background:#3b43a8}
-@keyframes sw{50%{transform:rotate(7deg)}}
-.btxt{position:absolute;left:1rem;top:50%;translate:0 -50%;max-width:60%}
-.btxt small{font-size:.6rem;font-weight:700;letter-spacing:.14em;color:#ffcfae}
-.btxt h4{margin:.3rem 0 .7rem;font:800 1.45rem/1 var(--display);letter-spacing:-.03em}
-.mplay{all:unset;cursor:pointer;display:inline-flex;flex-direction:column;padding:.55rem 1.2rem;border-radius:10px;background:var(--acg);color:#fff;font:800 .8rem var(--display);letter-spacing:.06em;box-shadow:0 10px 26px -6px rgba(255,106,61,.7);transition:transform .3s var(--ease),filter .2s;min-width:7rem}
-.mplay small{font:600 .58rem var(--body);letter-spacing:0;color:#ffe6d8}
-.mplay:hover{transform:translateY(-2px);filter:brightness(1.08)}
-.mplay.run{background:#10261d;color:#8ff3c6;box-shadow:0 0 0 1px rgba(61,220,151,.4)}
-.mbar{height:3px;border-radius:2px;background:var(--c3);overflow:hidden;margin-top:.6rem;width:9rem}
-.mbar i{display:block;height:100%;width:0;background:var(--acg);transition:width .3s linear}
-.tiles{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.55rem}
-.tl{padding:.55rem .65rem;border-radius:10px;background:var(--c1);border:1px solid var(--b);font-size:.66rem;color:var(--mu)}
-.tl b{display:block;font:800 .95rem var(--display);color:var(--tx);letter-spacing:-.01em}
-.tl .on{color:var(--ok);font-weight:700}
-.ptitle{font:800 1.05rem var(--display);letter-spacing:-.02em}
-.ptitle small{display:block;font:500 .68rem var(--body);color:var(--mu);letter-spacing:0;margin-top:.15rem}
-.mlist{display:flex;flex-direction:column;gap:.35rem;overflow:hidden}
-.mrow{display:flex;align-items:center;gap:.55rem;padding:.45rem .55rem;border-radius:9px;background:var(--c1);border:1px solid var(--b);font-size:.74rem;font-weight:600;cursor:pointer;transition:border-color .2s,opacity .25s}
-.mrow:hover{border-color:var(--b2)}
-.mrow .ic{width:1.5rem;height:1.5rem;border-radius:.4rem;background:var(--c3);display:grid;place-items:center;font:800 .7rem var(--display);color:var(--mu)}
-.mrow .nm{flex:1}
-.mrow .tg{font-size:.6rem;color:var(--mu2);padding:.1rem .45rem;border-radius:99px;border:1px solid var(--b)}
-.mrow .tg.core{color:#ffcfae;border-color:rgba(255,122,61,.35)}
-.sw{width:1.9rem;height:1.05rem;border-radius:99px;background:var(--c3);position:relative;transition:background .25s;flex:none}
-.sw::after{content:"";position:absolute;top:.15rem;left:.15rem;width:.75rem;height:.75rem;border-radius:50%;background:var(--mu);transition:transform .35s var(--ease),background .25s}
-.mrow.on .sw{background:var(--acg)}.mrow.on .sw::after{transform:translateX(.85rem);background:#fff}
-.mrow.off{opacity:.5}
-.mrow.locked{cursor:default}
-.srow{display:flex;align-items:center;gap:.6rem;padding:.6rem;border-radius:11px;background:var(--c1);border:1px solid var(--b)}
-.srow .av{width:2.2rem;height:2.2rem;border-radius:.55rem;background:var(--acg);display:grid;place-items:center;font:800 .9rem var(--display)}
-.srow b{display:block;font-size:.8rem}.srow small{display:flex;align-items:center;gap:.35rem;font-size:.66rem;color:var(--ok);font-weight:700}
-.srow small::before{content:"";width:.4rem;height:.4rem;border-radius:50%;background:var(--ok);box-shadow:0 0 8px var(--ok);animation:blink 2s infinite}
-.srow .cp{margin-left:auto;font-size:.66rem;font-weight:700;padding:.35rem .6rem;border-radius:8px;background:rgba(255,255,255,.06);cursor:pointer;transition:background .2s}
-.srow .cp:hover{background:var(--ac)}
-.ram{padding:.8rem;border-radius:11px;background:var(--c1);border:1px solid var(--b);font-size:.76rem}
-.ram .t{display:flex;justify-content:space-between;font-weight:700}
-.ram .t b{font:800 .95rem var(--display)}
-.ram input{width:100%;margin-top:.7rem;accent-color:var(--ac);cursor:pointer}
-.ram small{color:var(--mu);font-size:.66rem}
-.opt{display:flex;justify-content:space-between;align-items:center;padding:.6rem .8rem;border-radius:11px;background:var(--c1);border:1px solid var(--b);font-size:.76rem;font-weight:600;cursor:pointer}
-.opt.on .sw{background:var(--acg)}.opt.on .sw::after{transform:translateX(.85rem);background:#fff}
-.floatcard{position:absolute;z-index:2;display:flex;align-items:center;gap:.6rem;padding:.65rem .85rem;border-radius:13px;background:rgba(23,23,29,.92);border:1px solid var(--b2);box-shadow:0 18px 40px -10px rgba(0,0,0,.8);font-size:.8rem;backdrop-filter:blur(10px)}
-.floatcard b{display:block;font-size:.82rem}.floatcard small{color:var(--mu);font-size:.72rem}
-.fc1{left:-1.6rem;bottom:2.4rem;animation:bob 6s ease-in-out infinite}
-.fc2{right:-1.2rem;top:-1.2rem;animation:bob 7s ease-in-out -2s infinite}
-.fc1 .d{width:.55rem;height:.55rem;border-radius:50%;background:var(--ok);box-shadow:0 0 10px var(--ok)}
-.fc2 .ms{display:grid;grid-template-columns:.5rem .5rem;gap:2px}.fc2 .ms i{width:.5rem;height:.5rem}
-.fc2 .ms i:nth-child(1){background:#f25022}.fc2 .ms i:nth-child(2){background:#7fba00}.fc2 .ms i:nth-child(3){background:#00a4ef}.fc2 .ms i:nth-child(4){background:#ffb900}
-@keyframes bob{50%{transform:translateY(-8px)}}
-@media(max-width:980px){.hero{grid-template-columns:1fr;min-height:0;padding-top:2rem}.win{transform:none}.hero .sun{right:-30%;top:auto;bottom:-10%;translate:none}.fc1{left:.4rem}.fc2{right:.4rem}}
-@media(max-width:600px){.app{grid-template-columns:1fr;height:auto}.aside{flex-direction:row;overflow-x:auto;border-right:0;border-bottom:1px solid var(--b);padding:.5rem}.abrand,.acc{display:none}.panes{height:21rem}.floatcard{display:none}}
+/* ============ POKAZ LAUNCHERA ============ */
+.show{position:relative;margin:4.2rem auto 0;max-width:68rem}
+.show .halo{position:absolute;left:50%;top:18%;width:80%;height:70%;translate:-50% 0;border-radius:50%;background:radial-gradient(closest-side,rgba(255,106,61,.38),rgba(255,63,122,.12) 55%,transparent);filter:blur(30px);pointer-events:none}
+.tilt{position:relative;transform-origin:50% 0;transform:perspective(1800px) rotateX(var(--rx,0deg)) scale(var(--sc,1));will-change:transform}
+.frame{position:relative;border-radius:18px;padding:1px;background:linear-gradient(180deg,rgba(255,255,255,.22),rgba(255,255,255,.04) 30%,rgba(255,122,61,.25));box-shadow:0 50px 120px -30px rgba(0,0,0,.9),0 30px 90px -40px rgba(255,90,61,.55)}
+.fit{position:relative;overflow:hidden;border-radius:17px}
+.screen{position:absolute;left:0;top:0;width:1000px;height:620px;transform-origin:0 0;transform:scale(var(--s,1))}
+.reflect{position:absolute;inset:0;border-radius:17px;background:linear-gradient(115deg,transparent 35%,rgba(255,255,255,.05) 45%,transparent 55%);background-size:250% 100%;animation:refl 9s ease-in-out infinite;pointer-events:none;z-index:5}
+@keyframes refl{0%,60%{background-position:120% 0}100%{background-position:-60% 0}}
+
+/* okno launchera (wymiary w px projektu 1000x620) */
+.lw{position:absolute;inset:0;display:flex;flex-direction:column;background:#09090c;font:13px/1.4 var(--body);color:var(--tx);text-align:left;user-select:none;-webkit-user-select:none}
+.lw::before{content:"";position:absolute;right:-180px;top:-220px;width:620px;height:460px;border-radius:50%;background:radial-gradient(closest-side,rgba(255,122,61,.12),transparent);pointer-events:none}
+.ltop{position:relative;z-index:3;height:56px;flex:none;display:flex;align-items:center;gap:6px;padding:0 12px 0 14px;border-bottom:1px solid rgba(255,255,255,.06);background:linear-gradient(180deg,#101015,#0b0b0e)}
+.ltop::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:1px;background:linear-gradient(90deg,transparent,rgba(255,122,61,.4) 30%,rgba(255,63,122,.3) 60%,transparent)}
+.lbrand{display:flex;align-items:center;gap:9px;margin-right:8px}
+.lbrand img{width:30px;height:30px;border-radius:9px;box-shadow:0 0 0 1px rgba(255,255,255,.08),0 6px 18px rgba(255,106,61,.3)}
+.lbrand b{display:block;font:800 12.5px var(--display);letter-spacing:.12em}
+.lbrand small{display:block;font-size:10px;color:var(--mu2)}
+.lnav{position:relative;display:flex;gap:2px;padding:3px;border-radius:12px;background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.06)}
+.lnav button{all:unset;position:relative;z-index:1;display:flex;align-items:center;gap:7px;height:32px;padding:0 13px;border-radius:9px;font:600 12.5px var(--body);color:#8f8e98;cursor:pointer;transition:color .3s}
+.lnav button svg{width:14px;height:14px}
+.lnav button:hover{color:var(--tx)}
+.lnav button.on{color:#fff}
+.lind{position:absolute;top:3px;left:0;height:32px;width:0;border-radius:9px;background:var(--acg);box-shadow:0 6px 18px rgba(255,106,61,.45),inset 0 1px 0 rgba(255,255,255,.3);transition:transform .55s var(--spring),width .55s var(--spring)}
+.lsp{flex:1}
+.lic{width:30px;height:30px;border-radius:8px;display:grid;place-items:center;color:#8f8e98}
+.lic svg{width:16px;height:16px}
+.lprof{display:flex;align-items:center;gap:8px;padding:4px 10px 4px 4px;border-radius:11px;background:#131318;border:1px solid rgba(255,255,255,.06)}
+.face{width:28px;height:28px;border-radius:7px;image-rendering:pixelated;
+  background:linear-gradient(#3b2a1d,#3b2a1d) 0 0/28px 8px no-repeat,linear-gradient(#fff,#fff) 4px 14px/4px 3px no-repeat,linear-gradient(#523d89,#523d89) 8px 14px/3px 3px no-repeat,linear-gradient(#523d89,#523d89) 17px 14px/3px 3px no-repeat,linear-gradient(#fff,#fff) 20px 14px/4px 3px no-repeat,linear-gradient(#6a4030,#6a4030) 10px 20px/8px 3px no-repeat,#b88a6a}
+.lprof b{display:block;font-size:12px}
+.lprof small{display:flex;align-items:center;gap:5px;font-size:10px;color:#8f8e98}
+.lprof small::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--ms);box-shadow:0 0 8px var(--ms)}
+.lsep{width:1px;height:16px;background:rgba(255,255,255,.1);margin:0 6px}
+.lwin{display:flex;gap:16px;padding:0 8px}
+.lwin i{width:10px;height:10px;display:block;border:1.5px solid #6f6e78;border-radius:2px}
+.lwin i:first-child{border:0;border-bottom:1.5px solid #6f6e78;height:6px}
+.lwin i:last-child{border:0;background:linear-gradient(45deg,transparent 45%,#6f6e78 45% 55%,transparent 55%),linear-gradient(-45deg,transparent 45%,#6f6e78 45% 55%,transparent 55%)}
+.lbody{position:relative;flex:1;margin:16px 18px 18px}
+.lpane{position:absolute;inset:0;display:flex;flex-direction:column;gap:14px;opacity:0;visibility:hidden;transform:translateY(10px);transition:opacity .45s var(--ease),transform .55s var(--ease),visibility 0s .45s}
+.lpane.on{opacity:1;visibility:visible;transform:none;transition:opacity .45s var(--ease),transform .55s var(--ease),visibility 0s}
+.lcard{background:#131318;border:1px solid rgba(255,255,255,.06);border-radius:16px}
+.lbl{font-size:10px;font-weight:700;letter-spacing:.14em;color:#5f5e68}
+.lph h4{font:800 22px var(--display);letter-spacing:-.02em}
+.lph p{margin:2px 0 0;font-size:12px;color:#8f8e98}
+
+/* Graj */
+.lhero{position:relative;flex:1;border-radius:20px;overflow:hidden;border:1px solid rgba(255,255,255,.06);
+  background:radial-gradient(90% 90% at 78% 115%,rgba(255,122,61,.45),transparent 55%),radial-gradient(60% 70% at 100% 0%,rgba(255,63,122,.25),transparent 60%),linear-gradient(90deg,#0b0b0e 0%,rgba(11,11,14,.7) 40%,transparent 70%),#16121a}
+.lhero::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);background-size:40px 40px;-webkit-mask-image:linear-gradient(90deg,transparent 30%,#000 75%);mask-image:linear-gradient(90deg,transparent 30%,#000 75%)}
+.lhero .sun{width:300px;aspect-ratio:1;right:120px;bottom:-150px;opacity:.5;animation:sunb 6s ease-in-out infinite}
+@keyframes sunb{50%{transform:scale(1.05);opacity:.62}}
+.chipsv{position:absolute;left:18px;top:16px;display:flex;gap:6px;z-index:2}
+.chipsv span{height:27px;padding:0 11px;border-radius:8px;display:flex;align-items:center;gap:6px;background:rgba(9,9,12,.6);border:1px solid rgba(255,255,255,.1);font-size:11.5px;font-weight:600;color:#cfccd4;transition:all .3s}
+.chipsv span.on{background:rgba(255,122,61,.16);border-color:rgba(255,122,61,.55);color:#ffd2b8}
+.chipsv span.ok::after{content:"";width:5px;height:5px;border-radius:50%;background:var(--ok)}
+.pillsr{position:absolute;right:16px;top:16px;display:flex;gap:7px;z-index:2}
+.pillsr span{height:28px;padding:0 11px;border-radius:9px;display:flex;align-items:center;gap:6px;background:rgba(9,9,12,.6);border:1px solid rgba(255,255,255,.1);font-size:11.5px;font-weight:600;color:#ddd}
+.ltext{position:absolute;left:28px;bottom:24px;z-index:2}
+.ltext small{display:block;font-size:15px;color:#8f8e98;font-weight:600}
+.ltext h5{margin:2px 0 6px;font:800 42px/1 var(--display);letter-spacing:-.035em;background:linear-gradient(90deg,#fff 30%,#ffd2b8);-webkit-background-clip:text;background-clip:text;color:transparent}
+.ltext p{margin:0 0 14px;font-size:12px;color:#c9c6cf;max-width:330px}
+.lcta{display:flex;align-items:stretch}
+.lplay{position:relative;overflow:hidden;height:52px;min-width:210px;padding:0 22px;border-radius:14px 0 0 14px;background:var(--acg);display:flex;flex-direction:column;justify-content:center;font:800 15px var(--display);letter-spacing:.06em;color:#fff;box-shadow:0 14px 34px rgba(255,106,61,.45);transition:background .3s,color .3s,box-shadow .3s}
+.lplay small{font:600 10.5px var(--body);letter-spacing:0;color:#ffe6d8}
+.lplay .pb{position:absolute;left:0;bottom:0;height:3px;width:0;background:#fff;box-shadow:0 0 12px #fff}
+.lplay.run{background:#2a1a22;box-shadow:0 0 0 1px rgba(255,122,61,.45)}
+.lplay.run::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(115deg,rgba(255,122,61,.16) 0 14px,transparent 14px 28px);background-size:200% 100%;animation:stripes 1.1s linear infinite}
+.lplay.game{background:#10261d;color:#8ff3c6;box-shadow:0 0 0 1px rgba(61,220,151,.4)}
+.lplay.game small{color:#6fcfa3}
+.lplay span,.lplay small{position:relative}
+@keyframes stripes{to{background-position:-56px 0}}
+.lver{height:52px;padding:0 14px;display:flex;align-items:center;gap:7px;border-radius:0 14px 14px 0;background:#ff3f7a;border-left:1px solid rgba(255,255,255,.25);font-weight:700;color:#fff}
+.lstat{margin-top:10px;height:26px;display:flex;align-items:center;gap:8px;width:max-content;padding:0 11px;border-radius:9px;background:rgba(9,9,12,.65);border:1px solid rgba(255,255,255,.07);font-size:11.5px;color:#d1ced6;opacity:0;transform:translateY(-4px);transition:all .35s var(--ease)}
+.lstat.on{opacity:1;transform:none}
+.lstat::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--ac);box-shadow:0 0 8px var(--ac)}
+.lstat.ok::before{background:var(--ok);box-shadow:0 0 8px var(--ok)}
+.fig{position:absolute;right:190px;bottom:44px;z-index:1;width:64px;height:128px;transform:scale(1.75);transform-origin:50% 100%;perspective:700px}
+.fig .rot{position:absolute;inset:0;transform-style:preserve-3d;animation:spinf 9s ease-in-out infinite}
+@keyframes spinf{0%,100%{transform:rotateY(-32deg) rotateX(-6deg)}50%{transform:rotateY(32deg) rotateX(-6deg)}}
+.fig .shadow{position:absolute;left:4px;right:4px;bottom:-6px;height:10px;border-radius:50%;background:rgba(0,0,0,.55);filter:blur(4px)}
+.bx{position:absolute;transform-style:preserve-3d}
+.bx i{position:absolute;display:block;backface-visibility:hidden;image-rendering:pixelated}
+.bx .l,.bx .r{filter:brightness(.78)}
+.bx .k{filter:brightness(.62)}
+.bx .t{filter:brightness(1.12)}
+.bx .u{filter:brightness(.5)}
+.arm-l{transform-origin:8px 4px;animation:armL 2.6s ease-in-out infinite}
+.arm-r{transform-origin:8px 4px;animation:armL 2.6s ease-in-out -1.3s infinite}
+@keyframes armL{0%,100%{transform:translate3d(var(--x),var(--y),0) rotateX(10deg)}50%{transform:translate3d(var(--x),var(--y),0) rotateX(-10deg)}}
+.lrow{display:grid;grid-template-columns:1.15fr 1fr 1fr;gap:14px;height:150px;flex:none}
+.lrow .lcard{padding:14px;display:flex;flex-direction:column;gap:10px;overflow:hidden}
+.lrow .hd{display:flex;justify-content:space-between;align-items:center}
+.lrow .hd a{font-size:11px;color:#8f8e98;font-weight:600}
+.srv{display:flex;align-items:center;gap:10px;padding:9px;border-radius:12px;background:#1a1a21}
+.gg{width:38px;height:38px;border-radius:10px;display:grid;place-items:center;background:#111;font:900 15px var(--display);color:#ffd23d;letter-spacing:-.06em;text-shadow:2px 2px 0 #b8860b}
+.srv b{display:block;font-size:13px}
+.srv small{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--ok);font-weight:600}
+.srv small::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--ok);box-shadow:0 0 8px var(--ok);animation:blink 2s infinite}
+.srv .cp{margin-left:auto;height:28px;padding:0 10px;border-radius:8px;display:flex;align-items:center;background:rgba(255,255,255,.05);font-size:11px;font-weight:600;color:#8f8e98;transition:all .25s}
+.srv .cp.hot{background:var(--ac);color:#fff}
+.news{position:relative;flex:1;border-radius:12px;overflow:hidden;background:radial-gradient(100% 120% at 100% 0%,rgba(255,63,122,.35),transparent 55%),radial-gradient(90% 100% at 0% 100%,rgba(255,176,61,.3),transparent 60%),#1a1a21}
+.news img{position:absolute;right:-14px;bottom:-16px;width:90px;transform:rotate(-12deg)}
+.news small{position:absolute;left:12px;bottom:28px;font-size:9.5px;font-weight:700;letter-spacing:.12em;color:#ffd7c2}
+.news b{position:absolute;left:12px;bottom:9px;font:700 14px var(--display)}
+.qs{display:grid;grid-template-columns:1fr 1fr;gap:6px;flex:1}
+.qs div{padding:4px 10px;border-radius:10px;background:#1a1a21;display:flex;flex-direction:column;justify-content:center}
+.qs small{font-size:10px;color:#8f8e98}
+.qs b{font:800 14px var(--display)}
+
+/* Mody */
+.lsearch{display:flex;gap:10px}
+.lsearch .in{flex:1;height:40px;display:flex;align-items:center;gap:9px;padding:0 13px;border-radius:12px;background:#131318;border:1px solid rgba(255,255,255,.1);color:#8f8e98;transition:border-color .3s,box-shadow .3s}
+.lsearch .in.f{border-color:var(--ac);box-shadow:0 0 0 4px rgba(255,122,61,.18)}
+.lsearch .in svg{width:15px;height:15px}
+.lsearch .in .q{color:var(--tx)}
+.lsearch .in .q:empty::before{content:"Szukaj na Modrinth, np. Sodium, Iris, Zoom";color:#66656f}
+.caret{width:1.5px;height:16px;background:var(--ac);margin-left:-6px;animation:blink 1s steps(1) infinite;opacity:0}
+.in.f .caret{opacity:1}
+.lsearch .go{height:40px;padding:0 16px;border-radius:12px;display:grid;place-items:center;background:var(--acg);font-weight:700;color:#fff}
+.ltabs{display:flex;gap:3px;padding:3px;border-radius:11px;background:#131318;border:1px solid rgba(255,255,255,.06);font-size:12px;font-weight:600}
+.ltabs span{padding:6px 12px;border-radius:8px;color:#8f8e98}
+.ltabs span.on{background:var(--acg);color:#fff}
+.mods{flex:1;display:flex;gap:14px;min-height:0}
+.mgrid{flex:1;display:grid;grid-template-columns:repeat(3,1fr);gap:10px;align-content:start}
+.mc{padding:12px;border-radius:14px;background:#131318;border:1px solid rgba(255,255,255,.06);display:flex;flex-direction:column;gap:8px;opacity:0;transform:translateY(10px) scale(.98);transition:opacity .45s var(--ease),transform .5s var(--ease),border-color .3s,box-shadow .3s}
+.mc.in{opacity:1;transform:none}
+.mc.sel{border-color:rgba(255,122,61,.6);box-shadow:0 0 0 1px rgba(255,122,61,.35),0 12px 26px rgba(255,106,61,.15)}
+.mc .h{display:flex;gap:9px;align-items:center}
+.mav{width:34px;height:34px;border-radius:9px;display:grid;place-items:center;font:800 14px var(--display);color:#fff;flex:none}
+.mc b{display:block;font-size:12.5px}
+.mc small{font-size:10.5px;color:#8f8e98}
+.mc p{margin:0;font-size:11px;color:#b4b2bb;line-height:1.45;height:32px;overflow:hidden}
+.mc .f{display:flex;justify-content:space-between;align-items:center;font-size:10.5px;color:#8f8e98}
+.mc .dl{width:26px;height:26px;border-radius:8px;display:grid;place-items:center;background:#23232c;color:var(--tx)}
+.mc .dl svg{width:13px;height:13px}
+.mdet{width:250px;padding:16px;display:flex;flex-direction:column;gap:12px;border-radius:18px;background:radial-gradient(120% 60% at 50% 0%,rgba(255,122,61,.1),transparent 70%),#131318;border:1px solid rgba(255,255,255,.06)}
+.mdet .big{width:54px;height:54px;border-radius:14px;display:grid;place-items:center;font:800 22px var(--display);color:#fff}
+.mdet h6{margin:0;font:700 16px var(--display)}
+.mdet .mu{font-size:11px;color:#8f8e98}
+.mdet .tags{display:flex;gap:5px;flex-wrap:wrap}
+.mdet .tags span{padding:2px 9px;border-radius:99px;background:#23232c;font-size:10px;color:#c9c6cf}
+.mdet p{margin:0;font-size:11.5px;color:#c4c1ca;line-height:1.55;flex:1}
+.mdl{position:relative;overflow:hidden;height:40px;border-radius:12px;display:grid;place-items:center;background:var(--acg);font-weight:700;color:#fff;font-size:12.5px}
+.mdl i{position:absolute;left:0;top:0;bottom:0;width:0;background:rgba(255,255,255,.22)}
+.mdl.done{background:#10261d;color:#8ff3c6;box-shadow:0 0 0 1px rgba(61,220,151,.4)}
+.mdl span{position:relative}
+
+/* Serwery */
+.sgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.scard{border-radius:18px;overflow:hidden;background:#131318;border:1px solid rgba(255,255,255,.06)}
+.scard .ban{position:relative;height:100px;background:radial-gradient(80% 120% at 80% 120%,rgba(255,122,61,.55),transparent 60%),radial-gradient(70% 100% at 0% 0%,rgba(255,63,122,.35),transparent 60%),#1d1620}
+.scard .ban .gg{position:absolute;left:16px;bottom:-20px;width:50px;height:50px;border:3px solid #131318;font-size:19px;border-radius:13px}
+.scard .bd{padding:28px 16px 16px;display:flex;align-items:center;gap:12px}
+.scard .bd div{flex:1}
+.scard b{display:block;font:700 15px var(--display)}
+.scard small{display:block;font-size:11.5px;color:#8f8e98}
+.scard .on{display:flex;align-items:center;gap:6px;color:var(--ok);font-weight:600;margin-top:3px}
+.scard .on::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--ok);box-shadow:0 0 8px var(--ok);animation:blink 2s infinite}
+.scard .cpy{height:36px;padding:0 14px;border-radius:11px;display:grid;place-items:center;background:var(--acg);color:#fff;font-weight:700;font-size:12px;transition:transform .2s}
+.scard .cpy.hot{transform:scale(.94)}
+.snew{display:grid;place-items:center;text-align:center;border:1px dashed rgba(255,255,255,.14);border-radius:18px;color:#8f8e98;font-size:12.5px;padding:20px}
+.snew b{display:block;color:var(--tx);font:700 14px var(--display);margin-bottom:4px}
+.lnote{display:flex;gap:10px;align-items:center;padding:12px 14px;border-radius:14px;background:#131318;border:1px dashed rgba(255,255,255,.12);color:#8f8e98;font-size:12px}
+
+/* Ustawienia */
+.setg{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.sec{padding:4px 18px}
+.sec h6{margin:0;padding:14px 0 4px;font:700 13.5px var(--display);display:flex;align-items:center;gap:8px}
+.sec h6 i{width:8px;height:8px;border-radius:2px;background:var(--ac)}
+.srow{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.06);font-size:12.5px}
+.srow:last-child{border:0}
+.srow small{display:block;font-size:10.5px;color:#8f8e98}
+.tg{width:38px;height:22px;border-radius:99px;background:#23232c;border:1px solid rgba(255,255,255,.1);position:relative;flex:none;transition:background .3s}
+.tg::after{content:"";position:absolute;top:2px;left:2px;width:16px;height:16px;border-radius:50%;background:#8f8e98;transition:transform .45s var(--spring),background .3s}
+.tg.on{background:var(--acg);border-color:transparent}
+.tg.on::after{transform:translateX(16px);background:#fff}
+.ram{display:block!important}
+.ram .t{display:flex;justify-content:space-between;align-items:center}
+.ram .t b{font:800 15px var(--display)}
+.track{position:relative;height:6px;border-radius:3px;background:#23232c;margin:14px 0 8px}
+.track .fl{position:absolute;left:0;top:0;bottom:0;border-radius:3px;background:var(--acg)}
+.track .th{position:absolute;top:50%;width:18px;height:18px;margin:-9px 0 0 -9px;border-radius:50%;background:#fff;border:4px solid var(--ac);box-shadow:0 0 0 6px rgba(255,122,61,.18)}
+.lbtn{height:32px;padding:0 13px;border-radius:10px;display:grid;place-items:center;background:#1a1a21;border:1px solid rgba(255,255,255,.1);font-weight:600;font-size:12px;transition:all .3s}
+.lbtn.ok{color:#8ff3c6;border-color:rgba(61,220,151,.4);background:#10261d}
+
+/* kursor demo i toast w oknie */
+.cur{position:absolute;left:0;top:0;z-index:20;width:22px;height:22px;pointer-events:none;transition:transform .75s cubic-bezier(.45,0,.2,1),opacity .4s;opacity:0;filter:drop-shadow(0 3px 6px rgba(0,0,0,.6))}
+.cur.on{opacity:1}
+.cur svg{width:22px;height:22px;transition:transform .15s}
+.cur.dn svg{transform:scale(.82)}
+.rip{position:absolute;z-index:19;width:40px;height:40px;margin:-20px 0 0 -20px;border-radius:50%;border:2px solid rgba(255,176,61,.9);pointer-events:none;animation:rip .6s var(--ease) forwards}
+@keyframes rip{from{transform:scale(.2);opacity:1}to{transform:scale(1.3);opacity:0}}
+.ltoast{position:absolute;right:16px;bottom:16px;z-index:15;display:flex;align-items:center;gap:9px;padding:11px 14px;border-radius:13px;background:rgba(25,25,31,.96);border:1px solid rgba(255,255,255,.12);box-shadow:0 18px 40px rgba(0,0,0,.7);font-size:12px;transform:translateX(30px);opacity:0;transition:all .45s var(--ease)}
+.ltoast.on{transform:none;opacity:1}
+.ltoast i{width:8px;height:8px;border-radius:50%;background:var(--ok);box-shadow:0 0 10px var(--ok)}
+
+/* sterowanie pokazem */
+.tour{display:flex;align-items:center;justify-content:center;gap:.6rem;margin-top:1.6rem;flex-wrap:wrap}
+.tour button.st{position:relative;overflow:hidden;min-width:7.5rem;height:2.5rem;padding:0 1rem;border-radius:11px;border:1px solid var(--b2);background:rgba(255,255,255,.03);color:var(--mu);font:600 .86rem var(--body);cursor:pointer;transition:color .25s,border-color .25s,background .25s}
+.tour button.st:hover{color:var(--tx);border-color:var(--b3)}
+.tour button.st.on{color:var(--tx);border-color:rgba(255,122,61,.5);background:rgba(255,122,61,.08)}
+.tour button.st i{position:absolute;left:0;bottom:0;height:2px;width:0;background:var(--acg)}
+.tour button.pp{width:2.5rem;height:2.5rem;border-radius:11px;border:1px solid var(--b2);background:rgba(255,255,255,.03);color:var(--tx);display:grid;place-items:center;cursor:pointer}
+.tour button.pp svg{width:1rem;height:1rem}
+.tour .hint{width:100%;text-align:center;color:var(--mu2);font-size:.82rem;margin-top:.2rem}
+
+.fl-card{position:absolute;z-index:6;display:flex;align-items:center;gap:.65rem;padding:.7rem .9rem;border-radius:14px;background:rgba(23,23,29,.9);border:1px solid var(--b2);box-shadow:0 20px 44px -12px rgba(0,0,0,.85);font-size:.8rem;text-align:left;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.fl-card b{display:block;font-size:.84rem}.fl-card small{color:var(--mu);font-size:.74rem}
+/* karty leżą na krawędziach okna, w pustych miejscach podglądu (nie zasłaniają przycisków) */
+.fl1{left:-3.2rem;bottom:4.6rem;animation:bob 6s ease-in-out infinite}
+.fl2{right:-2.6rem;top:-3.4rem;animation:bob 7s ease-in-out -2s infinite}
+.fl3{right:-2.4rem;bottom:-2.9rem;animation:bob 6.5s ease-in-out -4s infinite}
+.fl-card .dot{width:.6rem;height:.6rem;border-radius:50%;background:var(--ok);box-shadow:0 0 10px var(--ok)}
+.fl-card .msq{display:grid;grid-template-columns:.5rem .5rem;gap:2px}.fl-card .msq i{width:.5rem;height:.5rem}
+.msq i:nth-child(1){background:#f25022}.msq i:nth-child(2){background:#7fba00}.msq i:nth-child(3){background:#00a4ef}.msq i:nth-child(4){background:#ffb900}
+.fl-card .shd{width:1.9rem;height:1.9rem;border-radius:.55rem;display:grid;place-items:center;background:rgba(61,220,151,.14);color:var(--ok)}
+.fl-card .shd svg{width:1rem;height:1rem}
+@keyframes bob{50%{transform:translateY(-9px)}}
+@media(max-width:1180px){.fl-card{display:none}}
 
 /* taśma */
-.tape{position:relative;overflow:hidden;padding:1.05rem 0;background:var(--acg);color:#1b0e0b;transform:rotate(-1.4deg) scale(1.02);margin:1rem 0}
-.tape-in{display:flex;width:max-content;gap:2.6rem;font:800 clamp(1.4rem,3.2vw,2.3rem)/1 var(--display);letter-spacing:-.025em;white-space:nowrap;animation:tape 32s linear infinite}
+.tape{position:relative;overflow:hidden;padding:1.05rem 0;background:var(--acg);color:#1b0e0b;transform:rotate(-1.4deg) scale(1.02);margin:6rem 0 1rem}
+.tape-in{display:flex;width:max-content;gap:2.6rem;font:800 clamp(1.4rem,3.2vw,2.3rem)/1 var(--display);letter-spacing:-.025em;white-space:nowrap;animation:tape 34s linear infinite}
 .tape-in span{display:flex;align-items:center;gap:2.6rem}
 .tape-in span::after{content:"";width:.9em;height:.9em;background:url("logo.svg") center/contain no-repeat;border-radius:.2em}
 @keyframes tape{to{translate:-50% 0}}
 
 /* liczniki */
-.stats{display:grid;grid-template-columns:repeat(4,1fr);padding:4.5rem 1.5rem 3rem}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);padding:4.5rem 1.5rem 2rem}
 .stat{padding:0 1.5rem;border-left:1px solid var(--b2)}
 .stat b{display:block;font:800 clamp(2.4rem,5.4vw,4.4rem)/1 var(--display);letter-spacing:-.045em}
 .stat b em{font-style:normal}
@@ -203,10 +337,10 @@ header.solid{background:rgba(9,9,12,.78);backdrop-filter:blur(14px);-webkit-back
 /* sekcje */
 section{padding:6rem 0}
 .shead{display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;flex-wrap:wrap;margin-bottom:3rem}
-.shead h2{font-size:clamp(2.3rem,5vw,4rem);max-width:40rem}
-.shead p{color:var(--mu);max-width:26rem;margin:0}
+.shead h2{font-size:clamp(2.3rem,5vw,4rem);max-width:42rem}
+.shead p{color:var(--mu);max-width:27rem;margin:0}
 
-/* bento z funkcjami */
+/* bento */
 .bento{display:grid;grid-template-columns:repeat(6,1fr);gap:1rem}
 .card{position:relative;overflow:hidden;padding:1.6rem;border-radius:22px;background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.015));border:1px solid var(--b);transition:border-color .3s,transform .5s var(--ease)}
 .card:hover{border-color:var(--b2);transform:translateY(-4px)}
@@ -221,30 +355,98 @@ section{padding:6rem 0}
 .bars{display:flex;align-items:flex-end;gap:.35rem;height:5.5rem;margin-top:1.5rem}
 .bars i{flex:1;max-width:1.4rem;border-radius:.35rem .35rem .15rem .15rem;background:var(--acg);transform-origin:bottom;animation:bp 2s ease-in-out infinite}
 @keyframes bp{50%{transform:scaleY(.45)}}
-.fps{display:flex;gap:1.6rem;margin-top:1.2rem;font-size:.85rem;color:var(--mu)}
-.fps b{display:block;font:800 1.8rem var(--display);color:var(--tx);letter-spacing:-.03em}
 .chips{display:flex;flex-wrap:wrap;gap:.45rem;margin-top:1.3rem}
 .chips span{padding:.38rem .8rem;border-radius:99px;border:1px solid var(--b2);font-size:.82rem;font-weight:600;color:#d9d6dd;transition:background .3s,border-color .3s,color .3s}
 .chips span.hl{background:var(--acg);border-color:transparent;color:#fff}
 .accs{display:grid;gap:.55rem;margin-top:1.3rem}
 .accs div{display:flex;align-items:center;gap:.7rem;padding:.65rem .8rem;border-radius:12px;background:var(--c1);border:1px solid var(--b);font-size:.88rem;font-weight:600}
 .accs small{margin-left:auto;color:var(--mu);font-weight:500;font-size:.78rem}
-.accs .ms{display:grid;grid-template-columns:.55rem .55rem;gap:2px}.accs .ms i{width:.55rem;height:.55rem}
-.accs .ms i:nth-child(1){background:#f25022}.accs .ms i:nth-child(2){background:#7fba00}.accs .ms i:nth-child(3){background:#00a4ef}.accs .ms i:nth-child(4){background:#ffb900}
+.accs .msq{display:grid;grid-template-columns:.55rem .55rem;gap:2px}.accs .msq i{width:.55rem;height:.55rem}
 .accs .off{width:1.15rem;height:1.15rem;border-radius:.3rem;background:linear-gradient(#3b2a1d 40%,#b88a6a 40%)}
-.live{display:flex;align-items:center;gap:.8rem;margin-top:1.3rem;padding:.8rem;border-radius:14px;background:var(--c1);border:1px solid var(--b)}
-.live .av{width:2.6rem;height:2.6rem;border-radius:.7rem;background:var(--acg);display:grid;place-items:center;font:800 1rem var(--display)}
-.live b{display:block}.live small{display:flex;align-items:center;gap:.4rem;color:var(--ok);font-weight:700;font-size:.82rem}
-.live small::before{content:"";width:.45rem;height:.45rem;border-radius:50%;background:var(--ok);box-shadow:0 0 8px var(--ok);animation:blink 2s infinite}
+.fps{display:flex;gap:1.6rem;margin-top:1.2rem;font-size:.85rem;color:var(--mu);flex-wrap:wrap}
+.fps b{display:block;font:800 1.8rem var(--display);color:var(--tx);letter-spacing:-.03em}
+
+/* nowości */
+.tl{position:relative;display:grid;gap:1rem;padding-left:2.2rem}
+.tl::before{content:"";position:absolute;left:.62rem;top:.4rem;bottom:.4rem;width:2px;background:linear-gradient(var(--ac),rgba(255,63,122,.3),transparent)}
+.rel{position:relative;padding:1.4rem 1.5rem;border-radius:20px;border:1px solid var(--b);background:rgba(255,255,255,.025)}
+.rel::before{content:"";position:absolute;left:-2.05rem;top:1.65rem;width:.9rem;height:.9rem;border-radius:50%;background:var(--bg);border:2px solid var(--ac)}
+.rel.new{border-color:rgba(255,122,61,.35);background:linear-gradient(135deg,rgba(255,122,61,.08),rgba(255,63,122,.03))}
+.rel.new::before{background:var(--ac);box-shadow:0 0 0 5px rgba(255,122,61,.18),0 0 18px var(--ac)}
+.rel .v{display:flex;align-items:center;gap:.7rem;margin-bottom:.8rem}
+.rel .v b{font:800 1.5rem var(--display);letter-spacing:-.03em}
+.rel .v span{padding:.18rem .6rem;border-radius:99px;font-size:.72rem;font-weight:700;letter-spacing:.06em;background:var(--acg);color:#fff}
+.rel ul{margin:0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:.5rem 1.2rem;color:var(--mu)}
+.rel li{display:flex;gap:.55rem;align-items:flex-start;font-size:.95rem}
+.rel li::before{content:"";flex:none;width:.45rem;height:.45rem;margin-top:.55rem;border-radius:50%;background:var(--ac)}
+.rel li b{color:var(--tx);font-weight:600}
+
+/* bezpieczeństwo */
+.secu{display:grid;grid-template-columns:1fr 1.05fr;gap:2.5rem;align-items:start}
+.secu .scan{position:sticky;top:7rem}
+@media(max-width:960px){.secu .scan{position:relative;top:0}}
+.scan{position:relative;padding:1.6rem;border-radius:24px;border:1px solid var(--b2);background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.015));overflow:hidden}
+.scan::before{content:"";position:absolute;inset:-40% -20%;background:radial-gradient(closest-side,rgba(61,220,151,.12),transparent);pointer-events:none}
+.shield{position:relative;width:7.5rem;height:7.5rem;margin:.6rem auto 1.6rem;display:grid;place-items:center}
+.shield svg{position:relative;z-index:1;width:4.2rem;height:4.2rem;color:var(--ok);filter:drop-shadow(0 0 18px rgba(61,220,151,.55))}
+.shield .ring{position:absolute;inset:0;border-radius:50%;border:1px solid rgba(61,220,151,.35);animation:ring 3s var(--ease) infinite}
+.shield .ring:nth-child(2){animation-delay:1s}.shield .ring:nth-child(3){animation-delay:2s}
+@keyframes ring{from{transform:scale(.55);opacity:1}to{transform:scale(1.35);opacity:0}}
+.checks{position:relative;display:grid;gap:.55rem}
+.ck{display:flex;align-items:center;gap:.8rem;padding:.8rem 1rem;border-radius:13px;background:var(--c1);border:1px solid var(--b);font-size:.93rem;font-weight:500;opacity:.35;transition:opacity .4s,border-color .4s}
+.ck.go,.ck.ok{opacity:1}
+.ck.ok{border-color:rgba(61,220,151,.28)}
+.ck .s{position:relative;width:1.4rem;height:1.4rem;flex:none;border-radius:50%;border:2px solid var(--c4)}
+.ck.go .s{border-color:var(--ac);border-right-color:transparent;animation:spin .7s linear infinite}
+.ck.ok .s{border:0;background:var(--ok);box-shadow:0 0 12px rgba(61,220,151,.6)}
+.ck.ok .s::after{content:"";position:absolute;left:.48rem;top:.26rem;width:.35rem;height:.65rem;border:solid #08130e;border-width:0 2.5px 2.5px 0;transform:rotate(45deg)}
+.ck small{margin-left:auto;color:var(--mu2);font-size:.78rem;font-family:ui-monospace,Consolas,monospace}
+@keyframes spin{to{transform:rotate(360deg)}}
+.sgrid2{display:grid;grid-template-columns:1fr 1fr;gap:.9rem}
+.sc{padding:1.25rem;border-radius:18px;border:1px solid var(--b);background:rgba(255,255,255,.025);transition:border-color .3s,transform .4s var(--ease)}
+.sc:hover{border-color:var(--b2);transform:translateY(-3px)}
+.sc .ico{width:2.5rem;height:2.5rem;border-radius:12px}
+.sc .ico svg{width:1.15rem;height:1.15rem}
+.sc h3{font-size:1.12rem;margin:.85rem 0 .4rem;letter-spacing:-.02em}
+.sc p{margin:0;color:var(--mu);font-size:.9rem;line-height:1.55}
+@media(max-width:960px){.secu{grid-template-columns:1fr}}
+@media(max-width:560px){.sgrid2{grid-template-columns:1fr}}
+
+/* prywatność */
+.priv{display:grid;grid-template-columns:1.35fr 1fr;gap:1.2rem}
+.pbox{padding:1.6rem;border-radius:22px;border:1px solid var(--b);background:rgba(255,255,255,.025)}
+.pbox h3{display:flex;align-items:center;gap:.7rem;font-size:1.35rem;margin-bottom:1.1rem}
+.pbox h3 i{width:2.2rem;height:2.2rem;border-radius:11px;display:grid;place-items:center;flex:none}
+.pbox h3 i svg{width:1.05rem;height:1.05rem}
+.pbox.yes h3 i{background:rgba(255,122,61,.14);color:var(--ac)}
+.pbox.no h3 i{background:rgba(61,220,151,.13);color:var(--ok)}
+.pbox.loc h3 i{background:rgba(0,164,239,.13);color:#5cc6ff}
+.pbox.net h3 i{background:rgba(255,255,255,.07);color:var(--tx)}
+.drow{display:grid;grid-template-columns:1fr 1fr;gap:1rem;padding:.85rem 0;border-top:1px solid var(--b)}
+.drow:first-of-type{border-top:0;padding-top:0}
+.drow b{display:block;font-weight:600;font-size:.95rem}
+.drow span{color:var(--mu);font-size:.9rem}
+.drow em{font-style:normal;display:block;color:var(--mu2);font-size:.8rem;margin-top:.15rem}
+.nolist,.loclist,.netlist{margin:0;padding:0;list-style:none;display:grid;gap:.6rem}
+.nolist li,.loclist li,.netlist li{display:flex;gap:.7rem;align-items:flex-start;font-size:.93rem;color:#d6d3da}
+.nolist li::before{content:"";flex:none;width:1.25rem;height:1.25rem;margin-top:.1rem;border-radius:50%;background:rgba(61,220,151,.14) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%233ddc97' stroke-width='3' stroke-linecap='round'%3E%3Cpath d='M7 7l10 10M17 7L7 17'/%3E%3C/svg%3E") center/.7rem no-repeat}
+.loclist li::before,.netlist li::before{content:"";flex:none;width:.5rem;height:.5rem;margin-top:.55rem;border-radius:50%;background:var(--mu2)}
+.loclist li::before{background:#5cc6ff}
+.netlist b,.loclist b{color:var(--tx);font-weight:600}
+.pside{display:grid;gap:1.2rem;align-content:start}
+.rights{margin-top:1.2rem;display:flex;gap:1rem;align-items:center;flex-wrap:wrap;justify-content:space-between;padding:1.3rem 1.5rem;border-radius:20px;border:1px solid rgba(255,122,61,.3);background:linear-gradient(120deg,rgba(255,122,61,.09),rgba(255,63,122,.04))}
+.rights p{margin:0;color:#d6d3da;max-width:46rem;font-size:.95rem}
+.rights small{display:block;color:var(--mu2);margin-top:.3rem;font-size:.8rem}
+@media(max-width:960px){.priv{grid-template-columns:1fr}}
+@media(max-width:560px){.drow{grid-template-columns:1fr;gap:.2rem}}
 
 /* kroki */
 .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;counter-reset:s}
 .step{position:relative;padding:1.8rem 1.6rem;border-radius:22px;border:1px solid var(--b);background:rgba(255,255,255,.02)}
-.step::before{counter-increment:s;content:"0" counter(s);font:800 3.6rem/1 var(--display);letter-spacing:-.05em;background:var(--acg);-webkit-background-clip:text;background-clip:text;color:transparent;opacity:.9}
+.step::before{counter-increment:s;content:"0" counter(s);font:800 3.6rem/1 var(--display);letter-spacing:-.05em;background:var(--acg);-webkit-background-clip:text;background-clip:text;color:transparent}
 .step h3{font-size:1.4rem;margin:1rem 0 .5rem}
 .step p{margin:0;color:var(--mu)}
-.step:not(:last-child)::after{content:"";position:absolute;right:-1rem;top:50%;width:1rem;height:1px;background:var(--b2)}
-@media(max-width:860px){.steps{grid-template-columns:1fr}.step::after{display:none}}
+@media(max-width:860px){.steps{grid-template-columns:1fr}}
 
 /* FAQ */
 .faq{display:grid;grid-template-columns:.85fr 1.15fr;gap:4rem}
@@ -252,14 +454,15 @@ section{padding:6rem 0}
 .faq .l h2{font-size:clamp(2.3rem,5vw,3.8rem);margin-bottom:1.2rem}
 .faq .l p{color:var(--mu);max-width:24rem;margin:0 0 1.6rem}
 details{border-top:1px solid var(--b2)}details:last-child{border-bottom:1px solid var(--b2)}
-summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:1rem;padding:1.35rem 0;font:700 1.08rem var(--display);letter-spacing:-.01em;transition:color .25s,padding-left .35s var(--ease)}
+summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:1rem;padding:1.3rem 0;font:700 1.08rem var(--display);letter-spacing:-.01em;transition:color .25s,padding-left .35s var(--ease)}
 summary::-webkit-details-marker{display:none}
 summary:hover{color:#ffcfae;padding-left:.5rem}
 summary span{flex:1}
-summary i{font-style:normal;width:2.1rem;height:2.1rem;border-radius:10px;border:1px solid var(--b2);display:grid;place-items:center;font-size:1.2rem;transition:transform .45s var(--ease),background .25s,border-color .25s}
+summary i{font-style:normal;flex:none;width:2.1rem;height:2.1rem;border-radius:10px;border:1px solid var(--b2);display:grid;place-items:center;font-size:1.2rem;transition:transform .45s var(--ease),background .25s,border-color .25s}
 details[open] summary i{transform:rotate(135deg);background:var(--acg);border-color:transparent}
-details p{margin:0;padding:0 3rem 1.4rem 0;color:var(--mu);animation:paneIn .45s var(--ease)}
-@media(max-width:860px){.faq{grid-template-columns:1fr;gap:2rem}.faq .l{position:static}}
+details p{margin:0;padding:0 3rem 1.4rem 0;color:var(--mu);animation:fadeUp .45s var(--ease)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(6px)}}
+@media(max-width:860px){.faq{grid-template-columns:1fr;gap:2rem}.faq .l{position:static}details p{padding-right:0}}
 
 /* finał */
 .final{position:relative;overflow:hidden;padding:7rem 0 2rem;border-top:1px solid var(--b)}
@@ -270,7 +473,6 @@ details p{margin:0;padding:0 3rem 1.4rem 0;color:var(--mu);animation:paneIn .45s
 .final img.mark{width:5rem;height:5rem;margin:0 auto 1.6rem;border-radius:1.3rem;box-shadow:0 20px 50px -10px rgba(255,106,61,.6)}
 .final h2{font-size:clamp(2.8rem,8vw,6.5rem);max-width:56rem;margin:0 auto}
 .final p.lead{color:var(--mu);max-width:30rem;font-size:1.12rem;margin:1.5rem auto 2rem}
-.final .cta{justify-content:center}
 .ft{display:flex;justify-content:space-between;flex-wrap:wrap;gap:2.5rem;margin-top:8rem;padding:2.5rem 1.8rem;border:1px solid var(--b);border-radius:22px;background:rgba(9,9,12,.75);backdrop-filter:blur(12px)}
 .ft p{color:var(--mu);max-width:20rem;margin:.8rem 0 0;font-size:.92rem}
 .ft h4{margin:0 0 .8rem;font:700 .95rem var(--display);color:#ffcfae}
@@ -279,13 +481,12 @@ details p{margin:0;padding:0 3rem 1.4rem 0;color:var(--mu);animation:paneIn .45s
 .copy{display:flex;justify-content:space-between;flex-wrap:wrap;gap:.5rem;padding:1.6rem .4rem;color:var(--mu2);font-size:.82rem}
 
 /* powiadomienie */
-.toast{position:fixed;right:1.4rem;bottom:calc(1.4rem + env(safe-area-inset-bottom,0px));z-index:100;display:flex;gap:.85rem;align-items:center;padding:.9rem 1.15rem;border-radius:16px;max-width:23rem;background:rgba(23,23,29,.96);border:1px solid var(--b2);box-shadow:0 20px 50px -10px rgba(0,0,0,.8);
-  transform:translate3d(0,140%,0);opacity:0;transition:transform .5s var(--ease),opacity .35s}
+.toast{position:fixed;right:1.4rem;bottom:calc(1.4rem + env(safe-area-inset-bottom,0px));z-index:100;display:flex;gap:.85rem;align-items:center;padding:.9rem 1.15rem;border-radius:16px;max-width:23rem;background:rgba(23,23,29,.96);border:1px solid var(--b2);box-shadow:0 20px 50px -10px rgba(0,0,0,.8);transform:translate3d(0,140%,0);opacity:0;transition:transform .5s var(--ease),opacity .35s}
 .toast.show{transform:none;opacity:1}
 .toast img{width:2.3rem;height:2.3rem;border-radius:.6rem;flex:none}
 .toast b{display:block;font:700 .95rem var(--display)}.toast span{font-size:.85rem;color:var(--mu)}
 
-/* kurtyna na start */
+/* kurtyna */
 .curtain{position:fixed;inset:0;z-index:300;background:var(--bg);display:grid;place-items:center;pointer-events:none;animation:curtain .7s cubic-bezier(.7,0,.2,1) .7s forwards}
 .curtain img{width:5.5rem;height:5.5rem;border-radius:1.4rem;animation:cIn .7s var(--ease) both}
 @keyframes cIn{from{opacity:0;transform:scale(.85) rotate(-6deg)}}
@@ -293,7 +494,7 @@ details p{margin:0;padding:0 3rem 1.4rem 0;color:var(--mu);animation:paneIn .45s
 
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important}
-  .rv,.hero h1 .w{opacity:1;transform:none;filter:none}.curtain{display:none}.win{transform:none}
+  .rv,.hero h1 .w{opacity:1;transform:none;filter:none}.curtain{display:none}.tilt{transform:none!important}
 }
 </style>
 </head>
@@ -304,101 +505,147 @@ details p{margin:0;padding:0 3rem 1.4rem 0;color:var(--mu);animation:paneIn .45s
 <header id="hdr">
   <div class="wrap nav">
     <a class="logo" href="#top" aria-label="DezoClient – strona główna"><img src="logo.svg" alt=""><span>DEZOCLIENT</span></a>
-    <ul>
+    <ul id="menu">
       <li><a href="#podglad">Launcher</a></li>
       <li><a href="#funkcje">Funkcje</a></li>
-      <li><a href="#start">Jak zacząć</a></li>
+      <li><a href="#nowosci">Nowości</a></li>
+      <li><a href="#bezpieczenstwo">Bezpieczeństwo</a></li>
+      <li><a href="#prywatnosc">Prywatność</a></li>
       <li><a href="#faq">FAQ</a></li>
+      <li class="nind" aria-hidden="true"></li>
     </ul>
     <div class="r">
       <a class="btn gh dc js-dc" href="#discord"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.317 4.37a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.211.375-.445.865-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.74 19.74 0 0 0 3.677 4.37a.07.07 0 0 0-.032.028C.533 9.046-.32 13.58.099 18.058a.082.082 0 0 0 .031.056 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.042-.106 13.1 13.1 0 0 1-1.872-.892.077.077 0 0 1-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 0 1 .078-.011c3.928 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .079.01c.12.099.246.198.373.292a.077.077 0 0 1-.007.128 12.3 12.3 0 0 1-1.873.891.077.077 0 0 0-.041.107c.36.698.772 1.363 1.225 1.993a.076.076 0 0 0 .084.029 19.84 19.84 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.029zM8.02 15.331c-1.183 0-2.157-1.086-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.095 2.157 2.42 0 1.332-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.086-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.095 2.157 2.42 0 1.332-.946 2.418-2.157 2.418z"/></svg><span>Discord</span></a>
-      <a class="btn pr js-dl" href="https://github.com/Karpatek-dack0/launcher-site/releases/download/v4.0/DezoClient-Setup.exe">Pobierz</a>
+      <a class="btn pr js-dl" href="#">Pobierz</a>
     </div>
   </div>
 </header>
 
 <main id="top">
-  <!-- HERO -->
-  <div class="wrap hero" id="pobierz">
-    <div class="sun" aria-hidden="true"></div>
-    <div>
-      <span class="eyebrow rv" style="--d:.4s">Launcher Minecraft · Fabric</span>
-      <h1 aria-label="Graj płynniej od pierwszego kliknięcia">
-        <span class="w" style="--i:0">Graj</span> <span class="w grad" style="--i:1">płynniej</span><br><span class="w" style="--i:2">od</span> <span class="w" style="--i:3">pierwszego</span> <span class="w" style="--i:4">kliknięcia</span>
-      </h1>
-      <p class="lead rv" style="--d:.9s">Ponad 70 modów wydajności skonfigurowanych za Ciebie, mody z Modrinth jednym kliknięciem i logowanie przez Microsoft. Wybierz wersję i graj.</p>
-      <div class="cta rv" style="--d:1s">
-        <a class="btn pr js-dl" href="https://github.com/Karpatek-dack0/launcher-site/releases/download/v4.0/DezoClient-Setup.exe"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>Pobierz za darmo</a>
-        <a class="btn gh" href="#podglad">Zobacz launcher</a>
-      </div>
-      <div class="trust rv" style="--d:1.1s">
-        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg>Windows 10 i 11</span>
-        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg>100% darmowy</span>
-        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg>Bez reklam</span>
-      </div>
+  <!-- ============ HERO ============ -->
+  <div class="wrap hero">
+    <a class="eyebrow rv" style="--d:.35s" href="#nowosci"><b>NOWOŚĆ</b>DezoClient v4.4: nowy wygląd i mocniejsza ochrona</a>
+    <h1 aria-label="Graj płynniej od pierwszego kliknięcia">
+      <span class="w" style="--i:0">Graj</span> <span class="w grad" style="--i:1">płynniej</span> <span class="w" style="--i:2">od</span> <span class="w" style="--i:3">pierwszego</span> <span class="w" style="--i:4">kliknięcia</span>
+    </h1>
+    <p class="lead rv" style="--d:.95s">Ponad 70 modów wydajności skonfigurowanych za Ciebie, mody z Modrinth jednym kliknięciem i logowanie przez Microsoft. Bez reklam, bez śledzenia, bez zabawy w konfigurację.</p>
+    <div class="cta rv" style="--d:1.05s">
+      <a class="btn pr js-dl" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>Pobierz za darmo <small class="js-ver">v4.4</small></a>
+      <a class="btn gh" href="#podglad">Zobacz, jak działa</a>
+    </div>
+    <div class="trust rv" style="--d:1.15s">
+      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg>Windows 10 i 11</span>
+      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg>100% darmowy</span>
+      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg>Bez reklam i trackerów</span>
+      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg>Hasło tylko w oknie Microsoftu</span>
     </div>
 
-    <div class="stage" id="podglad">
-      <div class="floatcard fc1"><span class="d"></span><div><b>anarchia.gg</b><small>1 234 graczy · 42 ms</small></div></div>
-      <div class="floatcard fc2"><span class="ms"><i></i><i></i><i></i><i></i></span><div><b>Konto Microsoft</b><small>Zalogowano</small></div></div>
-      <div class="win" id="win" role="region" aria-label="Interaktywny podgląd launchera DezoClient">
-        <div class="wbar">DezoClient / <b id="crumb">Graj</b><span class="wd"><i></i><i></i><i></i></span></div>
-        <div class="app">
-          <div class="aside" role="tablist">
-            <div class="abrand"><img src="logo.svg" alt="">DEZOCLIENT</div>
-            <button class="on" data-tab="p1" role="tab" aria-selected="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8M5 10v10h5v-6h4v6h5V10"/></svg>Graj</button>
-            <button data-tab="p2" role="tab" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l9 5-9 5-9-5zM3 13l9 5 9-5"/></svg>Mody</button>
-            <button data-tab="p3" role="tab" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="6" rx="2"/><rect x="4" y="14" width="16" height="6" rx="2"/></svg>Serwery</button>
-            <button data-tab="p4" role="tab" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg>Ustawienia</button>
-            <div class="acc"><i></i><div><b>Gracz</b><small>Microsoft</small></div></div>
-          </div>
-          <div class="panes">
-            <div class="pane on" id="p1">
-              <div class="banner">
-                <div class="sun" aria-hidden="true"></div>
-                <div class="steve" aria-hidden="true"><i class="h"></i><i class="a1"></i><i class="t"></i><i class="a2"></i><i class="l"></i></div>
-                <div class="btxt">
-                  <small>MINECRAFT 1.21.4 · FABRIC</small>
-                  <h4>Witaj ponownie,<br>Gracz</h4>
-                  <button class="mplay" id="mplay" type="button"><span id="mpl">▶ GRAJ</span><small id="mps">Minecraft 1.21.4 · Fabric</small></button>
-                  <div class="mbar"><i id="mbar"></i></div>
+    <!-- ============ POKAZ LAUNCHERA ============ -->
+    <div class="show" id="podglad">
+      <div class="halo" aria-hidden="true"></div>
+      <div class="fl-card fl1"><span class="dot"></span><div><b>anarchia.gg</b><small>Ping na żywo w launcherze</small></div></div>
+      <div class="fl-card fl2"><span class="msq"><i></i><i></i><i></i><i></i></span><div><b>Konto Microsoft</b><small>Logowanie w oficjalnym oknie</small></div></div>
+      <div class="fl-card fl3"><span class="shd"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/><path d="M9 12l2 2 4-4"/></svg></span><div><b>Mody sprawdzone</b><small>Przed każdym uruchomieniem</small></div></div>
+      <div class="tilt" id="tilt">
+        <div class="frame">
+          <div class="fit" id="fit" role="region" aria-label="Interaktywny podgląd launchera DezoClient">
+            <div class="screen" id="screen">
+              <div class="lw" id="lw">
+                <div class="ltop">
+                  <div class="lbrand"><img src="logo.svg" alt=""><div><b>DEZOCLIENT</b><small>Launcher v4.4</small></div></div>
+                  <div class="lnav" id="lnav">
+                    <div class="lind" id="lind"></div>
+                    <button class="on" data-t="0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8M5 10v10h5v-6h4v6h5V10"/></svg>Graj</button>
+                    <button data-t="1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l9 5-9 5-9-5zM3 13l9 5 9-5"/></svg>Mody</button>
+                    <button data-t="2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="6" rx="2"/><rect x="4" y="14" width="16" height="6" rx="2"/><path d="M8 7h.01M8 17h.01"/></svg>Serwery</button>
+                    <button data-t="3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg>Ustawienia</button>
+                  </div>
+                  <div class="lsp"></div>
+                  <span class="lic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.3 4.4a19.8 19.8 0 0 0-4.9-1.5l-.6 1.3a18.3 18.3 0 0 0-5.5 0l-.6-1.3a19.7 19.7 0 0 0-4.9 1.5C.5 9 -.3 13.6.1 18a19.9 19.9 0 0 0 6 3l1.2-2a13 13 0 0 1-1.9-.9l.4-.3a14.2 14.2 0 0 0 12.1 0l.4.3a12.3 12.3 0 0 1-1.9.9l1.2 2a19.8 19.8 0 0 0 6-3c.5-5.2-.8-9.7-3.5-13.6zM8 15.3c-1.2 0-2.2-1.1-2.2-2.4s1-2.4 2.2-2.4 2.2 1.1 2.2 2.4-1 2.4-2.2 2.4zm8 0c-1.2 0-2.2-1.1-2.2-2.4s1-2.4 2.2-2.4 2.2 1.1 2.2 2.4-1 2.4-2.2 2.4z"/></svg></span>
+                  <span class="lic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 8l5 4-5 4M12 17h7"/></svg></span>
+                  <div class="lprof"><span class="face"></span><div><b>Gracz</b><small>Konto Microsoft</small></div></div>
+                  <span class="lsep"></span>
+                  <div class="lwin"><i></i><i></i><i></i></div>
                 </div>
+                <div class="lbody">
+                  <!-- Graj -->
+                  <div class="lpane on" data-p="0">
+                    <div class="lhero">
+                      <div class="sun"></div>
+                      <div class="chipsv" id="chipsv"><span>1.19.4</span><span>1.20.2</span><span>1.20.4</span><span>1.21</span><span class="on ok">1.21.4</span><span class="ok">1.21.11</span></div>
+                      <div class="pillsr"><span>&gt;_ Konsola</span><span>Folder</span></div>
+                      <div class="fig" id="fig" aria-hidden="true"><div class="shadow"></div><div class="rot" id="rot"></div></div>
+                      <div class="ltext">
+                        <small>Witaj ponownie,</small>
+                        <h5>Gracz</h5>
+                        <p>Zoptymalizowany Minecraft z ponad 70 modami wydajności. Wybierz wersję i graj.</p>
+                        <div class="lcta"><div class="lplay" id="lplay"><span id="lpl">▶ GRAJ</span><small id="lps">Minecraft 1.21.4 · Fabric</small><i class="pb" id="lpb"></i></div><div class="lver">1.21.4 ⌃</div></div>
+                        <div class="lstat" id="lstat"></div>
+                      </div>
+                    </div>
+                    <div class="lrow">
+                      <div class="lcard"><div class="hd"><span class="lbl">SERWERY PARTNERSKIE</span><a>Wszystkie →</a></div><div class="srv"><span class="gg">GG</span><div><b>anarchia.gg</b><small id="pingt">17 872 graczy · 94 ms</small></div><span class="cp">IP</span></div></div>
+                      <div class="lcard"><div class="hd"><span class="lbl">NOWOŚCI</span></div><div class="news"><img src="logo.svg" alt=""><small>NOWA WERSJA</small><b>Aktualizacja v4.4</b></div></div>
+                      <div class="lcard"><div class="hd"><span class="lbl">TWOJA INSTALACJA</span><a>Ustawienia →</a></div><div class="qs"><div><small>Mody</small><b id="qm">71</b></div><div><small>Pamięć RAM</small><b id="qr">4 GB</b></div><div><small>Czas gry</small><b>4 h 52 min</b></div><div><small>Ostatnia gra</small><b>wczoraj</b></div></div></div>
+                    </div>
+                  </div>
+                  <!-- Mody -->
+                  <div class="lpane" data-p="1">
+                    <div style="display:flex;justify-content:space-between;align-items:flex-end" class="lph"><div><h4>Mody</h4><p>Fabric 1.21.4 · mody z Modrinth</p></div><div class="ltabs"><span class="on">Odkrywaj</span><span>Zainstalowane</span></div></div>
+                    <div class="lsearch"><div class="in" id="msin"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><span class="q" id="mq"></span><span class="caret"></span></div><div class="go">Szukaj</div></div>
+                    <div class="mods">
+                      <div class="mgrid" id="mgrid"></div>
+                      <div class="mdet"><div class="big" id="dbig" style="background:#23232c">?</div><div><h6 id="dname">Wybierz mod</h6><div class="mu" id="dmeta">Kliknij kartę po lewej.</div></div><div class="tags" id="dtags"></div><p id="ddesc"></p><div class="mdl" id="mdl"><i id="mdlb"></i><span id="mdlt">Pobierz mod</span></div></div>
+                    </div>
+                  </div>
+                  <!-- Serwery -->
+                  <div class="lpane" data-p="2">
+                    <div class="lph"><h4>Serwery</h4><p>Serwery partnerskie DezoClient. Kliknij kartę, aby skopiować IP.</p></div>
+                    <div class="sgrid">
+                      <div class="scard"><div class="ban"><span class="gg">GG</span></div><div class="bd"><div><b>anarchia.gg</b><small>Anarchia bez zasad</small><small class="on" id="sping">17 872 graczy · 94 ms</small></div><span class="cpy" id="scp">Kopiuj IP</span></div></div>
+                      <div class="snew"><div><b>Twój serwer tutaj?</b>Napisz do nas na Discordzie.</div></div>
+                    </div>
+                    <div class="lnote">ⓘ Po skopiowaniu IP uruchom grę i wklej adres w „Gra wieloosobowa → Dodaj serwer”.</div>
+                  </div>
+                  <!-- Ustawienia -->
+                  <div class="lpane" data-p="3">
+                    <div class="lph"><h4>Ustawienia</h4><p>Wydajność, zachowanie launchera i narzędzia naprawcze.</p></div>
+                    <div class="setg">
+                      <div class="lcard sec"><h6><i></i>Wydajność</h6>
+                        <div class="srow ram"><div class="t"><span>Pamięć RAM dla gry</span><b id="rv">4 GB</b></div><div class="track"><span class="fl" id="rfl"></span><span class="th" id="rth"></span></div><small>Pamięć systemu: 16 GB · zalecane 4–8 GB</small></div>
+                        <div class="srow"><span>Efekty i animacje<small>Wyłącz na słabszym komputerze.</small></span><span class="tg on"></span></div>
+                        <div class="srow"><span>Ukryj launcher podczas gry<small>Oszczędza zasoby w trakcie gry.</small></span><span class="tg" id="tgh"></span></div>
+                      </div>
+                      <div class="lcard sec"><h6><i></i>Launcher</h6>
+                        <div class="srow"><span>Dźwięki interfejsu</span><span class="tg on"></span></div>
+                        <div class="srow"><span>Sprawdzaj aktualizacje przy starcie</span><span class="tg on"></span></div>
+                        <div class="srow"><span>Aktualizacje<small id="updt">Zainstalowana wersja: v4.4</small></span><span class="lbtn" id="updb">Szukaj</span></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="ltoast" id="ltoast"><i></i><span id="ltt">Skopiowano IP</span></div>
+                <div class="cur" id="cur"><svg viewBox="0 0 24 24"><path d="M4 2l15 11-6.6 1.2L16 21l-3 1.3-3.5-6.9L4 20z" fill="#fff" stroke="#111" stroke-width="1.4" stroke-linejoin="round"/></svg></div>
               </div>
-              <div class="tiles">
-                <div class="tl">Mody<b id="tmods">78</b></div>
-                <div class="tl">Pamięć RAM<b id="tram">6 GB</b></div>
-                <div class="tl">anarchia.gg<b class="on">online</b></div>
-              </div>
             </div>
-            <div class="pane" id="p2">
-              <div class="ptitle">Zainstalowane mody<small>Wyłącz dowolny mod jednym kliknięciem, bez usuwania</small></div>
-              <div class="mlist" id="mlist">
-                <div class="mrow on locked"><span class="ic">D</span><span class="nm">DezoClient Mod</span><span class="tg core">DezoClient</span></div>
-                <div class="mrow on"><span class="ic">S</span><span class="nm">Sodium</span><span class="tg">Bazowy</span><span class="sw"></span></div>
-                <div class="mrow on"><span class="ic">L</span><span class="nm">Lithium</span><span class="tg">Bazowy</span><span class="sw"></span></div>
-                <div class="mrow on"><span class="ic">Z</span><span class="nm">Zoomify</span><span class="tg">Bazowy</span><span class="sw"></span></div>
-                <div class="mrow on"><span class="ic">I</span><span class="nm">Iris Shaders</span><span class="tg">Własny</span><span class="sw"></span></div>
-              </div>
-            </div>
-            <div class="pane" id="p3">
-              <div class="ptitle">Serwery partnerskie<small>Status na żywo i kopiowanie IP jednym kliknięciem</small></div>
-              <div class="srow"><span class="av">A</span><div><b>anarchia.gg</b><small>1 234 graczy · 42 ms</small></div><span class="cp" data-ip="anarchia.gg">Kopiuj IP</span></div>
-            </div>
-            <div class="pane" id="p4">
-              <div class="ptitle">Ustawienia<small>Wydajność i zachowanie launchera</small></div>
-              <div class="ram"><div class="t"><span>Pamięć RAM dla gry</span><b id="rv">6 GB</b></div><input type="range" min="2" max="16" step="1" value="6" id="rs" aria-label="Pamięć RAM dla gry"><small>Zalecane 4–8 GB</small></div>
-              <div class="opt on" data-opt><span>Efekty i animacje</span><span class="sw"></span></div>
-              <div class="opt" data-opt><span>Ukryj launcher podczas gry</span><span class="sw"></span></div>
-            </div>
+            <div class="reflect" aria-hidden="true"></div>
           </div>
         </div>
+      </div>
+      <div class="tour" id="tour">
+        <button class="pp" id="pp" aria-label="Wstrzymaj pokaz"><svg viewBox="0 0 24 24" fill="currentColor" id="ppi"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg></button>
+        <button class="st on" data-s="0">Graj<i></i></button>
+        <button class="st" data-s="1">Mody<i></i></button>
+        <button class="st" data-s="2">Serwery<i></i></button>
+        <button class="st" data-s="3">Ustawienia<i></i></button>
+        <div class="hint">To podgląd prawdziwego launchera. Klikaj zakładki albo oglądaj pokaz.</div>
       </div>
     </div>
   </div>
 
   <div class="tape" aria-hidden="true"><div class="tape-in">
-    <span>Ponad 70 modów wydajności</span><span>Logowanie Microsoft</span><span>Mody z Modrinth</span><span>Automatyczne aktualizacje</span><span>Java w zestawie</span>
-    <span>Ponad 70 modów wydajności</span><span>Logowanie Microsoft</span><span>Mody z Modrinth</span><span>Automatyczne aktualizacje</span><span>Java w zestawie</span>
+    <span>Ponad 70 modów wydajności</span><span>Logowanie Microsoft</span><span>Mody z Modrinth</span><span>Automatyczne aktualizacje</span><span>Java w zestawie</span><span>Bez reklam</span>
+    <span>Ponad 70 modów wydajności</span><span>Logowanie Microsoft</span><span>Mody z Modrinth</span><span>Automatyczne aktualizacje</span><span>Java w zestawie</span><span>Bez reklam</span>
   </div></div>
 
   <div class="wrap stats">
@@ -408,7 +655,7 @@ details p{margin:0;padding:0 3rem 1.4rem 0;color:var(--mu);animation:paneIn .45s
     <div class="stat rv" style="--d:.24s"><b><em class="cnt" data-to="1">0</em> klik</b><span>od otwarcia launchera do gry</span></div>
   </div>
 
-  <!-- FUNKCJE -->
+  <!-- ============ FUNKCJE ============ -->
   <section id="funkcje">
     <div class="wrap">
       <div class="shead rv"><h2>Wszystko, czego potrzebujesz, <span class="grad">w jednym miejscu</span></h2><p>Launcher sam pobiera Javę, Fabrica i mody, pilnuje ich zgodności i aktualizuje się bez Twojej pomocy.</p></div>
@@ -423,7 +670,7 @@ details p{margin:0;padding:0 3rem 1.4rem 0;color:var(--mu);animation:paneIn .45s
           <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></div>
           <h3>Twoje konto</h3>
           <p>Zaloguj się przez Microsoft albo graj offline z własnym nickiem.</p>
-          <div class="accs"><div><span class="ms"><i></i><i></i><i></i><i></i></span>Microsoft<small>Premium</small></div><div><span class="off"></span>Offline<small>Non-premium</small></div></div>
+          <div class="accs"><div><span class="msq"><i></i><i></i><i></i><i></i></span>Microsoft<small>Premium</small></div><div><span class="off"></span>Offline<small>Non-premium</small></div></div>
         </div>
         <div class="card c3 rv">
           <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l9 5-9 5-9-5zM3 13l9 5 9-5"/></svg></div>
@@ -432,27 +679,135 @@ details p{margin:0;padding:0 3rem 1.4rem 0;color:var(--mu);animation:paneIn .45s
           <div class="chips" id="chips"><span>Sodium</span><span>Iris Shaders</span><span>Zoomify</span><span>Mod Menu</span><span>Lithium</span><span>Simple Voice Chat</span></div>
         </div>
         <div class="card c3 rv" style="--d:.08s">
-          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="6" rx="2"/><rect x="4" y="14" width="16" height="6" rx="2"/><path d="M8 7h.01M8 17h.01"/></svg></div>
-          <h3>Serwery partnerskie</h3>
-          <p>Ikona, liczba graczy i ping na żywo prosto w launcherze. IP skopiujesz jednym kliknięciem.</p>
-          <div class="live"><span class="av">A</span><div><b>anarchia.gg</b><small><span id="players">1 234</span> graczy online</small></div></div>
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M3 9h18M8 4v5"/></svg></div>
+          <h3>Nowy wygląd Kokpit</h3>
+          <p>Menu na górze, ekran gry na całą szerokość, szybki wybór wersji jednym kliknięciem i podgląd Twojego skina w 3D.</p>
+          <div class="fps"><div><b class="grad">1 klik</b>zmiana wersji</div><div><b>3D</b>podgląd skina</div></div>
         </div>
         <div class="card c2 rv">
           <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3-6.7L21 8M21 3v5h-5"/></svg></div>
           <h3>Zawsze aktualny</h3>
-          <p>Nowe wersje launchera i modów instalują się same.</p>
+          <p>Nowa wersja launchera instaluje się jednym kliknięciem, a mody aktualizują się same.</p>
         </div>
         <div class="card c4 rv" style="--d:.08s">
           <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/><path d="M9 12l2 2 4-4"/></svg></div>
           <h3>Bez psucia gry</h3>
-          <p>Launcher sprawdza każdy mod przed startem: usuwa duplikaty, mody na złą wersję i te na Forge, a brakujące zależności dociąga sam. Java 17 lub 21 pobiera się automatycznie.</p>
+          <p>Launcher sprawdza każdy mod przed startem: usuwa duplikaty, mody na złą wersję i te na Forge, a brakujące zależności dociąga sam. Java jest w zestawie.</p>
           <div class="fps"><div><b class="grad">0</b>ręcznej konfiguracji</div><div><b>Java 21</b>w zestawie</div><div><b>Fabric</b>zawsze aktualny</div></div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- KROKI -->
+  <!-- ============ NOWOŚCI ============ -->
+  <section id="nowosci" style="padding-top:2rem">
+    <div class="wrap">
+      <div class="shead rv"><h2>Co nowego w <span class="grad">DezoClient</span></h2><p>Ostatnie wersje launchera. Aktualizacja instaluje się z poziomu launchera.</p></div>
+      <div class="tl">
+        <div class="rel new rv"><div class="v"><b>v4.4</b><span>NAJNOWSZA</span></div><ul>
+          <li><span><b>Nowy wygląd Kokpit:</b> menu na górze i ekran gry na całą szerokość</span></li>
+          <li><span><b>Szybki wybór wersji</b> prosto na ekranie gry</span></li>
+          <li><span><b>Wymagane aktualizacje:</b> wszyscy grają na bezpiecznej, aktualnej wersji</span></li>
+          <li><span><b>Ochrona przed podróbkami:</b> zmieniony launcher się nie uruchomi</span></li>
+        </ul></div>
+        <div class="rel rv"><div class="v"><b>v4.3</b></div><ul>
+          <li><span><b>Ochrona fair play:</b> bany obejmują cały komputer, nie tylko nick</span></li>
+          <li><span><b>Lepsza obsługa kont</b> Microsoft i serwera DezoClient</span></li>
+        </ul></div>
+        <div class="rel rv"><div class="v"><b>v4.1</b></div><ul>
+          <li><span><b>Logowanie przez Microsoft</b> i Twój własny skin</span></li>
+          <li><span><b>Ikony i ping</b> serwerów partnerskich</span></li>
+          <li><span><b>Przełączniki modów:</b> wyłączasz mod bez usuwania</span></li>
+        </ul></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ BEZPIECZEŃSTWO ============ -->
+  <section id="bezpieczenstwo">
+    <div class="wrap">
+      <div class="shead rv"><div><div class="kick">Bezpieczeństwo</div><h2>Bezpieczny <span class="grad">z założenia</span></h2></div><p>Launcher ma dostęp do Twojej gry i konta, więc traktujemy to poważnie. Oto, co robimy, żeby był bezpieczny.</p></div>
+      <div class="secu">
+        <div class="scan rv" id="scan">
+          <div class="shield" aria-hidden="true"><span class="ring"></span><span class="ring"></span><span class="ring"></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/><path d="M9 12l2 2 4-4"/></svg></div>
+          <div class="checks">
+            <div class="ck"><span class="s"></span>Pliki launchera nienaruszone<small>OK</small></div>
+            <div class="ck"><span class="s"></span>Aktualizacja z oficjalnego źródła<small>SHA-256</small></div>
+            <div class="ck"><span class="s"></span>Mody zgodne z wersją gry<small>1.21.4</small></div>
+            <div class="ck"><span class="s"></span>Java gotowa do gry<small>Java 21</small></div>
+            <div class="ck"><span class="s"></span>Sesja Microsoft zaszyfrowana<small>Windows</small></div>
+          </div>
+        </div>
+        <div class="sgrid2">
+          <div class="sc rv"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div><h3>Hasło zostaje u Microsoftu</h3><p>Logujesz się w oficjalnym oknie Microsoftu. Launcher nigdy nie widzi hasła, a token sesji zapisuje zaszyfrowany kluczem Twojego konta Windows.</p></div>
+          <div class="sc rv" style="--d:.06s"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg></div><h3>Aktualizacje tylko z oficjalnych wydań</h3><p>Launcher pobiera nowe wersje wyłącznie z wydań DezoClient na GitHubie i sprawdza sumę kontrolną SHA-256 pliku przed instalacją.</p></div>
+          <div class="sc rv" style="--d:.12s"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/><path d="M12 8v4M12 16h.01"/></svg></div><h3>Ochrona przed podróbkami</h3><p>Kod launchera jest zaszyfrowany i chroniony przed zmianami. Jeśli ktoś przerobi pliki DezoClient, launcher po prostu się nie uruchomi.</p></div>
+          <div class="sc rv" style="--d:.18s"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/></svg></div><h3>Bez reklam i dodatków</h3><p>Instalator nie dorzuca żadnych innych programów, pasków ani reklam. Instaluje tylko DezoClient.</p></div>
+          <div class="sc rv" style="--d:.24s"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l9 5-9 5-9-5zM3 13l9 5 9-5"/></svg></div><h3>Mody ze sprawdzonych źródeł</h3><p>Mody pobierasz z Modrinth, a przed każdym startem launcher sprawdza ich wersję, duplikaty i zależności.</p></div>
+          <div class="sc rv" style="--d:.3s"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8"/></svg></div><h3>Fair play</h3><p>Oszuści dostają bana na cały komputer, a nie tylko na nick. Od bana możesz się odwołać na naszym Discordzie.</p></div>
+        </div>
+      </div>
+      <p class="rv" style="color:var(--mu2);font-size:.88rem;margin:1.6rem 0 0">Pobieraj DezoClient tylko z tej strony albo z oficjalnych wydań na GitHubie. Nie uruchamiaj „przerobionych” wersji z innych źródeł.</p>
+    </div>
+  </section>
+
+  <!-- ============ PRYWATNOŚĆ ============ -->
+  <section id="prywatnosc" style="padding-top:2rem">
+    <div class="wrap">
+      <div class="shead rv"><div><div class="kick">Prywatność</div><h2>Jakie dane <span class="grad">zbieramy</span></h2></div><p>Krótko i bez prawniczego języka. Zbieramy tylko to, co jest potrzebne do listy graczy, banów i aktualizacji.</p></div>
+      <div class="priv">
+        <div class="pbox yes rv">
+          <h3><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v6c0 1.7 3.6 3 8 3s8-1.3 8-3V6M4 12v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></svg></i>Co trafia na serwer DezoClient</h3>
+          <div class="drow"><div><b>Nick w grze</b></div><span>Lista graczy online i bany.</span></div>
+          <div class="drow"><div><b>Typ konta i UUID konta Microsoft</b><em>UUID jest publiczny w Minecrafcie</em></div><span>Potwierdzenie konta premium i uprawnień administratorów.</span></div>
+          <div class="drow"><div><b>Losowy identyfikator instalacji</b><em>Nie zawiera danych o Tobie</em></div><span>Rozróżnianie instalacji launchera i bany.</span></div>
+          <div class="drow"><div><b>Skrót identyfikatora sprzętu</b><em>SHA-256; numery sprzętu nie opuszczają komputera</em></div><span>Bany na cały komputer dla oszustów.</span></div>
+          <div class="drow"><div><b>Wersja launchera i gry, status, ostatnia aktywność</b></div><span>Lista online („w launcherze”, „w grze”) i wymaganie aktualizacji.</span></div>
+          <div class="drow"><div><b>Informacje o banie</b><em>Powód i czas trwania</em></div><span>Egzekwowanie bana i odwołania.</span></div>
+        </div>
+        <div class="pside">
+          <div class="pbox no rv" style="--d:.08s">
+            <h3><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/></svg></i>Czego nie zbieramy</h3>
+            <ul class="nolist">
+              <li>Haseł (logujesz się w oknie Microsoftu)</li>
+              <li>Adresu e-mail ani danych płatniczych</li>
+              <li>Plików z Twojego komputera</li>
+              <li>Czatu w grze i tego, co piszesz na klawiaturze</li>
+              <li>Historii przeglądania</li>
+              <li>Adresu IP w bazie graczy</li>
+            </ul>
+          </div>
+          <div class="pbox loc rv" style="--d:.14s">
+            <h3><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg></i>Zostaje na Twoim komputerze</h3>
+            <ul class="loclist">
+              <li><span><b>Ustawienia</b> launchera</span></li>
+              <li><span><b>Sesja Microsoft</b>, zaszyfrowana</span></li>
+              <li><span><b>Logi</b> launchera i gry: nie wysyłamy ich automatycznie</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="pbox net rv" style="margin-top:1.2rem">
+        <h3><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></i>Z czym łączy się launcher</h3>
+        <ul class="netlist" style="grid-template-columns:repeat(auto-fit,minmax(19rem,1fr))">
+          <li><span><b>Microsoft i Mojang:</b> logowanie, certyfikat gracza, skiny i pliki gry</span></li>
+          <li><span><b>Modrinth:</b> wyszukiwanie i pobieranie modów</span></li>
+          <li><span><b>GitHub:</b> sprawdzanie i pobieranie aktualizacji</span></li>
+          <li><span><b>Cloudflare:</b> hosting serwera DezoClient (obsługuje połączenie, w tym adres IP)</span></li>
+          <li><span><b>Fabric i Adoptium:</b> biblioteki Fabric i Java</span></li>
+          <li><span><b>mc-heads.net i minotar.net:</b> obrazki skinów i głów graczy</span></li>
+          <li><span><b>Serwery partnerskie:</b> ping i liczba graczy na liście serwerów</span></li>
+          <li><span><b>Discord:</b> status gry w aplikacji Discord, lokalnie na Twoim komputerze</span></li>
+        </ul>
+      </div>
+      <div class="rights rv">
+        <p>Chcesz zobaczyć albo usunąć swoje dane? Napisz do nas na Discordzie. Dane graczy przechowujemy, dopóki nie poprosisz o ich usunięcie. Historię banów zachowujemy, żeby bany działały.<small>Ta strona nie używa ciasteczek ani narzędzi analitycznych; czcionki ładuje z Google Fonts. Ostatnia aktualizacja: 12 listopada 2026.</small></p>
+        <a class="btn gh dc js-dc" href="#discord">Napisz na Discordzie</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ KROKI ============ -->
   <section id="start" style="padding-top:2rem">
     <div class="wrap">
       <div class="shead rv"><h2>Gotowy w <span class="grad">trzy kroki</span></h2><p>Bez szukania plików, instalowania Javy i ręcznego kopiowania modów.</p></div>
@@ -464,7 +819,7 @@ details p{margin:0;padding:0 3rem 1.4rem 0;color:var(--mu);animation:paneIn .45s
     </div>
   </section>
 
-  <!-- FAQ -->
+  <!-- ============ FAQ ============ -->
   <section id="faq">
     <div class="wrap faq">
       <div class="l rv">
@@ -474,11 +829,13 @@ details p{margin:0;padding:0 3rem 1.4rem 0;color:var(--mu);animation:paneIn .45s
       </div>
       <div class="rv" style="--d:.1s">
         <details open><summary><span>Czy DezoClient jest darmowy?</span><i>+</i></summary><p>Tak. Launcher, mody i aktualizacje są całkowicie darmowe, bez subskrypcji i reklam.</p></details>
-        <details><summary><span>Jakie są wymagania?</span><i>+</i></summary><p>64-bitowy Windows 10 lub 11. Odpowiednią wersję Javy launcher pobierze i skonfiguruje sam.</p></details>
+        <details><summary><span>Czy DezoClient jest bezpieczny?</span><i>+</i></summary><p>Tak. Hasło wpisujesz tylko w oknie Microsoftu, aktualizacje pochodzą wyłącznie z oficjalnych wydań i są sprawdzane sumą kontrolną, a kod launchera jest chroniony przed przeróbkami. Pobieraj go tylko z tej strony.</p></details>
+        <details><summary><span>Dlaczego Windows pokazuje ostrzeżenie SmartScreen?</span><i>+</i></summary><p>To częste przy nowych programach od niezależnych twórców, którzy nie mają płatnego certyfikatu podpisu. Kliknij „Więcej informacji”, a potem „Uruchom mimo to”.</p></details>
+        <details><summary><span>Jakie są wymagania?</span><i>+</i></summary><p>64-bitowy Windows 10 lub 11. Javę launcher ma w zestawie i sam ją skonfiguruje.</p></details>
         <details><summary><span>Czy mogę grać bez oryginalnego Minecrafta?</span><i>+</i></summary><p>Tak. Wpisz nick w trybie offline i graj na serwerach non-premium. Jeśli masz oryginał, zaloguj się przez Microsoft.</p></details>
-        <details><summary><span>Czy logowanie przez Microsoft jest bezpieczne?</span><i>+</i></summary><p>Hasło wpisujesz wyłącznie w oficjalnym oknie Microsoftu. Launcher go nie widzi i zapisuje tylko zaszyfrowany token sesji na Twoim komputerze.</p></details>
+        <details><summary><span>Dlaczego launcher wymaga aktualizacji?</span><i>+</i></summary><p>Gdy wychodzi nowa wersja, stara przestaje działać, żeby wszyscy grali na aktualnym i bezpiecznym launcherze. Aktualizacja to jeden przycisk i chwila czekania.</p></details>
+        <details><summary><span>Dostałem bana. Co teraz?</span><i>+</i></summary><p>Ban obejmuje cały komputer, więc zmiana nicku ani ponowna instalacja nie pomogą. Jeśli uważasz, że ban jest niesłuszny, odwołaj się na naszym Discordzie.</p></details>
         <details><summary><span>Jak instalować mody?</span><i>+</i></summary><p>W zakładce Mody wyszukaj mod z Modrinth i kliknij Pobierz. Wymagane biblioteki dociągną się same, a każdy mod możesz potem wyłączyć przełącznikiem.</p></details>
-        <details><summary><span>Dlaczego Windows pokazuje ostrzeżenie SmartScreen?</span><i>+</i></summary><p>To częste przy nowych programach od niezależnych twórców. Kliknij „Więcej informacji”, a potem „Uruchom mimo to”.</p></details>
       </div>
     </div>
   </section>
@@ -493,15 +850,15 @@ details p{margin:0;padding:0 3rem 1.4rem 0;color:var(--mu);animation:paneIn .45s
       <h2 class="rv">Gotowy na <span class="grad">płynną grę?</span></h2>
       <p class="lead rv">Pobierz DezoClient, wybierz wersję i graj bez lagów.</p>
       <div class="cta rv">
-        <a class="btn pr js-dl" href="https://github.com/Karpatek-dack0/launcher-site/releases/download/v4.0/DezoClient-Setup.exe">Pobierz DezoClient</a>
+        <a class="btn pr js-dl" href="#">Pobierz DezoClient <small class="js-ver">v4.4</small></a>
         <a class="btn gh dc js-dc" href="#discord">Dołącz do Discorda</a>
       </div>
     </div>
     <div class="ft">
-      <div><a class="logo" href="#top"><img src="logo.svg" alt=""><span>DEZOCLIENT</span></a><p>Szybki i darmowy launcher Minecraft. Stworzony przez graczy, dla graczy.</p></div>
-      <div><h4>Nawigacja</h4><ul><li><a href="#podglad">Launcher</a></li><li><a href="#funkcje">Funkcje</a></li><li><a href="#start">Jak zacząć</a></li><li><a href="#faq">FAQ</a></li></ul></div>
-      <div><h4>Informacje</h4><ul><li><a href="#regulamin">Regulamin</a></li><li><a href="#prywatnosc">Polityka prywatności</a></li></ul></div>
-      <div><h4>Społeczność</h4><ul><li><a class="js-dc" href="#discord">Serwer Discord</a></li><li><a href="https://github.com/Karpatek-dack0/launcher-site/releases">Wszystkie wersje</a></li></ul></div>
+      <div><a class="logo" href="#top"><img src="logo.svg" alt=""><span>DEZOCLIENT</span></a><p>Szybki, darmowy i bezpieczny launcher Minecraft. Stworzony przez graczy, dla graczy.</p></div>
+      <div><h4>Nawigacja</h4><ul><li><a href="#podglad">Launcher</a></li><li><a href="#funkcje">Funkcje</a></li><li><a href="#nowosci">Nowości</a></li><li><a href="#faq">FAQ</a></li></ul></div>
+      <div><h4>Zaufanie</h4><ul><li><a href="#bezpieczenstwo">Bezpieczeństwo</a></li><li><a href="#prywatnosc">Prywatność i dane</a></li></ul></div>
+      <div><h4>Społeczność</h4><ul><li><a class="js-dc" href="#discord">Serwer Discord</a></li><li><a class="js-rel" href="#">Wszystkie wersje</a></li></ul></div>
     </div>
     <div class="copy"><span>© 2026 DezoClient. Wszelkie prawa zastrzeżone.</span><span>Projekt niezależny, niepowiązany z Mojang AB ani Microsoft.</span></div>
   </div>
@@ -514,108 +871,218 @@ details p{margin:0;padding:0 3rem 1.4rem 0;color:var(--mu);animation:paneIn .45s
 
 <script>
 (function(){
-  // Wklej tu link zaproszenia na serwer Discord (np. https://discord.gg/xxxx). Puste = komunikat „wkrótce”.
+  "use strict";
+  // ===== USTAWIENIA STRONY =====
+  // Wydania instalatora na GitHubie. "latest" zawsze wskazuje najnowszą wersję, więc linku nie trzeba zmieniać.
+  var RELEASES="https://github.com/Karpatek-dack0/launcher-site/releases";
+  var DOWNLOAD_URL=RELEASES+"/latest/download/DezoClient-Setup.exe";
+  var VERSION="v4.4";
+  // Link zaproszenia na Discord (np. https://discord.gg/xxxx). Puste = komunikat „wkrótce”.
   var DISCORD_URL="";
 
   var R=matchMedia("(prefers-reduced-motion: reduce)").matches;
-  var q=function(s){return document.querySelector(s)},qa=function(s){return document.querySelectorAll(s)};
+  var q=function(s,r){return (r||document).querySelector(s)},qa=function(s,r){return (r||document).querySelectorAll(s)};
+  var sleep=function(ms){return new Promise(function(r){setTimeout(r,ms)})};
 
-  // nagłówek i pasek postępu przewijania
-  var hdr=q("#hdr"),prog=q("#prog");
-  function onScroll(){var m=document.documentElement.scrollHeight-innerHeight;prog.style.transform="scaleX("+(m>0?scrollY/m:0)+")";hdr.classList.toggle("solid",scrollY>10)}
-  addEventListener("scroll",onScroll,{passive:true});onScroll();
+  qa(".js-dl").forEach(function(a){a.href=DOWNLOAD_URL});
+  qa(".js-ver").forEach(function(s){s.textContent=VERSION});
+  qa(".js-rel").forEach(function(a){a.href=RELEASES;a.target="_blank";a.rel="noopener"});
 
-  // wejście elementów
+  // ---- nagłówek, pasek przewijania, aktywna sekcja w menu
+  var hdr=q("#hdr"),prog=q("#prog"),menu=q("#menu"),nind=q(".nind"),links=[].slice.call(qa("#menu a"));
+  function setNind(a){if(!a||getComputedStyle(menu).display==="none"){nind.style.opacity=0;return}nind.style.opacity=1;nind.style.width=a.offsetWidth+"px";nind.style.transform="translateX("+a.offsetLeft+"px)"}
+  function onScroll(){
+    var m=document.documentElement.scrollHeight-innerHeight;prog.style.transform="scaleX("+(m>0?scrollY/m:0)+")";hdr.classList.toggle("solid",scrollY>10);
+    var cur=null;links.forEach(function(a){var s=q(a.getAttribute("href"));if(s&&s.getBoundingClientRect().top<innerHeight*.35)cur=a});
+    links.forEach(function(a){a.classList.toggle("on",a===cur)});setNind(cur);
+    tiltUpdate();
+  }
+
+  // ---- wejście elementów
   var rvs=qa(".rv");
   if("IntersectionObserver" in window&&!R){
     var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}})},{threshold:.12,rootMargin:"0px 0px -40px 0px"});
     rvs.forEach(function(el){io.observe(el)});
   }else rvs.forEach(function(el){el.classList.add("in")});
 
-  // liczniki
-  function count(el){
-    var to=+el.getAttribute("data-to"),t0=performance.now();
-    if(R||to===0){el.textContent=to;return}
-    (function f(t){var p=Math.min((t-t0)/1300,1),e=1-Math.pow(1-p,4);el.textContent=Math.round(to*e);if(p<1)requestAnimationFrame(f)})(t0);
+  // ---- liczniki
+  function count(el){var to=+el.getAttribute("data-to"),t0=performance.now();if(R||to===0){el.textContent=to;return}
+    (function f(t){var p=Math.min((t-t0)/1300,1),e=1-Math.pow(1-p,4);el.textContent=Math.round(to*e);if(p<1)requestAnimationFrame(f)})(t0)}
+  if("IntersectionObserver" in window){var co=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){count(e.target);co.unobserve(e.target)}})},{threshold:.6});qa(".cnt").forEach(function(el){co.observe(el)})}
+  else qa(".cnt").forEach(count);
+
+  // ---- słupki, chipy, podświetlenie kart
+  var bars=q("#bars");[42,64,52,80,58,92,70,86,62,97,74,90,66,95].forEach(function(h,i){var b=document.createElement("i");b.style.height=h+"%";b.style.animationDelay=(-i*.15)+"s";bars.appendChild(b)});
+  var chips=qa("#chips span"),ci=0;setInterval(function(){chips.forEach(function(c){c.classList.remove("hl")});chips[ci].classList.add("hl");ci=(ci+1)%chips.length},1400);
+  qa(".card,.sc").forEach(function(c){c.addEventListener("mousemove",function(e){var b=c.getBoundingClientRect();c.style.setProperty("--mx",(e.clientX-b.left)+"px");c.style.setProperty("--my",(e.clientY-b.top)+"px")})});
+
+  // ---- skanowanie bezpieczeństwa (po wejściu w widok, co jakiś czas od nowa)
+  var scan=q("#scan"),cks=[].slice.call(qa(".ck",scan)),scanning=false;
+  async function runScan(){if(scanning)return;scanning=true;
+    cks.forEach(function(c){c.classList.remove("go","ok")});await sleep(300);
+    for(var i=0;i<cks.length;i++){cks[i].classList.add("go");await sleep(R?0:650);cks[i].classList.remove("go");cks[i].classList.add("ok")}
+    scanning=false}
+  if("IntersectionObserver" in window){var so=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)runScan()})},{threshold:.5});so.observe(scan)}else runScan();
+
+  // ===================== POKAZ LAUNCHERA =====================
+  var fit=q("#fit"),screen=q("#screen"),lw=q("#lw"),tilt=q("#tilt");
+  var W=1000,H=620,scale=1;
+  function resize(){scale=fit.clientWidth/W;screen.style.setProperty("--s",scale);fit.style.height=(H*scale)+"px";moveLind(false)}
+  function tiltUpdate(){if(R)return;var r=tilt.getBoundingClientRect(),vh=innerHeight;var p=Math.max(0,Math.min(1,(vh-r.top)/(vh*.8)));
+    tilt.style.setProperty("--rx",(18*(1-p)).toFixed(2)+"deg");tilt.style.setProperty("--sc",(.93+.07*p).toFixed(3))}
+
+  // postać 3D (bloki jak w Minecrafcie, wymiary 64x128)
+  var SK="#b88a6a",HAIR="#3b2a1d",SHIRT="#2fa1b5",PANTS="#3b43a8",SHOE="#55565f";
+  var FACE="linear-gradient("+HAIR+","+HAIR+") 0 0/32px 8px no-repeat,linear-gradient(#fff,#fff) 4px 16px/4px 4px no-repeat,linear-gradient(#523d89,#523d89) 8px 16px/4px 4px no-repeat,linear-gradient(#523d89,#523d89) 20px 16px/4px 4px no-repeat,linear-gradient(#fff,#fff) 24px 16px/4px 4px no-repeat,linear-gradient(#6a4030,#6a4030) 12px 24px/8px 4px no-repeat,"+SK;
+  var HEADSIDE="linear-gradient("+HAIR+" 0 10px,"+SK+" 10px)";
+  var ARM="linear-gradient("+SHIRT+" 0 16px,"+SK+" 16px)";
+  var LEG="linear-gradient("+PANTS+" 0 40px,"+SHOE+" 40px)";
+  function box(p,o){
+    var b=document.createElement("div");b.className="bx"+(o.cls?" "+o.cls:"");b.style.width=o.w+"px";b.style.height=o.h+"px";
+    b.style.setProperty("--x",o.x+"px");b.style.setProperty("--y",o.y+"px");b.style.transform="translate3d("+o.x+"px,"+o.y+"px,0)";
+    var w=o.w,h=o.h,d=o.d,c=o.c;
+    [["f",w,h,0,0,"translateZ("+d/2+"px)",c.f],["k",w,h,0,0,"rotateY(180deg) translateZ("+d/2+"px)",c.k||c.f],
+     ["r",d,h,(w-d)/2,0,"rotateY(90deg) translateZ("+w/2+"px)",c.s||c.f],["l",d,h,(w-d)/2,0,"rotateY(-90deg) translateZ("+w/2+"px)",c.s||c.f],
+     ["t",w,d,0,(h-d)/2,"rotateX(90deg) translateZ("+h/2+"px)",c.t||c.f],["u",w,d,0,(h-d)/2,"rotateX(-90deg) translateZ("+h/2+"px)",c.u||c.f]
+    ].forEach(function(f){var i=document.createElement("i");i.className=f[0];i.style.width=f[1]+"px";i.style.height=f[2]+"px";i.style.left=f[3]+"px";i.style.top=f[4]+"px";i.style.transform=f[5];i.style.background=f[6];b.appendChild(i)});
+    p.appendChild(b);
   }
+  var rot=q("#rot");
+  box(rot,{w:32,h:32,d:32,x:16,y:0,c:{f:FACE,k:HAIR,s:HEADSIDE,t:HAIR,u:SK}});
+  box(rot,{w:32,h:48,d:16,x:16,y:32,c:{f:SHIRT,t:SHIRT,u:SHIRT}});
+  box(rot,{w:16,h:48,d:16,x:0,y:32,cls:"arm-l",c:{f:ARM,t:SHIRT,u:SK}});
+  box(rot,{w:16,h:48,d:16,x:48,y:32,cls:"arm-r",c:{f:ARM,t:SHIRT,u:SK}});
+  box(rot,{w:16,h:48,d:16,x:16,y:80,c:{f:LEG,t:PANTS,u:SHOE}});
+  box(rot,{w:16,h:48,d:16,x:32,y:80,c:{f:LEG,t:PANTS,u:SHOE}});
+
+  // zakładki w oknie
+  var lnavBtns=[].slice.call(qa("#lnav button")),lind=q("#lind"),panes=[].slice.call(qa(".lpane",lw)),stepBtns=[].slice.call(qa("#tour .st")),curTab=0;
+  function moveLind(anim){var b=lnavBtns[curTab];if(!b)return;if(anim===false){lind.style.transition="none"}lind.style.width=b.offsetWidth+"px";lind.style.transform="translateX("+b.offsetLeft+"px)";if(anim===false){void lind.offsetWidth;lind.style.transition=""}}
+  function setTab(n){curTab=n;lnavBtns.forEach(function(b,i){b.classList.toggle("on",i===n)});panes.forEach(function(p,i){p.classList.toggle("on",i===n)});stepBtns.forEach(function(b,i){b.classList.toggle("on",i===n)});moveLind()}
+
+  // kursor demonstracyjny
+  var cur=q("#cur"),cx=560,cy=430;cur.style.transform="translate("+cx+"px,"+cy+"px)";
+  // pozycja w pikselach projektu (offsety ignorują skalowanie i pochylenie 3D okna)
+  function posOf(el,dx,dy){var x=0,y=0,w=el.offsetWidth,h=el.offsetHeight,e=el;while(e&&e!==lw){x+=e.offsetLeft;y+=e.offsetTop;e=e.offsetParent}return{x:x+w*(dx==null?.5:dx),y:y+h*(dy==null?.5:dy)}}
+  async function moveTo(el,dx,dy,ms){var p=posOf(el,dx,dy);cx=p.x;cy=p.y;cur.style.transitionDuration=(ms||750)+"ms";cur.style.transform="translate("+(cx-3)+"px,"+(cy-2)+"px)";await wait(ms||750)}
+  async function click(){cur.classList.add("dn");var r=document.createElement("span");r.className="rip";r.style.left=cx+"px";r.style.top=cy+"px";lw.appendChild(r);setTimeout(function(){r.remove()},650);await wait(140);cur.classList.remove("dn");await wait(120)}
+  var ltoast=q("#ltoast"),ltt=q("#ltt"),lto;
+  function ltoastShow(t){ltt.textContent=t;ltoast.classList.add("on");clearTimeout(lto);lto=setTimeout(function(){ltoast.classList.remove("on")},1800)}
+
+  // przerywalny scenariusz: każda zmiana (kliknięcie użytkownika, pauza) unieważnia trwający krok
+  var tok=0,playing=!R,visible=false,idleT=null,running=false;
+  function Stop(){}
+  function wait(ms){var my=tok;return sleep(ms).then(function(){if(my!==tok)throw new Stop()})}
+
+  // stany początkowe poszczególnych ekranów
+  var lplay=q("#lplay"),lpl=q("#lpl"),lps=q("#lps"),lpb=q("#lpb"),lstat=q("#lstat"),chipsv=[].slice.call(qa("#chipsv span"));
+  function resetPlay(){lplay.className="lplay";lpl.textContent="▶ GRAJ";lps.textContent="Minecraft 1.21.4 · Fabric";lpb.style.transition="none";lpb.style.width="0";lstat.className="lstat";lstat.textContent=""}
+  var MODS=[
+    {n:"Sodium",a:"jellysquid3",d:"Nowoczesny silnik renderowania, który mocno poprawia wydajność.",dl:"52,0 mln",c:"#3a9a5a",t:["optymalizacja"]},
+    {n:"Sodium Extra",a:"FlashyReese",d:"Dodatkowe ustawienia grafiki dla Sodium.",dl:"18,4 mln",c:"#4a7bd0",t:["optymalizacja"]},
+    {n:"Reese's Sodium Options",a:"FlashyReese",d:"Nowe, wygodne menu ustawień wideo.",dl:"14,9 mln",c:"#c75d8e",t:["menu"]},
+    {n:"Indium",a:"comp500",d:"Zgodność Sodium z modami korzystającymi z Fabric Rendering API.",dl:"11,2 mln",c:"#7a5ad0",t:["biblioteka"]},
+    {n:"Iris Shaders",a:"coderbot",d:"Shadery kompatybilne z OptiFine, działające razem z Sodium.",dl:"31,0 mln",c:"#d07a3a",t:["shadery"]},
+    {n:"Zoomify",a:"isxander",d:"Płynny zoom jak w OptiFine, z wieloma ustawieniami.",dl:"9,0 mln",c:"#3aa7c7",t:["narzędzia"]}];
+  var mgrid=q("#mgrid"),mq=q("#mq"),msin=q("#msin");
+  MODS.forEach(function(m,i){var d=document.createElement("div");d.className="mc";d.innerHTML='<div class="h"><span class="mav" style="background:'+m.c+'">'+m.n[0]+'</span><div><b></b><small></small></div></div><p></p><div class="f"><span>⬇ '+m.dl+'</span><span class="dl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg></span></div>';
+    q("b",d).textContent=m.n;q("small",d).textContent="od "+m.a;q("p",d).textContent=m.d;d.addEventListener("click",function(){userAct();selMod(i)});mgrid.appendChild(d)});
+  var mcs=[].slice.call(qa(".mc",mgrid)),mdl=q("#mdl"),mdlb=q("#mdlb"),mdlt=q("#mdlt");
+  function selMod(i){var m=MODS[i];mcs.forEach(function(c,j){c.classList.toggle("sel",i===j)});var big=q("#dbig");big.textContent=m.n[0];big.style.background=m.c;q("#dname").textContent=m.n;q("#dmeta").textContent="od "+m.a+" · "+m.dl+" pobrań";q("#dtags").innerHTML="";m.t.forEach(function(t){var s=document.createElement("span");s.textContent=t;q("#dtags").appendChild(s)});q("#ddesc").textContent=m.d;mdl.className="mdl";mdlt.textContent="Pobierz mod";mdlb.style.transition="none";mdlb.style.width="0"}
+  function resetMods(show){mq.textContent=show?"sodium":"";msin.classList.remove("f");mcs.forEach(function(c){c.classList.toggle("in",!!show);c.classList.remove("sel")});if(show)selMod(0);else{q("#dbig").textContent="?";q("#dbig").style.background="#23232c";q("#dname").textContent="Wybierz mod";q("#dmeta").textContent="Kliknij kartę po lewej.";q("#dtags").innerHTML="";q("#ddesc").textContent="";mdl.className="mdl";mdlt.textContent="Pobierz mod";mdlb.style.width="0"}}
+  var rv=q("#rv"),rfl=q("#rfl"),rth=q("#rth"),qr=q("#qr");
+  function setRam(g){var p=(g-2)/14*100;rv.textContent=g+" GB";qr.textContent=g+" GB";rfl.style.width=p+"%";rth.style.left=p+"%"}
+  setRam(4);resetMods(true);
+
+  // scenariusze kroków (współrzędne liczone z prawdziwych elementów okna)
+  var STEPS=[
+    async function(){ // Graj: zmiana wersji i uruchomienie gry
+      resetPlay();
+      await moveTo(chipsv[5]);await click();chipsv.forEach(function(c){c.classList.remove("on")});chipsv[5].classList.add("on");lps.textContent="Minecraft 1.21.11 · Fabric";await wait(500);
+      await moveTo(chipsv[4]);await click();chipsv.forEach(function(c){c.classList.remove("on")});chipsv[4].classList.add("on");lps.textContent="Minecraft 1.21.4 · Fabric";await wait(400);
+      await moveTo(lplay,.45,.5);await click();
+      lplay.classList.add("run");lpl.textContent="URUCHAMIANIE…";lstat.classList.add("on");
+      var msgs=["Sprawdzanie modów…","Przygotowanie Javy 21…","Pobieranie zasobów: 64%","Uruchamianie gry…"];
+      lpb.style.transition="width .9s linear";
+      for(var i=0;i<msgs.length;i++){lstat.textContent=msgs[i];lps.textContent=msgs[i];lpb.style.width=((i+1)/msgs.length*100)+"%";await wait(900)}
+      lplay.classList.remove("run");lplay.classList.add("game");lpl.textContent="W GRZE";lps.textContent="Miłej gry!";lstat.textContent="Gra działa · 240 FPS";lstat.classList.add("ok");lpb.style.width="0";
+      await wait(1800);
+    },
+    async function(){ // Mody: wyszukiwanie i pobieranie
+      resetMods(false);
+      await moveTo(msin,.3,.5);await click();msin.classList.add("f");
+      var word="sodium";for(var i=1;i<=word.length;i++){mq.textContent=word.slice(0,i);await wait(110)}
+      await wait(250);msin.classList.remove("f");
+      for(var j=0;j<mcs.length;j++){mcs[j].classList.add("in");await wait(70)}
+      await wait(400);await moveTo(mcs[0],.5,.4);await click();selMod(0);await wait(500);
+      await moveTo(mdl);await click();mdl.className="mdl";mdlt.textContent="Pobieranie…";mdlb.style.transition="width 1.3s linear";mdlb.style.width="100%";await wait(1350);
+      mdl.classList.add("done");mdlt.textContent="Zainstalowano ✓";mdlb.style.width="0";mdlb.style.transition="none";ltoastShow("Pobrano Sodium");
+      await wait(1500);
+    },
+    async function(){ // Serwery: kopiowanie IP
+      var scp=q("#scp");await wait(300);await moveTo(scp);await click();scp.classList.add("hot");setTimeout(function(){scp.classList.remove("hot")},200);scp.textContent="Skopiowano ✓";ltoastShow("Skopiowano IP: anarchia.gg");
+      await wait(2200);scp.textContent="Kopiuj IP";await wait(400);
+    },
+    async function(){ // Ustawienia: RAM i przełącznik
+      setRam(4);q("#tgh").classList.remove("on");var updb=q("#updb");updb.className="lbtn";updb.textContent="Szukaj";
+      await moveTo(rth);await click();
+      for(var g=5;g<=8;g++){setRam(g);var p=posOf(rth);cx=p.x;cy=p.y;cur.style.transitionDuration="220ms";cur.style.transform="translate("+(cx-3)+"px,"+(cy-2)+"px)";await wait(240)}
+      await wait(300);await moveTo(q("#tgh"));await click();q("#tgh").classList.add("on");await wait(500);
+      await moveTo(updb);await click();updb.textContent="Szukam…";await wait(900);updb.className="lbtn ok";updb.textContent="Najnowsza ✓";
+      await wait(1600);
+    }];
+
+  var STEP_SEC=[9.6,8.9,5.2,8.6]; // przybliżony czas kroku (pasek postępu pod przyciskami)
+  function fillStep(i){stepBtns.forEach(function(b){var f=q("i",b);f.style.transition="none";f.style.width="0"});var f=q("i",stepBtns[i]);void f.offsetWidth;f.style.transition="width "+STEP_SEC[i]+"s linear";f.style.width="100%"}
+  async function runFrom(start){
+    var my=++tok;running=true;var i=start;
+    try{
+      cur.classList.add("on");
+      while(playing&&visible&&my===tok){
+        fillStep(i);
+        await moveTo(lnavBtns[i],.5,.55,700);await click();setTab(i);await wait(500);
+        await STEPS[i]();
+        i=(i+1)%STEPS.length;
+      }
+    }catch(e){if(!(e instanceof Stop))console.error(e)}
+    if(my===tok){running=false}
+  }
+  function stopTour(){tok++;running=false;cur.classList.remove("on");stepBtns.forEach(function(b){var f=q("i",b);f.style.transition="none";f.style.width="0"})}
+  function startTour(from){if(!playing||!visible||R)return;stopTour();runFrom(from==null?curTab:from)}
+  var pp=q("#pp"),ppi=q("#ppi");
+  var PAUSE='<rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/>',PLAY='<path d="M8 5l11 7-11 7z"/>';
+  function setPlaying(v){playing=v;ppi.innerHTML=v?PAUSE:PLAY;pp.setAttribute("aria-label",v?"Wstrzymaj pokaz":"Wznów pokaz");if(v)startTour();else stopTour()}
+  pp.addEventListener("click",function(){clearTimeout(idleT);setPlaying(!playing)});
+  // interakcja użytkownika: pokaz się zatrzymuje i wraca po 12 s bezczynności
+  function userAct(){if(R)return;stopTour();clearTimeout(idleT);if(playing)idleT=setTimeout(function(){startTour()},12000)}
+  lnavBtns.forEach(function(b,i){b.addEventListener("click",function(){userAct();setTab(i);if(i===1&&!mcs[0].classList.contains("in"))resetMods(true);if(i===0)resetPlay()})});
+  stepBtns.forEach(function(b,i){b.addEventListener("click",function(){clearTimeout(idleT);setTab(i);if(!playing)setPlaying(true);startTour(i)})});
+  lplay.addEventListener("click",function(){userAct();resetPlay()});
   if("IntersectionObserver" in window){
-    var co=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){count(e.target);co.unobserve(e.target)}})},{threshold:.6});
-    qa(".cnt").forEach(function(el){co.observe(el)});
-  }else qa(".cnt").forEach(count);
-
-  // słupki wydajności
-  var bars=q("#bars");
-  [42,64,52,80,58,92,70,86,62,97,74,90,66,95].forEach(function(h,i){var b=document.createElement("i");b.style.height=h+"%";b.style.animationDelay=(-i*.15)+"s";bars.appendChild(b)});
-
-  // podświetlane chipy modów
-  var chips=qa("#chips span"),ci=0;
-  setInterval(function(){chips.forEach(function(c){c.classList.remove("hl")});chips[ci].classList.add("hl");ci=(ci+1)%chips.length},1400);
-
-  // licznik graczy „na żywo” (ilustracja)
-  var pl=q("#players"),pv=1234;
-  setInterval(function(){pv+=Math.round((Math.random()-.45)*12);pl.textContent=pv.toLocaleString("pl-PL")},2500);
-
-  // podświetlenie kart za kursorem
-  qa(".card").forEach(function(c){c.addEventListener("mousemove",function(e){var b=c.getBoundingClientRect();c.style.setProperty("--mx",(e.clientX-b.left)+"px");c.style.setProperty("--my",(e.clientY-b.top)+"px")})});
-
-  // podgląd launchera: zakładki
-  var tabs=qa(".aside button[data-tab]"),panes=qa(".pane"),crumb=q("#crumb");
-  tabs.forEach(function(b){b.addEventListener("click",function(){
-    tabs.forEach(function(x){x.classList.remove("on");x.setAttribute("aria-selected","false")});
-    panes.forEach(function(p){p.classList.remove("on")});
-    b.classList.add("on");b.setAttribute("aria-selected","true");
-    q("#"+b.getAttribute("data-tab")).classList.add("on");crumb.textContent=b.textContent.trim();
-  })});
-
-  // mody: przełączniki (DezoClient Mod zablokowany)
-  var tm=q("#tmods");
-  qa("#mlist .mrow:not(.locked)").forEach(function(m){m.addEventListener("click",function(){
-    var on=!m.classList.contains("on");m.classList.toggle("on",on);m.classList.toggle("off",!on);
-    tm.textContent=String(78-qa("#mlist .mrow.off").length);
-  })});
-
-  // ustawienia
-  var rs=q("#rs"),rv=q("#rv"),tr=q("#tram");
-  rs.addEventListener("input",function(){rv.textContent=rs.value+" GB";tr.textContent=rs.value+" GB"});
-  qa("[data-opt]").forEach(function(o){o.addEventListener("click",function(){o.classList.toggle("on")})});
-
-  // przycisk GRAJ w podglądzie
-  var mp=q("#mplay"),mpl=q("#mpl"),mps=q("#mps"),mb=q("#mbar"),busy=false;
-  mp.addEventListener("click",function(){
-    if(busy)return;busy=true;mpl.textContent="URUCHAMIANIE…";mps.textContent="Sprawdzanie modów i Javy";
-    var p=0,iv=setInterval(function(){p=Math.min(100,p+7+Math.random()*9);mb.style.width=p+"%";
-      if(p>=100){clearInterval(iv);mp.classList.add("run");mpl.textContent="W GRZE";mps.textContent="Miłej gry!";
-        setTimeout(function(){mp.classList.remove("run");mpl.textContent="▶ GRAJ";mps.textContent="Minecraft 1.21.4 · Fabric";mb.style.width="0";busy=false},2600)}},140);
-  });
-
-  // pochylanie okna podglądu
-  var stg=q(".stage"),win=q("#win");
-  if(!R&&matchMedia("(pointer:fine)").matches&&innerWidth>980){
-    stg.addEventListener("mousemove",function(e){var r=stg.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
-      win.classList.add("tilt");win.style.transform="rotateY("+(x*9)+"deg) rotateX("+(-y*7)+"deg)"});
-    stg.addEventListener("mouseleave",function(){win.classList.remove("tilt");win.style.transform=""});
+    var vo=new IntersectionObserver(function(es){es.forEach(function(e){visible=e.isIntersecting;if(visible){if(!running)startTour()}else stopTour()})},{threshold:.35});
+    vo.observe(fit);
   }
 
-  // delikatnie „magnetyczne” przyciski
-  if(!R&&matchMedia("(pointer:fine)").matches){
-    qa(".btn").forEach(function(b){
-      b.addEventListener("mousemove",function(e){var r=b.getBoundingClientRect();b.style.translate=((e.clientX-r.left-r.width/2)*.12)+"px "+((e.clientY-r.top-r.height/2)*.2)+"px"});
-      b.addEventListener("mouseleave",function(){b.style.translate=""});
-    });
-  }
+  // przyciski „magnetyczne”
+  if(!R&&matchMedia("(pointer:fine)").matches){qa(".btn").forEach(function(b){
+    b.addEventListener("mousemove",function(e){var r=b.getBoundingClientRect();b.style.translate=((e.clientX-r.left-r.width/2)*.12)+"px "+((e.clientY-r.top-r.height/2)*.2)+"px"});
+    b.addEventListener("mouseleave",function(){b.style.translate=""})})}
 
-  // powiadomienia
+  // powiadomienia strony
   var toast=q("#toast"),tt=q("#tt"),td=q("#td"),tmr;
   function show(a,b){tt.textContent=a;td.textContent=b;toast.classList.add("show");clearTimeout(tmr);tmr=setTimeout(function(){toast.classList.remove("show")},3600)}
-  qa(".js-dl").forEach(function(b){b.addEventListener("click",function(){show("Pobieranie DezoClient","Rozpoczęto pobieranie DezoClient-Setup.exe.")})});
+  qa(".js-dl").forEach(function(b){b.addEventListener("click",function(){show("Pobieranie DezoClient "+VERSION,"Rozpoczęto pobieranie DezoClient-Setup.exe.")})});
   qa(".js-dc").forEach(function(b){
     if(DISCORD_URL){b.href=DISCORD_URL;b.target="_blank";b.rel="noopener"}
     b.addEventListener("click",function(e){if(!DISCORD_URL){e.preventDefault();show("Discord DezoClient","Link do serwera pojawi się wkrótce.")}});
   });
-  qa(".srow .cp").forEach(function(c){c.addEventListener("click",function(){
-    var ip=c.getAttribute("data-ip");
-    (navigator.clipboard?navigator.clipboard.writeText(ip):Promise.reject()).then(function(){show("Skopiowano IP",ip)},function(){show("Adres serwera",ip)});
-  })});
+
+  // start
+  if("ResizeObserver" in window)new ResizeObserver(resize).observe(fit);
+  addEventListener("resize",function(){resize();onScroll()});
+  addEventListener("scroll",onScroll,{passive:true});
+  resize();onScroll();
+  if(document.fonts&&document.fonts.ready)document.fonts.ready.then(function(){moveLind(false);onScroll()});
 })();
 </script>
 </body>
